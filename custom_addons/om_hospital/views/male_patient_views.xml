@@ -17,7 +17,7 @@
 
     <menuitem
             id="menu_male_patient"
-            name="Male Patient"
+            name="Male Patients"
             action="action_hospital_male_patient"
             parent="menu_patient_master"
             sequence="20"/>
