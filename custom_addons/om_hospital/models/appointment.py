@@ -29,4 +29,8 @@ class HospitalAppointment(models.Model):
         self.ref = self.patient_id.ref
 
 
+    def action_test(self):
+        print('Cliked Button !!!!!!!')
+
+
 
