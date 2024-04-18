@@ -21,6 +21,11 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div>
+                        <h2>
+                            <field name="priority" widget="priority"/>
+                        </h2>
+                    </div>
                     <group>
                         <group>
                             <field name="patient_id"/>
