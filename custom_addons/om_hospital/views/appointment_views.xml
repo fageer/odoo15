@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+
+<!--    decoration-success &#45;&#45; Green-->
+<!--    decoration-info &#45;&#45; Light Blue-->
+<!--    decoration-danger &#45;&#45; Red-->
+<!--    decoration-warning &#45;&#45; Orange-->
+<!--    decoration-muted &#45;&#45; default-->
+
+
     <record id="view_hospital_appointment_tree" model="ir.ui.view">
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
@@ -11,25 +19,35 @@
                 <field name="booking_date"/>
                 <field name="gender"/>
                 <field name="ref"/>
+                <field name="state"
+                       widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'draft'"
+                       decoration-danger="state == 'cancel'"
+                       decoration-warning="state == 'in_consultation'"/>
             </tree>
         </field>
     </record>
+
 
     <record id="view_hospital_appointment_form" model="ir.ui.view">
         <field name="name">hospital.appointment.form</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form>
+                <!-- Statusbar -->
                 <header>
-                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
-                           statusbar_visible="draft,in_consultation,done"/>
+                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable': '1'}"/>
                 </header>
+
                 <sheet>
                     <div>
                         <h2>
                             <field name="priority" widget="priority"/>
                         </h2>
                     </div>
+
+
                     <group>
                         <group>
                             <field name="patient_id"/>
@@ -47,6 +65,7 @@
                         </group>
                     </group>
 
+
                     <notebook>
                         <page string="Prescription" name="prescription">
                             <field name="prescription" placeholder="Enter your prescription"/>
@@ -55,6 +74,8 @@
                         </page>
                     </notebook>
                 </sheet>
+
+
                 <!-- Chatter -->
                 <div class="oe_chatter">
                     <field name="message_follower_ids" groups="base.group_user"/>
@@ -66,6 +87,7 @@
         </field>
     </record>
 
+
     <record id="view_hospital_appointment_search" model="ir.ui.view">
         <field name="name">hospital.appointment.search</field>
         <field name="model">hospital.appointment</field>
@@ -74,6 +96,7 @@
             </search>
         </field>
     </record>
+
 
     <record id="action_hospital_appointment" model="ir.actions.act_window">
         <field name="name">Appointment</field>
@@ -87,7 +110,6 @@
             </p>
         </field>
     </record>
-
     <menuitem
             id="menu_appointment"
             name="Appointments"
