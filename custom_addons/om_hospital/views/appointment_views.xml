@@ -16,8 +16,8 @@
             <tree decoration-success="state == 'done'"
                   decoration-danger="state == 'cancel'"
                   decoration-warning="state == 'in_consultation'" sample="1" multi_edit="1">
-                <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="patient_id" string="Patient Name"/>
+                <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
                 <field name="gender" optional="hide"/>
