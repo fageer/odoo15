@@ -13,12 +13,15 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-success="state == 'done'"
+                  decoration-danger="state == 'cancel'"
+                  decoration-warning="state == 'in_consultation'">
                 <field name="patient_id" string="Patient Name"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
-                <field name="gender"/>
-                <field name="ref"/>
+                <field name="gender" optional="hide"/>
+                <field name="ref" optional="show"/>
+                <field name="activity_ids" widget="list_activity"/>
                 <field name="state"
                        widget="badge"
                        decoration-success="state == 'done'"
