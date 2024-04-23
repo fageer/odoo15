@@ -18,4 +18,10 @@
         name="Appointments"
         parent="menu_hospital_root"
         sequence="20"/>
+
+    <menuitem
+        id="menu_configuration"
+        name="Configurations"
+        parent="menu_hospital_root"
+        sequence="100"/>
 </odoo>
