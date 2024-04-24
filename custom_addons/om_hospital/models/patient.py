@@ -18,6 +18,11 @@ class HospitalPatient(models.Model):
     tag_ids = fields.Many2many('patient.tag', string='Tags')
 
 
+    @api.model
+    def create(self, vals):
+        vals['ref'] = 'FEGO'
+        return super(HospitalPatient, self).create(vals)
+
 
     @api.depends('date_of_birth')
     def _compute_age(self):
