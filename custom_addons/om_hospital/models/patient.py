@@ -9,7 +9,7 @@ class HospitalPatient(models.Model):
 
     name = fields.Char(string='Name', tracking=True)
     date_of_birth = fields.Date(string='Date Of Birth')
-    ref = fields.Char(string='Reference', tracking=True)
+    ref = fields.Char(string='Reference', tracking=True, readonly=True)
     age = fields.Integer(string='Age', compute='_compute_age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string='Gender', tracking=True, default='male')
     active = fields.Boolean(string='Active', default=True)
