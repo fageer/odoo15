@@ -10,3 +10,7 @@ class SaleOrder(models.Model):
         print("Success !!!!!!!!!!!!!!!!!!")
         super(SaleOrder, self).action_confirm()
         self.confirmed_user_id = self.env.user.id
+
+    def action_cancel(self):
+        print("Cancelled !!!!!!!!!!!!!!!!!!")
+        super(SaleOrder, self).action_cancel()
