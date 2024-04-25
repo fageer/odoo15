@@ -39,3 +39,7 @@ class HospitalPatient(models.Model):
             else:
                 rec.age = 0
 
+
+    def name_get(self):
+        return [(record.id, f"[{record.ref}] {record.name}") for record in self]
+
