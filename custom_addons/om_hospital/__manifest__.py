@@ -20,6 +20,7 @@
         'views/male_patient_views.xml',
         'views/appointment_views.xml',
         'views/patient_tag_views.xml',
+        'views/odoo_playground_views.xml',
     ],
     'demo': [],
     'installable': True,
