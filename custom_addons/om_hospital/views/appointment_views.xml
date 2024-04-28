@@ -63,15 +63,23 @@
                 <header>
                     <button name="action_in_consultation" string="In Consultation" data-hotkey="i" type="object" states="draft" class="oe_highlight"/>
                     <button name="action_done" string="Mark As Done" type="object" data-hotkey="v" states="in_consultation" class="oe_highlight"/>
-<!--                    <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" data-hotkey="z" states="draft,in_consultation"/>-->
-                    <button name="action_cancel" string="Cancel" type="object" data-hotkey="z" states="draft,in_consultation"/>
-                    <button name="action_draft" string="Reset To Draft" type="object" data-hotkey="r" states="cancel"/>
+                    <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" data-hotkey="z" 
+                        context="{'default_appointment_id': active_id,
+                                    'default_reason': 'test'}" 
+                                    states="draft,in_consultation"/>
+                    <!-- <button name="action_cancel" string="Cancel" type="object" data-hotkey="z" 
+                        states="draft,in_consultation"/> -->
+                    <button name="action_draft" string="Reset To Draft" type="object" data-hotkey="r"
+                        states="cancel"/>
                     <!-- options="{'clickable': '1'}" -->
                     <field name="state" widget="statusbar" nolabel="1"/>
                 </header>
 
                 <sheet>
                     <div>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
                         <h2>
                             <field name="priority" widget="priority"/>
                         </h2>
