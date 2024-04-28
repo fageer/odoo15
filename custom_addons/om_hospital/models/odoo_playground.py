@@ -7,8 +7,8 @@ class OdooPlayGround(models.Model):
     _description = 'Odoo PlayGround'
     
     DEFAULT_ENV_VARIABLES = '''# Available variables:
-        - self: Current Object
-        - self.env: ..............
+        # - self: Current Object
+        # - self.env: ..............
     '''
     model_id = fields.Many2one('ir.model', string='Model')
     code = fields.Text(string='Code', default=DEFAULT_ENV_VARIABLES)
