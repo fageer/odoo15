@@ -65,7 +65,8 @@
                     <button name="action_done" string="Mark As Done" type="object" data-hotkey="v" states="in_consultation" class="oe_highlight"/>
                     <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" data-hotkey="z" 
                         context="{'default_appointment_id': active_id,
-                                    'default_reason': 'test'}" 
+                                    'default_reason': 'test',
+                                    'hide_appointment': '1'}" 
                                     states="draft,in_consultation"/>
                     <!-- <button name="action_cancel" string="Cancel" type="object" data-hotkey="z" 
                         states="draft,in_consultation"/> -->
