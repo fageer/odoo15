@@ -1,5 +1,6 @@
 from datetime import date
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 class HospitalPatient(models.Model):
     _name = "hospital.patient"
@@ -18,6 +19,13 @@ class HospitalPatient(models.Model):
     tag_ids = fields.Many2many('patient.tag', string='Tags')
 
 
+    @api.constrains('date_of_birth')
+    def _check_date_of_birth(self):
+        for rec in self:
+            if rec.date_of_birth and rec.date_of_birth > date.today():
+                raise ValidationError(_('Date of Birth cannot be in the future.'))
+            
+            
     @api.model
     def create(self, vals):
         vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
