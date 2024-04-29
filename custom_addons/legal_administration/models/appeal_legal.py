@@ -21,4 +21,10 @@ class AppealLegal(models.Model):
     judgment_attached = fields.Binary(string='Judgment Attached')
     
     
+    @api.onchange('issue')
+    def onchange_patient_id(self):
+        self.judge = self.issue.judge
+        self.sessions_ids = self.issue.sessions_ids
+    
+    
     
