@@ -60,6 +60,8 @@
                                     <field name="judgment_number"/>
                                     <field name="ruling_text"/>
                                     <field name="ruling_date"/>
+                                </group>
+                                <group>
                                     <field name="court"/>
                                     <field name="judgment_attached"/>
                                 </group>
@@ -77,37 +79,22 @@
         </field>
     </record>
 
-    <!-- <record id="view_hospital_patient_search" model="ir.ui.view">
-        <field name="name">hospital.patient.search</field>
-        <field name="model">hospital.patient</field>
+
+    <record id="view_issues_legal_search" model="ir.ui.view">
+        <field name="name">issues.legal.search</field>
+        <field name="model">issues.legal</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" string="Patient Name" filter_domain="['|', ('name', 'ilike', self), ('ref', 'ilike', self)]"/>
-                <field name="ref"/>
-                <field name="age"/>
-                <field name="gender"/>
-                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
-                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
-               <separator/>
-               <filter name="filter_kids" string="Kids" domain="[('age', '&lt;=', 10)]"/>
-                <separator/>
-                <filter name="filter_archived" string="Archived" domain="[('active', '=', False)]"/>
-                <group expand="0" string="Group By">
-                    <filter string="Gender" name="group_by_gender" context="{'group_by': 'gender'}"/>
-                </group>
-                <searchpanel>
-                    <field name="gender" string="Gender" enable_counters="1" icon="fa-users"/>
-                </searchpanel>
-
             </search>
         </field>
-    </record> -->
+    </record>
+
 
     <record id="action_issues_legal" model="ir.actions.act_window">
         <field name="name">Issues</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">issues.legal</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,activity</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
