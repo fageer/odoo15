@@ -37,14 +37,6 @@
 
                     <notebook>
                         <page string="Judgment Details" name="judgment_details">
-                            <!-- <tree editable="bottom">
-                                <field name="judgment_number"/>
-                                <field name="ruling_text"/>
-                                <field name="ruling_date"/>
-                                <field name="court"/>
-                                <field name="judgment_attached"/>
-                            </tree>
-                            <form> -->
                             <group>
                                 <group>
                                     <field name="judgment_number"/>
@@ -56,7 +48,6 @@
                                     <field name="judgment_attached"/>
                                 </group>
                             </group>
-                            <!-- </form> -->
                         </page>
                     </notebook>
                 </sheet>
