@@ -21,7 +21,7 @@ class IssuesLegal(models.Model):
         ('finished', 'Finished')], string='Status')
     defendant = fields.Text(string='Defendant')
     sessions_ids = fields.One2many('sessions.legal', 'issue', string='Sessions')
-    # appeals_ids = fields.One2many('appeals.legal', 'issue', string='Appeals')
+    appeals_ids = fields.One2many('appeal.legal','issue', string='Appeals')
     total_case_fees = fields.Float(string='Total Case Fees')
     judgment_number = fields.Integer(string='Judgment Number')
     ruling_text = fields.Text(string='Ruling Text')
