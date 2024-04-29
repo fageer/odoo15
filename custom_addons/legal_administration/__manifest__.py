@@ -14,6 +14,7 @@
         'views/issues_legal_view.xml',
         'views/sessions_legal_view.xml',
         'views/appeal_legal_view.xml',
+        'views/implementation_legal_view.xml',
     ],
     'demo': [],
     'installable': True,
