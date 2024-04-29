@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_issues_legal_tree" model="ir.ui.view">
+        <field name="name">issues.legal.tree</field>
+        <field name="model">issues.legal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="case_number"/>
+                <field name="invitation_date"/>
+                <field name="court_name"/>
+                <field name="court_type"/>
+                <field name="judge"/>
+                <field name="claimant"/>
+                <field name="status"/>
+                <field name="defendant"/>
+                <!-- <field name="sessions"/> -->
+                <!-- <field name="appeals_ids"/> -->
+                <field name="total_case_fees"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_issues_legal_form" model="ir.ui.view">
+        <field name="name">issues.legal.form</field>
+        <field name="model">issues.legal</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="case_number"/>
+                            <field name="invitation_date"/>
+                            <field name="court_name"/>
+                            <field name="court_type"/>
+                        </group>
+                        <group>
+                            <field name="judge"/>
+                            <field name="claimant"/>
+                            <field name="status"/>
+                            <field name="defendant"/>
+                            <!-- <field name="sessions"/> -->
+                            <!-- <field name="appeals_ids"/> -->
+                            <field name="total_case_fees"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Judgment Details" name="judgment_details">
+                            <tree editable="bottom">
+                                <field name="judgment_number"/>
+                                <field name="ruling_text"/>
+                                <field name="ruling_date"/>
+                                <field name="court"/>
+                                <field name="judgment_attached"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="judgment_number"/>
+                                    <field name="ruling_text"/>
+                                    <field name="ruling_date"/>
+                                    <field name="court"/>
+                                    <field name="judgment_attached"/>
+                                </group>
+                            </form>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- <record id="view_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Patient Name" filter_domain="['|', ('name', 'ilike', self), ('ref', 'ilike', self)]"/>
+                <field name="ref"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
+               <separator/>
+               <filter name="filter_kids" string="Kids" domain="[('age', '&lt;=', 10)]"/>
+                <separator/>
+                <filter name="filter_archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Gender" name="group_by_gender" context="{'group_by': 'gender'}"/>
+                </group>
+                <searchpanel>
+                    <field name="gender" string="Gender" enable_counters="1" icon="fa-users"/>
+                </searchpanel>
+
+            </search>
+        </field>
+    </record> -->
+
+    <record id="action_issues_legal" model="ir.actions.act_window">
+        <field name="name">Issues</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">issues.legal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first issues !
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_issues"
+            name="Issues"
+            action="action_issues_legal"
+            parent="menu_issues_master"
+            sequence="0"/>
+
+</odoo>
