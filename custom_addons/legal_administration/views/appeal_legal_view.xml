@@ -31,7 +31,6 @@
                         <group>
                             <field name="status"/>
                             <field name="judge"/>
-                            <field name="sessions_ids"/>
                         </group>
                     </group>
 
@@ -47,6 +46,11 @@
                                     <field name="court"/>
                                     <field name="judgment_attached"/>
                                 </group>
+                            </group>
+                        </page>
+                        <page string="Sessions" name="sessions">
+                            <group>
+                                <field name="sessions_ids" nolabel="1"/>
                             </group>
                         </page>
                     </notebook>
