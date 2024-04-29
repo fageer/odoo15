@@ -14,7 +14,7 @@
                 <field name="claimant"/>
                 <field name="status"/>
                 <field name="defendant"/>
-                <!-- <field name="sessions"/> -->
+                <field name="sessions_ids"/>
                 <!-- <field name="appeals_ids"/> -->
                 <field name="total_case_fees"/>
             </tree>
@@ -39,7 +39,7 @@
                             <field name="claimant"/>
                             <field name="status"/>
                             <field name="defendant"/>
-                            <!-- <field name="sessions"/> -->
+                            <field name="sessions_ids"/>
                             <!-- <field name="appeals_ids"/> -->
                             <field name="total_case_fees"/>
                             <field name="active" invisible="1"/>

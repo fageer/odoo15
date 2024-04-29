@@ -13,6 +13,13 @@
         parent="menu_legal_administration_root"
         sequence="0"/>
 
+
+    <menuitem
+        id="menu_sessions_master"
+        name="Sessions"
+        parent="menu_legal_administration_root"
+        sequence="0"/>
+
     <!-- 
     <menuitem
         id="menu_appointment_master"

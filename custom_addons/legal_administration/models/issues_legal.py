@@ -4,6 +4,7 @@ class IssuesLegal(models.Model):
     _name = "issues.legal"
     _description = "Issues Legal"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'case_number'
 
     
     case_number = fields.Integer(string='Case Number')
@@ -19,7 +20,7 @@ class IssuesLegal(models.Model):
         ('perspective', 'Perspective'),
         ('finished', 'Finished')], string='Status')
     defendant = fields.Text(string='Defendant')
-    # sessions_ids = fields.One2many('sessions.legal', string='Sessions')
+    sessions_ids = fields.One2many('sessions.legal', 'issue', string='Sessions')
     # appeals_ids = fields.One2many('appeals.legal', string='Appeals')
     total_case_fees = fields.Float(string='Total Case Fees')
     judgment_number = fields.Integer(string='Judgment Number')
