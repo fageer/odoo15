@@ -2,3 +2,4 @@
 
 from . import issues_legal
 from . import sessions_legal
+from . import appeal_legal
