@@ -18,6 +18,13 @@ class ImplementationLegal(models.Model):
     appeal = fields.Char(string='Appeal')
     
     
+    @api.onchange('issue')
+    def onchange_issue(self):
+        if self.issue:
+            if self.issue.judgment_attached:
+                self.attachments = self.issue.judgment_attached
+    
+    
     
     
     
