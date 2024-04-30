@@ -7,12 +7,12 @@ class SessionsLegal(models.Model):
     _rec_name = 'court'
     
     
-    court = fields.Char(string='Court')
-    date_and_time_of_session = fields.Datetime(string='Session Date & Time', default=fields.Datetime.now)
+    court = fields.Char(string='Court', required=True)
+    date_and_time_of_session = fields.Datetime(string='Session Date & Time', default=fields.Datetime.now, required=True)
     # session_requirements = fields.One2many(string='Session Requirements')
-    session_text = fields.Text(string='Session Text')
-    session_attachment = fields.Binary(string='Session Attached')
-    issue = fields.Many2one('issues.legal', string='Issue')
+    session_text = fields.Text(string='Session Text', required=True)
+    session_attachment = fields.Binary(string='Session Attached', required=True)
+    issue = fields.Many2one('issues.legal', string='Issue', required=True)
     active = fields.Boolean(string='Active', default=True)
     
     @api.onchange('issue')

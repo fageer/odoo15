@@ -9,13 +9,13 @@ class ImplementationLegal(models.Model):
     
     status = fields.Selection([
         ('new', 'New'),
-        ('underway', 'Underway')], string='Status')
-    attachments = fields.Binary(string='Attachments')
+        ('underway', 'Underway')], string='Status', required=True)
+    attachments = fields.Binary(string='Attachments', required=True)
     type_of_judge = fields.Selection([
         ('primary', 'Primary'),
-        ('appellate', 'Appellate')], string='Type Of Judge')
+        ('appellate', 'Appellate')], string='Type Of Judge', required=True)
     issue = fields.Many2one('issues.legal', string='Issue', required=True)
-    appeal = fields.Char(string='Appeal')
+    appeal = fields.Char(string='Appeal', required=True)
     
     
     

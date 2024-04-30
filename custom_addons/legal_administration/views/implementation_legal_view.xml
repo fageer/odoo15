@@ -9,6 +9,8 @@
                 <field name="status"/>
                 <field name="attachments"/>
                 <field name="type_of_judge"/>
+                <field name="issue" attrs="{'invisible': [('type_of_judge', '=', 'appellate')]}"/>
+                <field name="appeal" attrs="{'invisible': [('type_of_judge', '=', 'primary')]}"/>
             </tree>
         </field>
     </record>
