@@ -6,12 +6,9 @@
         <field name="model">implementation.legal</field>
         <field name="arch" type="xml">
             <tree>
-                <!-- <field name="objection_text"/>
-                <field name="issue"/>
-                <field name="date"/>
                 <field name="status"/>
-                <field name="judge"/>
-                <field name="sessions_ids"/> -->
+                <field name="attachments"/>
+                <field name="type_of_judge"/>
             </tree>
         </field>
     </record>
@@ -24,13 +21,13 @@
                 <sheet>
                     <group>
                         <group>
-                            <!-- <field name="objection_text"/>
-                            <field name="issue"/>
-                            <field name="date"/> -->
+                            <field name="status"/>
+                            <field name="attachments"/>
                         </group>
                         <group>
-                            <!-- <field name="status"/>
-                            <field name="judge"/> -->
+                            <field name="type_of_judge"/>
+                            <field name="issue" attrs="{'invisible': [('type_of_judge', '=', 'appellate')]}"/>
+                            <field name="appeal" attrs="{'invisible': [('type_of_judge', '=', 'primary')]}"/>
                         </group>
                     </group>
 

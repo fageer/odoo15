@@ -14,6 +14,8 @@ class ImplementationLegal(models.Model):
     type_of_judge = fields.Selection([
         ('primary', 'Primary'),
         ('appellate', 'Appellate')], string='Type Of Judge')
+    issue = fields.Many2one('issues.legal', string='Issue', required=True)
+    appeal = fields.Char(string='Appeal')
     
     
     

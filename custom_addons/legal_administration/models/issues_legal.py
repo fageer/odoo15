@@ -7,7 +7,7 @@ class IssuesLegal(models.Model):
     _rec_name = 'case_number'
 
     
-    case_number = fields.Integer(string='Case Number')
+    case_number = fields.Char(string='Case Number')
     invitation_date = fields.Date(string='Invitation Date')
     court_name = fields.Char(string='Court Name')
     court_type = fields.Selection([
@@ -29,4 +29,10 @@ class IssuesLegal(models.Model):
     court = fields.Char(string='Court Name')
     judgment_attached = fields.Binary(string='Judgment Attached')
     active = fields.Boolean(string='Active', default=True)
+    
+    
+    @api.model
+    def create(self, vals):
+        vals['case_number'] = self.env['ir.sequence'].next_by_code('issues.legal')
+        return super(IssuesLegal, self).create(vals)
     
