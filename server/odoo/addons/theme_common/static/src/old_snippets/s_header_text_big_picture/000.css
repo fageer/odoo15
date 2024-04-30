@@ -1,0 +1,9 @@
+#wrapwrap .s_header_text_big_picture .s_header_text_big_picture_picturecol {
+  padding: 0;
+}
+#wrapwrap .s_header_text_big_picture .s_header_text_big_picture_picturecol img {
+  width: 100%;
+}
+#wrapwrap .s_header_text_big_picture [class*=col-lg-] p {
+  padding: 0 25px;
+}/*# sourceMappingURL=000.css.map */

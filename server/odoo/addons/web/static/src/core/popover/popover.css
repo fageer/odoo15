@@ -1,0 +1,122 @@
+/*!rtl:begin:ignore*/
+@keyframes slide-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(5%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-5%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.o_popover {
+  max-width: 100vw;
+  z-index: 1060;
+  border: 1px solid gray("300");
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.o_popover.o-popper-position--tm {
+  animation: 0.2s slide-top;
+  margin-top: 8px;
+}
+.o_popover.o-popper-position--tm::before, .o_popover.o-popper-position--tm::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-top-color: gray("200");
+}
+.o_popover.o-popper-position--tm::before {
+  margin-top: 1px;
+  border-top-color: gray("300");
+}
+.o_popover.o-popper-position--rm {
+  animation: 0.2s slide-right;
+  margin-left: -8px;
+}
+.o_popover.o-popper-position--rm::before, .o_popover.o-popper-position--rm::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -8px;
+  border: 8px solid transparent;
+  border-right-color: gray("200");
+}
+.o_popover.o-popper-position--rm::before {
+  margin-right: 1px;
+  border-right-color: gray("300");
+}
+.o_popover.o-popper-position--bm {
+  animation: 0.2s slide-bottom;
+  margin-top: -8px;
+}
+.o_popover.o-popper-position--bm::before, .o_popover.o-popper-position--bm::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-bottom-color: gray("200");
+}
+.o_popover.o-popper-position--bm::before {
+  margin-bottom: 1px;
+  border-bottom-color: gray("300");
+}
+.o_popover.o-popper-position--lm {
+  animation: 0.2s slide-left;
+  margin-left: 8px;
+}
+.o_popover.o-popper-position--lm::before, .o_popover.o-popper-position--lm::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -8px;
+  border: 8px solid transparent;
+  border-left-color: gray("200");
+}
+.o_popover.o-popper-position--lm::before {
+  margin-left: 1px;
+  border-left-color: gray("300");
+}
+
+/*!rtl:end:ignore*//*# sourceMappingURL=popover.css.map */

@@ -1,0 +1,13 @@
+.s_dynamic.o_dynamic_empty {
+  display: none !important;
+}
+.s_dynamic [data-url] {
+  cursor: pointer;
+}
+.s_dynamic .card-img-top {
+  height: 12rem;
+}
+.s_dynamic img {
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}/*# sourceMappingURL=000.css.map */

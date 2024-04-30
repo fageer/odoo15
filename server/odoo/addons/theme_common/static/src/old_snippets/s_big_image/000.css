@@ -1,0 +1,12 @@
+#wrapwrap .s_big_image {
+  height: 760px;
+  background-size: cover;
+}
+
+#wrapwrap .s_big_image_content {
+  z-index: 999;
+}
+#wrapwrap .s_big_image_content h1 {
+  color: white;
+  font-size: 60px;
+}/*# sourceMappingURL=000.css.map */

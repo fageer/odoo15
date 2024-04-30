@@ -1,0 +1,66 @@
+input[type=range][multiple] {
+  pointer-events: none;
+  visibility: hidden;
+}
+input[type=range][multiple]::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+input[type=range][multiple]::-moz-range-thumb {
+  pointer-events: auto;
+}
+input[type=range][multiple].reverse {
+  direction: rtl;
+}
+input[type=range][multiple].multirange {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+input[type=range][multiple].multirange::-webkit-slider-thumb {
+  height: 16px;
+  width: 16px;
+}
+input[type=range][multiple].multirange.original {
+  position: absolute;
+}
+input[type=range][multiple].multirange.original::-webkit-slider-thumb {
+  position: relative;
+  z-index: 2;
+}
+input[type=range][multiple].multirange.original::-moz-range-thumb {
+  transform: scale(1); /* Firefox doesn't apply position it seems */
+  z-index: 1;
+}
+input[type=range][multiple].multirange::-moz-range-track {
+  border-color: transparent; /* needed to switch Firefox to "styleable" control */
+}
+input[type=range][multiple].multirange.ghost {
+  border-radius: 45%;
+  position: relative;
+  background: var(--track-background);
+  --track-background: linear-gradient(to right, transparent var(--low), theme-color("primary") var(--low) var(--high), transparent 0) no-repeat 50% / 100% 35%;
+}
+input[type=range][multiple].multirange.ghost::-webkit-slider-runnable-track {
+  background: var(--track-background);
+}
+input[type=range][multiple].multirange.ghost::-moz-range-track {
+  background: var(--track-background);
+}
+
+.multirange-wrapper {
+  position: relative;
+  margin: 3rem 0;
+  visibility: hidden;
+}
+.multirange-wrapper input[type=range][multiple] {
+  visibility: initial;
+}
+.multirange-wrapper [x-out-of-boundaries] {
+  display: none;
+}
+
+.tip-locator {
+  position: absolute;
+}/*# sourceMappingURL=multirange_custom.css.map */

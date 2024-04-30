@@ -1,0 +1,20 @@
+.o_FollowButton {
+  display: flex;
+}
+
+.o_FollowButton_follow {
+  color: gray("600");
+}
+
+.o_FollowButton_unfollow {
+  color: gray("600");
+}
+.o_FollowButton_unfollow.o-following {
+  color: o-text-color("success");
+}
+.o_FollowButton_unfollow.o-unfollow {
+  color: o-text-color("warning");
+}
+.o_FollowButton_unfollow:focus {
+  background-color: gray("200");
+}/*# sourceMappingURL=follow_button.css.map */

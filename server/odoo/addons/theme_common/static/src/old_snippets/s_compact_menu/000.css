@@ -1,0 +1,29 @@
+#wrapwrap .s_compact_menu {
+  overflow: hidden;
+}
+#wrapwrap .s_compact_menu .container-fluid .menu-container {
+  overflow: hidden;
+}
+#wrapwrap .s_compact_menu .container-fluid .menu-container > div.s_compact_menu_row_title h4 {
+  font-size: 20px;
+}
+#wrapwrap .s_compact_menu .container-fluid .menu-container > div.s_compact_menu_row_title .fa {
+  margin: 20px 0px;
+}
+#wrapwrap .s_compact_menu .container-fluid .menu-container > div > .row {
+  min-height: 150px;
+  height: auto;
+  border-left: 3px solid gray("200");
+}
+#wrapwrap .s_compact_menu .container-fluid .menu-container > div > .row > .menublock {
+  margin: 0 0 0 20px;
+  padding: 0 20px 0 0;
+  border-bottom: 1px solid gray("200");
+  float: left;
+}
+#wrapwrap .s_compact_menu .container-fluid .menu-container > div > .row > .menublock h4 {
+  font-weight: bold;
+}
+#wrapwrap .s_compact_menu .container-fluid .menu-container > div > .row > .menublock span {
+  list-style: none;
+}/*# sourceMappingURL=000.css.map */

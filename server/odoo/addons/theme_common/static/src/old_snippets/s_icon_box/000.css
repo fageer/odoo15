@@ -1,0 +1,10 @@
+#wrapwrap .s_icon_box .fa {
+  margin: 10px 20px;
+}
+#wrapwrap .s_icon_box .fa:hover {
+  transition: all 0.3s ease-in-out;
+  color: o-color("gamma");
+}
+#wrapwrap .s_icon_box .icon_box_content {
+  overflow: hidden;
+}/*# sourceMappingURL=000.css.map */

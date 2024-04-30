@@ -1,0 +1,246 @@
+/*
+ * EVENT TOOL: REMINDER WIDGET
+ */
+.o_wevent_event .o_wetrack_js_reminder.btn-link {
+  padding: 0;
+}
+.o_wevent_event .o_wetrack_js_reminder:not(.btn-link) {
+  min-width: 100px;
+}
+.o_wevent_event .o_wetrack_js_reminder i.fa-bell {
+  color: gold;
+}
+.o_wevent_event .o_wetrack_js_reminder i.fa-bell-o {
+  color: black;
+}
+
+/*
+ * AGENDA
+ */
+.o_we_online_agenda {
+  overflow-x: auto;
+}
+.o_we_online_agenda table {
+  border-collapse: separate;
+  border-spacing: 0em 0em;
+}
+.o_we_online_agenda table tr {
+  height: 15px;
+  line-height: 1em;
+}
+.o_we_online_agenda table tr.active td.active {
+  padding: 0em 0.5em;
+  font-size: smaller;
+  border-top: 1px solid lightgrey;
+}
+.o_we_online_agenda table th.active, .o_we_online_agenda table td:not(.active) {
+  background-color: rgba(211, 211, 211, 0.1);
+  border: 0px;
+  border-right: 1em solid white;
+  vertical-align: middle;
+}
+.o_we_online_agenda table th.active span, .o_we_online_agenda table td:not(.active) span {
+  word-break: break-word;
+}
+.o_we_online_agenda table th:not(.active), .o_we_online_agenda table td.active {
+  width: 100px;
+}
+.o_we_online_agenda table th.position-sticky {
+  left: 0;
+}
+.o_we_online_agenda table td {
+  border: 0px;
+}
+.o_we_online_agenda table td.o_location_size_1 {
+  width: calc(100% / (1 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_2 {
+  width: calc(100% / (2 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_3 {
+  width: calc(100% / (3 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_4 {
+  width: calc(100% / (4 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_5 {
+  width: calc(100% / (5 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_6 {
+  width: calc(100% / (6 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_7 {
+  width: calc(100% / (7 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_8 {
+  width: calc(100% / (8 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_9 {
+  width: calc(100% / (9 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_10 {
+  width: calc(100% / (10 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_11 {
+  width: calc(100% / (11 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_12 {
+  width: calc(100% / (12 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_13 {
+  width: calc(100% / (13 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_14 {
+  width: calc(100% / (14 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_15 {
+  width: calc(100% / (15 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_16 {
+  width: calc(100% / (16 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_17 {
+  width: calc(100% / (17 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_18 {
+  width: calc(100% / (18 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_19 {
+  width: calc(100% / (19 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.o_location_size_20 {
+  width: calc(100% / (20 - 1));
+  min-width: 150px;
+}
+.o_we_online_agenda table td.active {
+  z-index: 1;
+  position: sticky;
+  left: 0;
+  min-width: 100px;
+  background-color: white;
+}
+.o_we_online_agenda table td div.o_we_agenda_card_content {
+  height: 100%;
+}
+.o_we_online_agenda table td div.o_we_agenda_card_content .o_we_agenda_card_title, .o_we_online_agenda table td div.o_we_agenda_card_content small {
+  word-break: break-word;
+}
+.o_we_online_agenda table td div.o_we_agenda_card_content .badge:hover {
+  cursor: pointer;
+}
+.o_we_online_agenda table td .badge {
+  height: -moz-fit-content;
+  height: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: xx-small;
+  padding: 0.2em 0.5em;
+  border-radius: 1em;
+  line-height: 10px;
+}
+.o_we_online_agenda table td.invisible {
+  visibility: visible !important;
+  opacity: 0.3;
+}
+.o_we_online_agenda table td.o_we_agenda_time_slot_main, .o_we_online_agenda table td.o_we_agenda_time_slot_half {
+  padding: 0;
+  position: relative;
+}
+.o_we_online_agenda table td.o_we_agenda_time_slot_main > div, .o_we_online_agenda table td.o_we_agenda_time_slot_half > div {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.o_we_online_agenda table td.o_we_agenda_time_slot_main > div {
+  padding: 0.3em;
+  border-top: 1px solid lightgrey;
+}
+.o_we_online_agenda table td.o_we_agenda_time_slot_half > div {
+  padding: 0.3em;
+  border-top: 1px dashed lightgrey;
+}
+.o_we_online_agenda table td.event_track {
+  position: relative;
+  padding: 0;
+}
+.o_we_online_agenda table td.event_track::before {
+  content: "";
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border-top: 1px solid lightgrey;
+}
+.o_we_online_agenda table td.event_track > div {
+  padding: 0.3em;
+}
+.o_we_online_agenda table td.event_track [data-publish=off] .o_weagenda_track_badges > .o_wevent_online_badge_unpublished {
+  opacity: unset;
+}
+.o_we_online_agenda table td.event_color_0 {
+  background-color: rgba(211, 211, 211, 0.5);
+}
+.o_we_online_agenda table td.event_color_1 {
+  background-color: rgba(240, 96, 80, 0.2);
+}
+.o_we_online_agenda table td.event_color_2 {
+  background-color: rgba(244, 164, 96, 0.2);
+}
+.o_we_online_agenda table td.event_color_3 {
+  background-color: rgba(247, 205, 31, 0.2);
+}
+.o_we_online_agenda table td.event_color_4 {
+  background-color: rgba(108, 193, 237, 0.2);
+}
+.o_we_online_agenda table td.event_color_5 {
+  background-color: rgba(129, 73, 104, 0.2);
+}
+.o_we_online_agenda table td.event_color_6 {
+  background-color: rgba(235, 126, 127, 0.2);
+}
+.o_we_online_agenda table td.event_color_7 {
+  background-color: rgba(44, 131, 151, 0.2);
+}
+.o_we_online_agenda table td.event_color_8 {
+  background-color: rgba(71, 85, 119, 0.2);
+}
+.o_we_online_agenda table td.event_color_9 {
+  background-color: rgba(214, 20, 95, 0.2);
+}
+.o_we_online_agenda table td.event_color_10 {
+  background-color: rgba(48, 195, 129, 0.2);
+}
+.o_we_online_agenda table td.event_color_11 {
+  background-color: rgba(147, 101, 184, 0.2);
+}
+
+/*
+ * EVENT TOOL: DATE
+ */
+.o_wevent_event .o_we_track_day_header > div > span.h1 {
+  font-size: xx-large;
+}
+.o_wevent_event .o_we_track_day_header a.collapsed {
+  transform: rotate(-90deg);
+}/*# sourceMappingURL=event_track_templates.css.map */

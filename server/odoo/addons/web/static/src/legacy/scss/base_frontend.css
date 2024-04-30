@@ -1,0 +1,30 @@
+html, body, #wrapwrap {
+  width: 100%;
+  height: 100%;
+}
+
+#wrapwrap {
+  z-index: 0;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+}
+#wrapwrap > * {
+  flex: 0 0 auto;
+}
+#wrapwrap > main {
+  flex: 1 0 auto;
+}
+
+.modal-open #wrapwrap {
+  overflow: hidden;
+}
+
+@media screen {
+  html, body {
+    overflow: hidden;
+  }
+  #wrapwrap {
+    overflow: auto;
+  }
+}/*# sourceMappingURL=base_frontend.css.map */

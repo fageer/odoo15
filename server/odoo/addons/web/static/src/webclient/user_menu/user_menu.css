@@ -1,0 +1,13 @@
+.o_user_menu {
+  margin-left: 6px;
+}
+.o_user_menu .o_user_avatar {
+  height: 26px;
+  width: 26px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 5px;
+}
+.o_user_menu .oe_topbar_name {
+  max-width: 20rem;
+}/*# sourceMappingURL=user_menu.css.map */

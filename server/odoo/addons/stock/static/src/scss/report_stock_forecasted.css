@@ -1,0 +1,27 @@
+.o_report_replenishment_page .o_report_replenishment .o_grid_warning {
+  background-color: #f4cccc;
+}
+.o_report_replenishment_page .o_report_replenishment .o_grid_match {
+  background-color: #f0f0f0;
+}
+.o_report_replenishment_page .o_forecasted_row {
+  background-color: #dee2e6;
+}
+.o_report_replenishment_page .o_priority {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+}
+.o_report_replenishment_page .o_priority.o_priority_star {
+  background-color: transparent;
+  font-size: 1.35em;
+}
+.o_report_replenishment_page .o_priority.o_priority_star.fa-star-o {
+  color: #a8a8a8;
+}
+.o_report_replenishment_page .o_priority.o_priority_star.fa-star {
+  color: gold;
+}
+.o_report_replenishment_page .table td {
+  vertical-align: middle;
+}/*# sourceMappingURL=report_stock_forecasted.css.map */

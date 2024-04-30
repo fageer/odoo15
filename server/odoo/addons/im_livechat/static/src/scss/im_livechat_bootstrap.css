@@ -1,0 +1,33 @@
+@charset "UTF-8";
+.text-muted {
+  color: gray("600");
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.o_thread_window, .o_thread_window * {
+  box-sizing: border-box;
+}
+.o_thread_window .o_thread_window_header {
+  height: 28px;
+}
+.o_thread_window .o_thread_window_header .fa-close {
+  text-decoration: none;
+  font-weight: bold;
+}
+.o_thread_window .o_thread_window_header .fa-close:before {
+  content: "×";
+  font-size: initial;
+}
+.o_thread_window .o_thread_window_header > span {
+  margin: auto 0;
+}
+.o_thread_window .o_email_chat_button:after {
+  content: " ➤";
+}/*# sourceMappingURL=im_livechat_bootstrap.css.map */
