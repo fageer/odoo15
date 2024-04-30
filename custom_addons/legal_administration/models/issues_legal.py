@@ -21,7 +21,7 @@ class IssuesLegal(models.Model):
         ('finished', 'Finished')], string='Status', required=True)
     defendant = fields.Text(string='Defendant', required=True)
     sessions_ids = fields.One2many('sessions.legal', 'issue', string='Sessions', required=True)
-    # appeals_ids = fields.One2many('appeal.legal','issue', string='Appeals', required=True)
+    appeals_ids = fields.One2many('appeal.legal','issue', string='Appeals', required=True)
     total_case_fees = fields.Float(string='Total Case Fees', required=True)
     judgment_number = fields.Integer(string='Judgment Number')
     ruling_text = fields.Text(string='Ruling Text')
@@ -30,11 +30,17 @@ class IssuesLegal(models.Model):
     judgment_attached = fields.Binary(string='Judgment Attached')
     active = fields.Boolean(string='Active', default=True)
     sessions_count = fields.Integer(string='Sessions Count', compute='_compute_sessions_count')
+    appeal_count = fields.Integer(string='Appeal Count', compute='_compute_appeal_count')
     
     
     def _compute_sessions_count(self):
         for record in self:
             record.sessions_count = self.env['sessions.legal'].search_count([('id', '=', record.sessions_ids.ids)])
+            
+            
+    def _compute_appeal_count(self):
+        for record in self:
+            record.appeal_count = self.env['appeal.legal'].search_count([('id', '=', record.appeals_ids.ids)])
     
     
     @api.model
@@ -60,6 +66,16 @@ class IssuesLegal(models.Model):
             'name': 'Sessions',
             'res_model': 'sessions.legal',
             'domain': [('id', '=', self.sessions_ids.ids)],
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }
+    def action_open_appeal(self):
+        print(self.sessions_ids.ids)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Appeals',
+            'res_model': 'appeal.legal',
+            'domain': [('id', '=', self.appeals_ids.ids)],
             'view_mode': 'tree,form',
             'target': 'current',
         }
