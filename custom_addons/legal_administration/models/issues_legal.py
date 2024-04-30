@@ -8,21 +8,21 @@ class IssuesLegal(models.Model):
 
     
     case_number = fields.Char(string='Case Number')
-    invitation_date = fields.Date(string='Invitation Date')
-    court_name = fields.Char(string='Court Name')
+    invitation_date = fields.Date(string='Invitation Date', required=True)
+    court_name = fields.Char(string='Court Name', required=True)
     court_type = fields.Selection([
         ('executive', 'Executive'),
         ('resumption', 'Resumption'),
-        ('supreme', 'Supreme')], string='Court Type')
-    judge = fields.Text(string='Judge')
-    claimant = fields.Text(string='Claimant')
+        ('supreme', 'Supreme')], string='Court Type', required=True)
+    judge = fields.Text(string='Judge', required=True)
+    claimant = fields.Text(string='Claimant', required=True)
     status = fields.Selection([
         ('perspective', 'Perspective'),
-        ('finished', 'Finished')], string='Status')
-    defendant = fields.Text(string='Defendant')
-    sessions_ids = fields.One2many('sessions.legal', 'issue', string='Sessions')
-    appeals_ids = fields.One2many('appeal.legal','issue', string='Appeals')
-    total_case_fees = fields.Float(string='Total Case Fees')
+        ('finished', 'Finished')], string='Status', required=True)
+    defendant = fields.Text(string='Defendant', required=True)
+    sessions_ids = fields.One2many('sessions.legal', 'issue', string='Sessions', required=True)
+    appeals_ids = fields.One2many('appeal.legal','issue', string='Appeals', required=True)
+    total_case_fees = fields.Float(string='Total Case Fees', required=True)
     judgment_number = fields.Integer(string='Judgment Number')
     ruling_text = fields.Text(string='Ruling Text')
     ruling_date = fields.Date(string='Ruling Date')
