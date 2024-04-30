@@ -22,7 +22,7 @@ class AppealLegal(models.Model):
     
     
     @api.onchange('issue')
-    def onchange_patient_id(self):
+    def onchange_issue(self):
         self.judge = self.issue.judge
         self.sessions_ids = self.issue.sessions_ids
     

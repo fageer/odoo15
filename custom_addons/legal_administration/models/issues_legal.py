@@ -36,3 +36,14 @@ class IssuesLegal(models.Model):
         vals['case_number'] = self.env['ir.sequence'].next_by_code('issues.legal')
         return super(IssuesLegal, self).create(vals)
     
+    
+    @api.onchange('court_name')
+    def onchange_court_name(self):
+        self.court = self.court_name
+        
+        
+    @api.onchange('case_number')
+    def onchange_case_number(self):
+        self.judgment_number = self.case_number
+        
+    

@@ -6,7 +6,7 @@
         <field name="model">issues.legal</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="case_number"/>
+                <field name="case_number" readonly='1'/>
                 <field name="invitation_date"/>
                 <field name="court_name"/>
                 <field name="court_type"/>
@@ -28,7 +28,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="case_number"/>
+                            <field name="case_number" readonly='1'/>
                             <field name="invitation_date"/>
                             <field name="court_name"/>
                             <field name="court_type"/>
