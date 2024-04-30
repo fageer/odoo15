@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sequences for issues legal -->
+        <record id="seq_issues_legal" model="ir.sequence">
+            <field name="name">Issues Sequences</field>
+            <field name="code">issues.legal</field>
+            <field name="prefix">IS</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+    </data>
+</odoo>

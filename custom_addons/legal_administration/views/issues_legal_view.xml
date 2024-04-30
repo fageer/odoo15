@@ -48,24 +48,26 @@
 
                     <notebook>
                         <page string="Judgment Details" name="judgment_details">
-                            <tree editable="bottom">
+                            <!-- <tree editable="bottom">
                                 <field name="judgment_number"/>
                                 <field name="ruling_text"/>
                                 <field name="ruling_date"/>
                                 <field name="court"/>
                                 <field name="judgment_attached"/>
                             </tree>
-                            <form>
+                            <form> -->
                                 <group>
-                                    <field name="judgment_number"/>
-                                    <field name="ruling_text"/>
-                                    <field name="ruling_date"/>
+                                    <group>
+                                        <field name="judgment_number"/>
+                                        <field name="ruling_text"/>
+                                        <field name="ruling_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="court"/>
+                                        <field name="judgment_attached"/>
+                                    </group>
                                 </group>
-                                <group>
-                                    <field name="court"/>
-                                    <field name="judgment_attached"/>
-                                </group>
-                            </form>
+                            <!-- </form> -->
                         </page>
                     </notebook>
                 </sheet>
