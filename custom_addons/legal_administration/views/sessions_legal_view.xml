@@ -8,7 +8,6 @@
             <tree>
                 <field name="court"/>
                 <field name="date_and_time_of_session"/>
-                <!-- <field name="session_requirements"/> -->
                 <field name="session_text"/>
                 <field name="session_attachment"/>
                 <field name="issue"/>
@@ -26,7 +25,6 @@
                         <group>
                             <field name="court"/>
                             <field name="date_and_time_of_session"/>
-                            <!-- <field name="session_requirements"/> -->
                         </group>
                         <group>
                             <field name="session_text"/>

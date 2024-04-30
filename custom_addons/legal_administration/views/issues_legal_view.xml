@@ -26,6 +26,14 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_open_sessions" type="object" class="oe_stat_button" icon="fa-calendar">
+                        <div class="o_stat_info">
+                            <field name="sessions_count" class="o_stat_value"/>
+                            <span class="o_stat_text">Sessions</span>
+                        </div>
+                    </button>
+                </div>
                     <group>
                         <group>
                             <field name="case_number" readonly='1'/>

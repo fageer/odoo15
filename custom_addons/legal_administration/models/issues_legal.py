@@ -29,6 +29,12 @@ class IssuesLegal(models.Model):
     court = fields.Char(string='Court Name')
     judgment_attached = fields.Binary(string='Judgment Attached')
     active = fields.Boolean(string='Active', default=True)
+    sessions_count = fields.Integer(string='Sessions Count', compute='_compute_sessions_count')
+    
+    
+    def _compute_sessions_count(self):
+        for record in self:
+            record.sessions_count = self.env['sessions.legal'].search_count([('id', '=', record.sessions_ids.ids)])
     
     
     @api.model
@@ -45,5 +51,17 @@ class IssuesLegal(models.Model):
     @api.onchange('case_number')
     def onchange_case_number(self):
         self.judgment_number = self.case_number
+        
+        
+    def action_open_sessions(self):
+        print(self.sessions_ids.ids)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Sessions',
+            'res_model': 'sessions.legal',
+            'domain': [('id', '=', self.sessions_ids.ids)],
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }
         
     
