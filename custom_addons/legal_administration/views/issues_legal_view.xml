@@ -14,7 +14,6 @@
                 <field name="claimant"/>
                 <field name="status"/>
                 <field name="defendant"/>
-                <field name="sessions_ids"/>
                 <!-- <field name="appeals_ids"/> -->
                 <field name="total_case_fees"/>
             </tree>
@@ -39,7 +38,6 @@
                             <field name="claimant"/>
                             <field name="status"/>
                             <field name="defendant"/>
-                            <field name="sessions_ids"/>
                             <!-- <field name="appeals_ids"/> -->
                             <field name="total_case_fees"/>
                             <field name="active" invisible="1"/>
@@ -68,6 +66,11 @@
                                     </group>
                                 </group>
                             <!-- </form> -->
+                        </page>
+                        <page string="Sessions" name="sessions">
+                            <group>
+                                <field name="sessions_ids" nolabel="1"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
