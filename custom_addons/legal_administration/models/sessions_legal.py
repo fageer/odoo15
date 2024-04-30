@@ -15,4 +15,9 @@ class SessionsLegal(models.Model):
     issue = fields.Many2one('issues.legal', string='Issue')
     active = fields.Boolean(string='Active', default=True)
     
+    @api.onchange('issue')
+    def onchange_issue(self):
+        self.court = self.issue.court_name
+        
+    
     
