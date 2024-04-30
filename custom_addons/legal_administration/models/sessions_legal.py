@@ -13,6 +13,7 @@ class SessionsLegal(models.Model):
     session_attachment = fields.Binary(string='Session Attached', required=True)
     issue = fields.Many2one('issues.legal', string='Issue', required=True)
     active = fields.Boolean(string='Active', default=True)
+    appeal_id = fields.Many2one('appeal.legal', string='Issue', required=True)
     
     @api.onchange('issue')
     def onchange_issue(self):

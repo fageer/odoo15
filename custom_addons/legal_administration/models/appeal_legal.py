@@ -13,7 +13,7 @@ class AppealLegal(models.Model):
         ('perspective', 'Perspective'),
         ('finished', 'Finished')], string='Status', required=True)
     judge = fields.Text(string='Judge', required=True)
-    sessions_ids = fields.One2many('sessions.legal', 'issue', string='Sessions')
+    sessions_ids = fields.One2many('sessions.legal', 'appeal_id', string='Sessions')
     judgment_number = fields.Integer(string='Judgment Number')
     ruling_text = fields.Text(string='Ruling Text')
     ruling_date = fields.Date(string='Ruling Date')
@@ -23,14 +23,15 @@ class AppealLegal(models.Model):
     
     @api.onchange('issue')
     def onchange_issue(self):
-        self.judge = self.issue.judge
-        self.sessions_ids = self.issue.sessions_ids
-        self.status = self.issue.status
-        self.judgment_number = self.issue.judgment_number
-        self.ruling_text = self.issue.ruling_text
-        self.ruling_date = self.issue.ruling_date
-        self.court = self.issue.court_name
-        self.judgment_attached = self.issue.judgment_attached
+        for rec in self:
+            self.judge = rec.issue.judge
+            self.sessions_ids = rec.issue.sessions_ids
+            self.status = rec.issue.status
+            self.judgment_number = rec.issue.judgment_number
+            self.ruling_text = rec.issue.ruling_text
+            self.ruling_date = rec.issue.ruling_date
+            self.court = rec.issue.court_name
+            self.judgment_attached = rec.issue.judgment_attached
     
     
     
