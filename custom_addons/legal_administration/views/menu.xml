@@ -48,4 +48,11 @@
         parent="menu_legal_administration_root"
         sequence="0"/>
 
+
+    <menuitem
+        id="menu_investigation_master"
+        name="Investigation"
+        parent="menu_legal_administration_root"
+        sequence="0"/>
+
 </odoo>

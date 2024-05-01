@@ -19,6 +19,7 @@
         'views/implementation_legal_view.xml',
         'views/agencies_legal_view.xml',
         'views/promissory_note_legal_view.xml',
+        'views/investigation_legal_view.xml',
     ],
     'demo': [],
     'installable': True,

@@ -5,3 +5,4 @@ access.sessions.legal,access_sessions_legal,legal_administration.model_sessions_
 access.appeal.legal,access_appeal_legal,legal_administration.model_appeal_legal,base.group_user,1,1,1,1
 access.implementation.legal,access_implementation_legal,legal_administration.model_implementation_legal,base.group_user,1,1,1,1
 access.promissory.note.legal,access_promissory_note_legal,legal_administration.model_promissory_note_legal,base.group_user,1,1,1,1
+access.investigation.legal,access_investigation_legal,legal_administration.model_investigation_legal,base.group_user,1,1,1,1
