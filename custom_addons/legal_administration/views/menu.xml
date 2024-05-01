@@ -34,4 +34,11 @@
         parent="menu_legal_administration_root"
         sequence="0"/>
 
+        
+    <menuitem
+        id="menu_agencies_master"
+        name="Agencies"
+        parent="menu_legal_administration_root"
+        sequence="0"/>
+
 </odoo>

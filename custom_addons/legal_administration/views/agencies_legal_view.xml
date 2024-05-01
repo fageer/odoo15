@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_agencies_legal_tree" model="ir.ui.view">
+        <field name="name">agencies.legal.tree</field>
+        <field name="model">agencies.legal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tawkeel_number" readonly='1'/>
+                <field name="almwakkal"/>
+                <field name="almwakkel"/>
+                <field name="tawkeel_date"/>
+                <field name="tawkeel_expires"/>
+                <field name="tawkeel_attached"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_agencies_legal_form" model="ir.ui.view">
+        <field name="name">agencies.legal.form</field>
+        <field name="model">agencies.legal</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="tawkeel_number" readonly='1'/>
+                            <field name="almwakkal"/>
+                            <field name="almwakkel"/>
+                        </group>
+                        <group>
+                            <field name="tawkeel_date"/>
+                            <field name="tawkeel_expires"/>
+                            <field name="tawkeel_attached"/>
+                        </group>
+                    </group>
+
+                    <!-- <notebook>
+                        <page string="Judgment Details" name="judgment_details">
+                            <group>
+                                <group>
+                                    <field name="judgment_number"/>
+                                    <field name="ruling_text"/>
+                                    <field name="ruling_date"/>
+                                </group>
+                                <group>
+                                    <field name="court"/>
+                                    <field name="judgment_attached"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Sessions" name="sessions">
+                            <group>
+                                <field name="sessions_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook> -->
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_agencies_legal_search" model="ir.ui.view">
+        <field name="name">agencies.legal.search</field>
+        <field name="model">agencies.legal</field>
+        <field name="arch" type="xml">
+            <search>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_agencies_legal" model="ir.actions.act_window">
+        <field name="name">Agencies</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agencies.legal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first agencies !
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_agencies"
+            name="Agencies"
+            action="action_agencies_legal"
+            parent="menu_agencies_master"
+            sequence="0"/>
+
+</odoo>
