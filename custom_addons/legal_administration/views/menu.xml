@@ -41,4 +41,11 @@
         parent="menu_legal_administration_root"
         sequence="0"/>
 
+
+    <menuitem
+        id="menu_promissory_note_master"
+        name="Promissory Note"
+        parent="menu_legal_administration_root"
+        sequence="0"/>
+
 </odoo>
