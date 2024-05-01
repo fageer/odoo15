@@ -37,6 +37,13 @@
                             <field name="active" invisible="1"/>
                         </group>
                     </group>
+                    <group>
+                        <group string='Other Information' name='other_info'>
+                            <field name="parent" attrs="{'invisible': [('age', '>', 18), ('gender', '=', 'male')]}"/>
+                            <field name="marital_status"/>
+                            <field name="partner_name" attrs="{'invisible': [('marital_status', '=', 'single')]}"/>
+                        </group>
+                    </group>
                 </sheet>
                 <!-- Chatter -->
                 <div class="oe_chatter">
