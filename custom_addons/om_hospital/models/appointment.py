@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class HospitalAppointment(models.Model):
@@ -28,6 +29,11 @@ class HospitalAppointment(models.Model):
     pharmacy_lines_ids = fields.One2many('appointment.pharmacy.lines', 'appointment_id', string='Pharmacy Lines')
     hide_sales_price = fields.Boolean(string='Hide Sales Price')
 
+    
+    def unlink(self):
+        if self.state != 'draft':
+            raise ValidationError(_('You can delete only draft appointments.'))
+        return super(HospitalAppointment, self).unlink()
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):
