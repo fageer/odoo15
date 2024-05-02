@@ -7,7 +7,7 @@
     'sequence': -100,
     'website': "http://www.plustech.com",
     'version': '1.0.0',
-    'depends': ['mail', 'product'],
+    'depends': ['mail', 'product', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'data/data.xml',

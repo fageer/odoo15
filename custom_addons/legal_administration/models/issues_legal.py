@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 class IssuesLegal(models.Model):
     _name = "issues.legal"
@@ -15,7 +15,9 @@ class IssuesLegal(models.Model):
         ('resumption', 'Resumption'),
         ('supreme', 'Supreme')], string='Court Type', required=True)
     judge = fields.Text(string='Judge', required=True)
-    claimant = fields.Text(string='Claimant', required=True)
+    claimant = fields.Char(string='Claimant', required=False)
+    claimant_id = fields.Many2one('res.partner', string='Claimant', required=True)
+    move_id = fields.Many2one('account.move', 'Invoice' )
     status = fields.Selection([
         ('perspective', 'Perspective'),
         ('finished', 'Finished')], string='Status', required=True)
@@ -31,6 +33,24 @@ class IssuesLegal(models.Model):
     active = fields.Boolean(string='Active', default=True)
     sessions_count = fields.Integer(string='Sessions Count', compute='_compute_sessions_count')
     appeal_count = fields.Integer(string='Appeal Count', compute='_compute_appeal_count')
+
+    def create_invoice(self):
+        """ Create a sample invoice """
+        invoice = self.env['account.move'].with_context(default_move_type='out_invoice').create({
+            'move_type': 'out_invoice',
+            'partner_id': self.claimant_id.id,
+            'currency_id': self.env.company.currency_id.id,
+            'invoice_date': fields.Date.today(),
+            'invoice_line_ids': [(0, 0, {
+                'product_id': 2,
+                'quantity': 1,
+                'price_unit': self.total_case_fees,
+            })],
+        })
+        self.move_id = invoice.id
+        invoice.action_post()
+
+        return invoice
     
     
     def _compute_sessions_count(self):
