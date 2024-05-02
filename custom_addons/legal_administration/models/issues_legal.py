@@ -33,6 +33,7 @@ class IssuesLegal(models.Model):
     active = fields.Boolean(string='Active', default=True)
     sessions_count = fields.Integer(string='Sessions Count', compute='_compute_sessions_count')
     appeal_count = fields.Integer(string='Appeal Count', compute='_compute_appeal_count')
+    invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
 
     def create_invoice(self):
         """ Create a sample invoice """
@@ -61,8 +62,13 @@ class IssuesLegal(models.Model):
     def _compute_appeal_count(self):
         for record in self:
             record.appeal_count = self.env['appeal.legal'].search_count([('id', '=', record.appeals_ids.ids)])
-    
-    
+
+
+    def _compute_invoice_count(self):
+        for record in self:
+            record.invoice_count = self.env['account.move'].search_count([('id', '=', record.move_id.id)])
+
+
     @api.model
     def create(self, vals):
         vals['case_number'] = self.env['ir.sequence'].next_by_code('issues.legal')
@@ -90,12 +96,23 @@ class IssuesLegal(models.Model):
             'target': 'current',
         }
     def action_open_appeal(self):
-        print(self.sessions_ids.ids)
+        print(self.appeals_ids.ids)
         return {
             'type': 'ir.actions.act_window',
             'name': 'Appeals',
             'res_model': 'appeal.legal',
             'domain': [('id', '=', self.appeals_ids.ids)],
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }
+    def action_open_invoice(self):
+        print(self.move_id.ids)
+        print(self.invoice_count)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Invoice',
+            'res_model': 'account.move',
+            'domain': [('id', '=', self.move_id.id)],
             'view_mode': 'tree,form',
             'target': 'current',
         }
