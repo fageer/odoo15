@@ -37,6 +37,12 @@ class HospitalPatient(models.Model):
         for rec in self:
             if rec.date_of_birth and rec.date_of_birth > date.today():
                 raise ValidationError(_('Date of Birth cannot be in the future.'))
+
+    @api.ondelete(at_uninstall=False)
+    def _check_appointment(self):
+        for rec in self:
+            if rec.appointment_count > 0:
+                raise ValidationError(_("You Can't Delete Patient With Appointment !!"))
             
             
     @api.model
