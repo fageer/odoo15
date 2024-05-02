@@ -24,9 +24,10 @@
                     <field name="image" widget="image" class="oe_avatar"/>
                     <div class='oe_title'>
                         <h4>
-                            <field name="ref"/>
+                            <field name="ref" readonly='1'/>
                         </h4>
                         <h2>
+                            <label for="name" string='Name' class='oe_edit_only'/>
                             <field name="name"/>
                         </h2>
                     </div>
@@ -34,12 +35,12 @@
                         <group>
                             <field name="date_of_birth"/>
                             <field name="age"/>
-                            <field name="appointment_id"/>
-                            <field name="appointment_count"/>
+                            <!-- <field name="appointment_id"/> -->
                         </group>
                         <group>
                             <field name="gender" invisible="context.get('hide_gender')"/>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                            <field name="appointment_count"/>
                             <field name="active" invisible="1"/>
                         </group>
                     </group>
