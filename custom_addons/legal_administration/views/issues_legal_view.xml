@@ -43,7 +43,7 @@
                             <span class="o_stat_text">Appeals</span>
                         </div>
                     </button>
-                    <button name="action_open_invoice" type="object" class="oe_stat_button" icon="fa-calendar">
+                    <button name="action_open_invoice" type="object" class="oe_stat_button" icon="fa-money">
                         <div class="o_stat_info">
                             <field name="invoice_count" class="o_stat_value"/>
                             <span class="o_stat_text">Invoices</span>
