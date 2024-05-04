@@ -34,18 +34,21 @@ class IssuesLegal(models.Model):
     sessions_count = fields.Integer(string='Sessions Count', compute='_compute_sessions_count')
     appeal_count = fields.Integer(string='Appeal Count', compute='_compute_appeal_count')
     invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
-
+    product_id = fields.Many2one('product.product', string='Product')
     def create_invoice(self):
         """ Create a sample invoice """
+        print(self.claimant_id.id)
         invoice = self.env['account.move'].with_context(default_move_type='out_invoice').create({
             'move_type': 'out_invoice',
             'partner_id': self.claimant_id.id,
             'currency_id': self.env.company.currency_id.id,
             'invoice_date': fields.Date.today(),
             'invoice_line_ids': [(0, 0, {
-                'product_id': 2,
+                'name': self.claimant_id.id,
+                'product_id': self.product_id.id,
                 'quantity': 1,
                 'price_unit': self.total_case_fees,
+                'tax_ids': 0,
             })],
         })
         self.move_id = invoice.id
