@@ -11,7 +11,7 @@
         'security\ir.model.access.csv',
         'views/menu.xml',
         'views/facility_room_view.xml',
-        'views/create_room_view.xml',
+        'views/room_view.xml',
     ],
     'demo': [],
     'installable': True,

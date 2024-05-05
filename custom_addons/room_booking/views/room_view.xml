@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_create_room_tree" model="ir.ui.view">
-        <field name="name">create.room.tree</field>
-        <field name="model">create.room</field>
+    <record id="view_room_tree" model="ir.ui.view">
+        <field name="name">room.tree</field>
+        <field name="model">room</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="room_name"/>
@@ -13,9 +13,9 @@
         </field>
     </record>
 
-    <record id="view_create_room_form" model="ir.ui.view">
-        <field name="name">create.room.form</field>
-        <field name="model">create.room</field>
+    <record id="view_room_form" model="ir.ui.view">
+        <field name="name">room.form</field>
+        <field name="model">room</field>
         <field name="arch" type="xml">
             <form>
 <!--                &lt;!&ndash; Statusbar &ndash;&gt;-->
@@ -94,9 +94,9 @@
     </record>
 
 
-    <record id="view_create_room_search" model="ir.ui.view">
-        <field name="name">create.room.search</field>
-        <field name="model">create.room</field>
+    <record id="view_room_search" model="ir.ui.view">
+        <field name="name">room.search</field>
+        <field name="model">room</field>
         <field name="arch" type="xml">
             <search>
             </search>
@@ -104,10 +104,10 @@
     </record>
 
 
-    <record id="action_create_room" model="ir.actions.act_window">
-        <field name="name">Create Room</field>
+    <record id="action_room" model="ir.actions.act_window">
+        <field name="name">Room</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">create.room</field>
+        <field name="res_model">room</field>
         <field name="view_mode">tree,form,activity</field>
         <field name="context">{}</field>
         <field name="help" type="html">
@@ -118,9 +118,9 @@
     </record>
 
     <menuitem
-            id="menu_create_room"
-            name="Create"
-            action="action_create_room"
+            id="menu_room"
+            name="Room"
+            action="action_room"
             parent="menu_configration_master"
             sequence="0"/>
 

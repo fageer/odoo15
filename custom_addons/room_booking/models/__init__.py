@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
 from . import facilities_room
-from . import create_room
+from . import room

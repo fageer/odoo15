@@ -1,8 +1,8 @@
 from odoo import api, fields, models, _
 
-class CreateRoom(models.Model):
-    _name = "create.room"
-    _description = "Create Room"
+class Room(models.Model):
+    _name = "room"
+    _description = "Room"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'room_name'
 
@@ -19,7 +19,7 @@ class RoomFacilityLines(models.Model):
 
     facility_id = fields.Many2one('facilities.room', string='Facility')
     qty = fields.Integer(string='Quantity', default=1)
-    room_id = fields.Many2one('create.room')
+    room_id = fields.Many2one('room')
 
 
 
