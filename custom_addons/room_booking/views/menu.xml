@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="menu_room_booking_root"
+        name="Room Booking"
+        sequence="0"/>
+
+
+    <menuitem
+        id="menu_configration_master"
+        name="Configration"
+        parent="menu_room_booking_root"
+        sequence="0"/>
+
+
+
+
+</odoo>

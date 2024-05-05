@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_facilities_room_tree" model="ir.ui.view">
+        <field name="name">facilities.room.tree</field>
+        <field name="model">facilities.room</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="facility"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_facilities_room_form" model="ir.ui.view">
+        <field name="name">facilities.room.form</field>
+        <field name="model">facilities.room</field>
+        <field name="arch" type="xml">
+            <form>
+<!--                &lt;!&ndash; Statusbar &ndash;&gt;-->
+<!--                <header>-->
+<!--                    <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"/>-->
+<!--                </header>-->
+                <sheet>
+<!--                <div class="oe_button_box" name="button_box">-->
+<!--                    <button name="action_open_sessions" type="object" class="oe_stat_button" icon="fa-calendar">-->
+<!--                        <div class="o_stat_info">-->
+<!--                            <field name="sessions_count" class="o_stat_value"/>-->
+<!--                            <span class="o_stat_text">Sessions</span>-->
+<!--                        </div>-->
+<!--                    </button>-->
+<!--                    <button name="action_open_appeal" type="object" class="oe_stat_button" icon="fa-calendar">-->
+<!--                        <div class="o_stat_info">-->
+<!--                            <field name="appeal_count" class="o_stat_value"/>-->
+<!--                            <span class="o_stat_text">Appeals</span>-->
+<!--                        </div>-->
+<!--                    </button>-->
+<!--                    <button name="action_open_invoice" type="object" class="oe_stat_button" icon="fa-money">-->
+<!--                        <div class="o_stat_info">-->
+<!--                            <field name="invoice_count" class="o_stat_value"/>-->
+<!--                            <span class="o_stat_text">Invoices</span>-->
+<!--                        </div>-->
+<!--                    </button>-->
+<!--                </div>-->
+                    <group>
+                        <group>
+                            <field name="facility"/>
+                        </group>
+                    </group>
+
+<!--                    <notebook>-->
+<!--                        <page string="Judgment Details" name="judgment_details">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="judgment_number"/>-->
+<!--                                <field name="ruling_text"/>-->
+<!--                                <field name="ruling_date"/>-->
+<!--                                <field name="court"/>-->
+<!--                                <field name="judgment_attached"/>-->
+<!--                            </tree>-->
+<!--                            <form>-->
+<!--                                <group>-->
+<!--                                    <group>-->
+<!--                                        <field name="judgment_number"/>-->
+<!--                                        <field name="ruling_text"/>-->
+<!--                                        <field name="ruling_date"/>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+<!--                                        <field name="court"/>-->
+<!--                                        <field name="judgment_attached"/>-->
+<!--                                    </group>-->
+<!--                                </group>-->
+<!--                            </form>-->
+<!--                        </page>-->
+<!--                        <page string="Sessions" name="sessions">-->
+<!--                            <group>-->
+<!--                                <field name="sessions_ids" nolabel="1"/>-->
+<!--                            </group>-->
+<!--                        </page>-->
+<!--                    </notebook>-->
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_facilities_room_search" model="ir.ui.view">
+        <field name="name">facilities.room.search</field>
+        <field name="model">facilities.room</field>
+        <field name="arch" type="xml">
+            <search>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_facilities_room" model="ir.actions.act_window">
+        <field name="name">facilities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">facilities.room</field>
+        <field name="view_mode">tree,form,activity</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first facility !
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_facilities_room"
+            name="Facilities"
+            action="action_facilities_room"
+            parent="menu_configration_master"
+            sequence="0"/>
+
+</odoo>
