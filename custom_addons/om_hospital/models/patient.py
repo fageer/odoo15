@@ -1,6 +1,7 @@
 from datetime import date
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
+from dateutil import relativedelta
 
 class HospitalPatient(models.Model):
     _name = "hospital.patient"
@@ -11,7 +12,7 @@ class HospitalPatient(models.Model):
     name = fields.Char(string='Name', tracking=True)
     date_of_birth = fields.Date(string='Date Of Birth')
     ref = fields.Char(string='Reference', tracking=True, readonly=True)
-    age = fields.Integer(string='Age', compute='_compute_age', tracking=True)
+    age = fields.Integer(string='Age', compute='_compute_age', inverse='_inverse_compute_age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string='Gender', tracking=True, default='male')
     active = fields.Boolean(string='Active', default=True)
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
@@ -37,6 +38,13 @@ class HospitalPatient(models.Model):
         for rec in self:
             if rec.date_of_birth and rec.date_of_birth > date.today():
                 raise ValidationError(_('Date of Birth cannot be in the future.'))
+
+
+    @api.depends('age')
+    def _inverse_compute_age(self):
+        today = date.today()
+        for rec in self:
+            rec.date_of_birth = today - relativedelta.relativedelta(years=rec.age)
 
     @api.ondelete(at_uninstall=False)
     def _check_appointment(self):
