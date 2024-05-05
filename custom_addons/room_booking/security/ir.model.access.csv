@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access.facilities.room,access_facilities_room,room_booking.model_facilities_room,base.group_user,1,1,1,1
-access.create.room,access_create_room,room_booking.model_create_room,base.group_user,1,1,1,1
+access.room,access_room,room_booking.model_room,base.group_user,1,1,1,1
 access.room.facility.lines,access_room_facility_lines,room_booking.model_room_facility_lines,base.group_user,1,1,1,1
