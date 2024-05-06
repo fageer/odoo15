@@ -12,6 +12,7 @@ class BookingRoom(models.Model):
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True, tracking=True)
     start_date = fields.Datetime(string='From', tracking=True)
     end_date = fields.Datetime(string='To', tracking=True)
+    status = fields.Boolean(string='Status', readonly=True)
 
 
     @api.model
@@ -24,3 +25,12 @@ class BookingRoom(models.Model):
         for rec in self:
             if rec.room_id.state == 'available':
                 rec.room_id.state = 'not_available'
+                rec.status = True
+
+
+    def meeting_done(self):
+        for rec in self:
+            if rec.room_id.state == 'not_available':
+                rec.room_id.state = 'available'
+                rec.status = False
+
