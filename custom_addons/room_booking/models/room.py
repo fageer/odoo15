@@ -9,12 +9,12 @@ class Room(models.Model):
 
 
     ref = fields.Char(string='Reference', readonly=True)
-    room_name = fields.Char(string='Name')
-    location_id = fields.Many2one('hr.work.location', string='Location')
-    facility_lines_ids = fields.One2many('room.facility.lines', 'room_id', string='Facility Lines')
+    room_name = fields.Char(string='Name', required=True, tracking=True)
+    location_id = fields.Many2one('hr.work.location', string='Location', tracking=True)
+    facility_lines_ids = fields.One2many('room.facility.lines', 'room_id', string='Facility Lines', tracking=True)
     state = fields.Selection([
         ('available', 'Available'),
-        ('not_available', 'Not Available')], default='available', string='Status')
+        ('not_available', 'Not Available')], default='available', string='Status', tracking=True)
 
 
     @api.model

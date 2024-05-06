@@ -8,10 +8,10 @@ class BookingRoom(models.Model):
 
 
     ref = fields.Char(string='Reference', readonly=True)
-    room_id = fields.Many2one('room', string='Room', domain="[('state', '!=', 'not_available')]")
-    employee_id = fields.Many2one('hr.employee', string='Employee')
-    start_date = fields.Datetime(string='From')
-    end_date = fields.Datetime(string='To')
+    room_id = fields.Many2one('room', string='Room', domain="[('state', '!=', 'not_available')]", tracking=True)
+    employee_id = fields.Many2one('hr.employee', string='Employee', required=True, tracking=True)
+    start_date = fields.Datetime(string='From', tracking=True)
+    end_date = fields.Datetime(string='To', tracking=True)
 
 
     @api.model

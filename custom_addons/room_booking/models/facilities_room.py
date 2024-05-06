@@ -8,7 +8,7 @@ class FacilitiesRoom(models.Model):
 
 
     ref = fields.Char(string='Reference', readonly=True)
-    facility = fields.Char(string='Facility', required=True)
+    facility = fields.Char(string='Facility', required=True, tracking=True)
 
 
     @api.model
