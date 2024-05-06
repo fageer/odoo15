@@ -5,7 +5,7 @@
         <field name="name">facilities.room.tree</field>
         <field name="model">facilities.room</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="bottom">
                 <field name="ref"/>
                 <field name="facility"/>
             </tree>
@@ -107,7 +107,7 @@
 
 
     <record id="action_facilities_room" model="ir.actions.act_window">
-        <field name="name">facilities</field>
+        <field name="name">Facilities</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">facilities.room</field>
         <field name="view_mode">tree,form,activity</field>
