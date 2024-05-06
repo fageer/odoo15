@@ -26,6 +26,7 @@ class BookingRoom(models.Model):
             if rec.room_id.state == 'available':
                 rec.room_id.state = 'not_available'
                 rec.status = True
+        self.message_post(body="Room Booking Successfully")
 
 
     def meeting_done(self):
@@ -33,4 +34,5 @@ class BookingRoom(models.Model):
             if rec.room_id.state == 'not_available':
                 rec.room_id.state = 'available'
                 rec.status = False
+        self.message_post(body="Room Booking Done")
 
