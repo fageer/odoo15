@@ -6,12 +6,18 @@ class Room(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'room_name'
 
+    ref = fields.Char(string='Reference', readonly=True)
     room_name = fields.Char(string='Name')
     location_id = fields.Many2one('hr.work.location', string='Location')
     facility_lines_ids = fields.One2many('room.facility.lines', 'room_id', string='Facility Lines')
     state = fields.Selection([
         ('available', 'Available'),
         ('not_available', 'Not Available')], default='available', string='Status')
+
+    @api.model
+    def create(self, vals):
+        vals['ref'] = self.env['ir.sequence'].next_by_code('room')
+        return super(Room, self).create(vals)
 
 
 

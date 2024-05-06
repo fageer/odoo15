@@ -8,7 +8,10 @@
     'website': "http://www.plustech.com",
     'version': '1.0.0',
     'data':[
-        'security\ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'data/facility_squ.xml',
+        'data/room_squ.xml',
+        'data/booking_squ.xml',
         'views/menu.xml',
         'views/facility_room_view.xml',
         'views/room_view.xml',

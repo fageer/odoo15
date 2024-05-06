@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+
+<!--    <record id="view_booking_room_activity" model="ir.ui.view">-->
+<!--        <field name="name">booking_room.activity</field>-->
+<!--        <field name="model">booking.room</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--             <activity string="Booking Room">-->
+<!--                <field name="patient_id"/>-->
+<!--                <field name="ref"/>-->
+<!--                <templates>-->
+<!--                    <div t-name="activity-box">-->
+<!--                        <img t-att-src="activity_image('hospital.patient', 'image', record.patient_id.raw_value)"-->
+<!--                             t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>-->
+<!--                        <div>-->
+<!--                            <field name="ref" display="full"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </templates>-->
+<!--            </activity>-->
+<!--        </field>-->
+<!--    </record>-->
+
     <record id="view_booking_room_tree" model="ir.ui.view">
         <field name="name">booking.room.tree</field>
         <field name="model">booking.room</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="ref"/>
                 <field name="room_id"/>
                 <field name="employee_id"/>
                 <field name="start_date"/>
@@ -46,6 +68,7 @@
 <!--                </div>-->
                     <group>
                         <group>
+                            <field name="ref"/>
                             <field name="room_id"/>
                             <field name="employee_id"/>
                         </group><group>

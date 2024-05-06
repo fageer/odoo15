@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Sequences for lead mining requests -->
+    <record id="seq_facilities_room" model="ir.sequence">
+        <field name="name">Facilities Room</field>
+        <field name="code">facilities.room</field>
+        <field name="prefix">FA</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>
