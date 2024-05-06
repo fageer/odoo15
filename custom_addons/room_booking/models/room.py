@@ -14,7 +14,7 @@ class Room(models.Model):
     facility_lines_ids = fields.One2many('room.facility.lines', 'room_id', string='Facility Lines', tracking=True)
     state = fields.Selection([
         ('available', 'Available'),
-        ('not_available', 'Not Available')], default='available', string='Status', tracking=True)
+        ('not_available', 'Not Available')], default='available', string='Status', readonly=True, tracking=True)
 
 
     @api.model

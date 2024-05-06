@@ -52,6 +52,8 @@
 
                 </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Done" bg_color="bg-success" attrs="{'invisible': [('room_state', '!=', 'done')]}"/>
+                    <widget name="web_ribbon" title="Confirmed" bg_color="bg-info" attrs="{'invisible': [('room_state', '!=', 'confirm')]}"/>
 <!--                <div class="oe_button_box" name="button_box">-->
 <!--                    <button name="action_open_sessions" type="object" class="oe_stat_button" icon="fa-calendar">-->
 <!--                        <div class="o_stat_info">-->
