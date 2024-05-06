@@ -47,7 +47,8 @@
                 <header>
                     <field name="room_state" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
                            statusbar_visible="draft,confirm,done"/>
-                    <button name="confirm" string="Confirm Booking" attrs="{'invisible': [('status', '=', True)]}" type="object" class="oe_highlight"/>
+                    <button name="confirm" string="Confirm Booking" attrs="{'invisible': ['|', ('status', '=', True), ('room_state', '=', 'done')]}"
+                            type="object" class="oe_highlight"/>
 
                 </header>
                 <sheet>
@@ -91,6 +92,7 @@
                             </div>
                             <field name="organizer"/>
                             <field name="status"/>
+<!--                            <field name="room_state" readonly="1"/>-->
                         </group>
                     </group>
 
