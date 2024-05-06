@@ -29,9 +29,10 @@
             <tree>
                 <field name="ref"/>
                 <field name="room_id"/>
-                <field name="employee_id"/>
+<!--                <field name="employee_id"/>-->
                 <field name="start_date"/>
                 <field name="end_date"/>
+                <field name="organizer"/>
                 <field name="activity_ids" widget="list_activity"/>
             </tree>
         </field>
@@ -44,8 +45,10 @@
             <form>
                 <!-- Statusbar -->
                 <header>
+                    <field name="room_state" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
+                           statusbar_visible="draft,confirm,done"/>
                     <button name="confirm" string="Confirm Booking" attrs="{'invisible': [('status', '=', True)]}" type="object" class="oe_highlight"/>
-                    <button name="meeting_done" string="Meeting Done" attrs="{'invisible': [('status', '=', False)]}" type="object"/>
+
                 </header>
                 <sheet>
 <!--                <div class="oe_button_box" name="button_box">-->
@@ -70,45 +73,53 @@
 <!--                </div>-->
                     <group>
                         <group>
-                            <field name="ref"/>
+                            <div>
+                                <h1>
+                                    <field name="ref" nolabel="1"/>
+                                </h1>
+                            </div>
                             <field name="room_id"/>
-                            <field name="employee_id"/>
-                        </group><group>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
+<!--                            <field name="employee_id"/>-->
+                            <field name="description" placeholder="Enter Meeting Description"/>
+                        </group>
+                        <group>
+                            <label for="start_date" string="Date and Time"/>
+                            <div class="o_row">
+                                <field name="start_date" widget="daterange" nolabel="1" class="oe_inline" options="{'related_end_date': 'end_date'}"/>
+                                <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                                <field name="end_date" widget="daterange" nolabel="1" class="oe_inline" options="{'related_start_date': 'start_date'}"/>
+                            </div>
+                            <field name="organizer"/>
                             <field name="status"/>
                         </group>
                     </group>
 
-<!--                    <notebook>-->
-<!--                        <page string="Judgment Details" name="judgment_details">-->
-<!--                            <tree editable="bottom">-->
-<!--                                <field name="judgment_number"/>-->
-<!--                                <field name="ruling_text"/>-->
-<!--                                <field name="ruling_date"/>-->
-<!--                                <field name="court"/>-->
-<!--                                <field name="judgment_attached"/>-->
-<!--                            </tree>-->
-<!--                            <form>-->
-<!--                                <group>-->
-<!--                                    <group>-->
-<!--                                        <field name="judgment_number"/>-->
-<!--                                        <field name="ruling_text"/>-->
-<!--                                        <field name="ruling_date"/>-->
-<!--                                    </group>-->
-<!--                                    <group>-->
-<!--                                        <field name="court"/>-->
-<!--                                        <field name="judgment_attached"/>-->
-<!--                                    </group>-->
-<!--                                </group>-->
-<!--                            </form>-->
-<!--                        </page>-->
-<!--                        <page string="Sessions" name="sessions">-->
-<!--                            <group>-->
-<!--                                <field name="sessions_ids" nolabel="1"/>-->
-<!--                            </group>-->
-<!--                        </page>-->
-<!--                    </notebook>-->
+                    <notebook>
+                        <page string="Employee" name="employee">
+                            <field name="employee_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="employee_id"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="employee_id"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Guests" name="guests">
+                            <field name="guests_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="guests_id"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="guests_id"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
                 <!-- Chatter -->
                 <div class="oe_chatter">

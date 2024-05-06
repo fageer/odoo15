@@ -3,7 +3,7 @@
 
     <menuitem
         id="menu_room_booking_root"
-        name="Room Booking"
+        name="Meeting Rooms"
         sequence="0"/>
 
 
@@ -11,7 +11,7 @@
         id="menu_configration_master"
         name="Configration"
         parent="menu_room_booking_root"
-        sequence="0"/>
+        sequence="1"/>
 
     <menuitem
         id="menu_booking_room_master"
