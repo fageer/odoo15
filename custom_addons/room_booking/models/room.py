@@ -9,6 +9,9 @@ class Room(models.Model):
     room_name = fields.Char(string='Name')
     location_id = fields.Many2one('hr.work.location', string='Location')
     facility_lines_ids = fields.One2many('room.facility.lines', 'room_id', string='Facility Lines')
+    state = fields.Selection([
+        ('available', 'Available'),
+        ('not_available', 'Not Available')], default='available', string='Status')
 
 
 

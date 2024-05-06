@@ -2,3 +2,4 @@
 
 from . import facilities_room
 from . import room
+from . import booking_room

@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_room_tree" model="ir.ui.view">
-        <field name="name">room.tree</field>
-        <field name="model">room</field>
+    <record id="view_booking_room_tree" model="ir.ui.view">
+        <field name="name">booking.room.tree</field>
+        <field name="model">booking.room</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'available'"
-                  decoration-danger="state == 'not_available'">
-                <field name="room_name"/>
-                <field name="location_id"/>
-                <field name="facility_lines_ids"/>
-                <field name="state" widget="badge"
-                       decoration-success="state == 'available'"
-                       decoration-danger="state == 'not_available'"/>
+            <tree>
+                <field name="room_id"/>
+                <field name="employee_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_room_form" model="ir.ui.view">
-        <field name="name">room.form</field>
-        <field name="model">room</field>
+    <record id="view_booking_room_form" model="ir.ui.view">
+        <field name="name">booking.room.form</field>
+        <field name="model">booking.room</field>
         <field name="arch" type="xml">
             <form>
-<!--                &lt;!&ndash; Statusbar &ndash;&gt;-->
-<!--                <header>-->
-<!--                    <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"/>-->
-<!--                </header>-->
+                <!-- Statusbar -->
+                <header>
+                    <button name="confirm" string="Confirm Booking" type="object" class="oe_highlight"/>
+                </header>
                 <sheet>
 <!--                <div class="oe_button_box" name="button_box">-->
 <!--                    <button name="action_open_sessions" type="object" class="oe_stat_button" icon="fa-calendar">-->
@@ -49,14 +46,15 @@
 <!--                </div>-->
                     <group>
                         <group>
-                            <field name="room_name"/>
-                        </group>
-                        <group>
-                            <field name="location_id"/>
+                            <field name="room_id"/>
+                            <field name="employee_id"/>
+                        </group><group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
                         </group>
                     </group>
 
-                    <notebook>
+<!--                    <notebook>-->
 <!--                        <page string="Judgment Details" name="judgment_details">-->
 <!--                            <tree editable="bottom">-->
 <!--                                <field name="judgment_number"/>-->
@@ -67,25 +65,24 @@
 <!--                            </tree>-->
 <!--                            <form>-->
 <!--                                <group>-->
-<!--                                    -->
+<!--                                    <group>-->
+<!--                                        <field name="judgment_number"/>-->
+<!--                                        <field name="ruling_text"/>-->
+<!--                                        <field name="ruling_date"/>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+<!--                                        <field name="court"/>-->
+<!--                                        <field name="judgment_attached"/>-->
+<!--                                    </group>-->
 <!--                                </group>-->
 <!--                            </form>-->
 <!--                        </page>-->
-                        <page string="Facility" name="facility">
-                            <field name="facility_lines_ids">
-                                <tree editable="bottom">
-                                    <field name="facility_id"/>
-                                    <field name="qty"/>
-                                </tree>
-                                <form>
-                                    <group>
-                                        <field name="facility_id"/>
-                                        <field name="qty"/>
-                                    </group>
-                                </form>
-                            </field>
-                        </page>
-                    </notebook>
+<!--                        <page string="Sessions" name="sessions">-->
+<!--                            <group>-->
+<!--                                <field name="sessions_ids" nolabel="1"/>-->
+<!--                            </group>-->
+<!--                        </page>-->
+<!--                    </notebook>-->
                 </sheet>
                 <!-- Chatter -->
                 <div class="oe_chatter">
@@ -98,9 +95,9 @@
     </record>
 
 
-    <record id="view_room_search" model="ir.ui.view">
-        <field name="name">room.search</field>
-        <field name="model">room</field>
+    <record id="view_booking_room_search" model="ir.ui.view">
+        <field name="name">booking.room.search</field>
+        <field name="model">booking.room</field>
         <field name="arch" type="xml">
             <search>
             </search>
@@ -108,24 +105,24 @@
     </record>
 
 
-    <record id="action_room" model="ir.actions.act_window">
-        <field name="name">Room</field>
+    <record id="action_booking_room" model="ir.actions.act_window">
+        <field name="name">Booking</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">room</field>
+        <field name="res_model">booking.room</field>
         <field name="view_mode">tree,form,activity</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create your first room !
+                Create your first booking !
             </p>
         </field>
     </record>
 
     <menuitem
-            id="menu_room"
-            name="Room"
-            action="action_room"
-            parent="menu_configration_master"
+            id="menu_booking_room"
+            name="Booking"
+            action="action_booking_room"
+            parent="menu_booking_room_master"
             sequence="0"/>
 
 </odoo>
