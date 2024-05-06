@@ -6,11 +6,13 @@ class BookingRoom(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'employee_id'
 
+
     ref = fields.Char(string='Reference', readonly=True)
     room_id = fields.Many2one('room', string='Room', domain="[('state', '!=', 'not_available')]")
     employee_id = fields.Many2one('hr.employee', string='Employee')
     start_date = fields.Datetime(string='From')
     end_date = fields.Datetime(string='To')
+
 
     @api.model
     def create(self, vals):

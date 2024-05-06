@@ -1,10 +1,12 @@
 from odoo import api, fields, models, _
 
+
 class Room(models.Model):
     _name = "room"
     _description = "Room"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'room_name'
+
 
     ref = fields.Char(string='Reference', readonly=True)
     room_name = fields.Char(string='Name')
@@ -13,6 +15,7 @@ class Room(models.Model):
     state = fields.Selection([
         ('available', 'Available'),
         ('not_available', 'Not Available')], default='available', string='Status')
+
 
     @api.model
     def create(self, vals):
@@ -25,6 +28,7 @@ class Room(models.Model):
 class RoomFacilityLines(models.Model):
     _name = "room.facility.lines"
     _description = "Room Facility Lines"
+
 
     facility_id = fields.Many2one('facilities.room', string='Facility')
     qty = fields.Integer(string='Quantity', default=1)

@@ -10,6 +10,7 @@ class FacilitiesRoom(models.Model):
     ref = fields.Char(string='Reference', readonly=True)
     facility = fields.Char(string='Facility', required=True)
 
+
     @api.model
     def create(self, vals):
         vals['ref'] = self.env['ir.sequence'].next_by_code('facilities.room')
