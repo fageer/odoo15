@@ -50,7 +50,11 @@
 <!--                </div>-->
                     <group>
                         <group>
-                            <field name="ref"/>
+                            <div>
+                                <h1>
+                                    <field name="ref" nolabel="1"/>
+                                </h1>
+                            </div>
                             <field name="room_name"/>
                         </group>
                         <group>
