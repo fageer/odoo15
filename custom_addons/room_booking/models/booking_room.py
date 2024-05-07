@@ -38,7 +38,7 @@ class BookingRoom(models.Model):
             'res_model_id': self.env['ir.model'].search([('model', '=', 'booking.room')]).id,
             'user_id': user_id.id,
             'summary': 'foo bar',
-            'activity_type_id': self.env.ref('mail.mail_activity_data_todo').id,
+            'activity_type_id': self.env.ref('mail.mail_activity_data_email').id,
             'date_deadline': date_deadline
         }
         print(data, "===================================")
