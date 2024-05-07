@@ -58,7 +58,14 @@ class EmployeeLines(models.Model):
 
 
     employee_id = fields.Many2one('hr.employee', string='Employee')
+    work_phone = fields.Char(string='Phone')
+    work_email = fields.Char(string='Email')
     booking_id = fields.Many2one('booking.room')
+
+    @api.onchange('employee_id')
+    def onchange_employee_id(self):
+        self.work_phone = self.employee_id.work_phone
+        self.work_email = self.employee_id.work_email
 
 
 
@@ -69,4 +76,11 @@ class GuestsLines(models.Model):
 
 
     guests_id = fields.Many2one('res.partner', string='Guests')
+    phone = fields.Char(string='Phone')
+    email = fields.Char(string='Email')
     booking_id = fields.Many2one('booking.room')
+
+    @api.onchange('guests_id')
+    def onchange_guests_id(self):
+        self.phone = self.guests_id.phone
+        self.email = self.guests_id.email
