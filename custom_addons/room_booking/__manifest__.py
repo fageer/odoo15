@@ -12,6 +12,7 @@
         'data/facility_squ.xml',
         'data/room_squ.xml',
         'data/booking_squ.xml',
+        'data/mail_template_data.xml',
         'views/menu.xml',
         'views/facility_room_view.xml',
         'views/room_view.xml',
