@@ -75,12 +75,14 @@
 <!--                    </button>-->
 <!--                </div>-->
                     <group>
+                        <div>
+                            <h1>
+                                <field name="ref" nolabel="1"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group>
                         <group>
-                            <div>
-                                <h1>
-                                    <field name="ref" nolabel="1"/>
-                                </h1>
-                            </div>
                             <field name="room_id"/>
 <!--                            <field name="employee_id"/>-->
                             <field name="description" placeholder="Meeting Description..."/>
