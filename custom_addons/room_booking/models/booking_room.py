@@ -1,3 +1,4 @@
+from datetime import datetime
 from odoo import api, fields, models, _
 
 class BookingRoom(models.Model):
@@ -27,7 +28,22 @@ class BookingRoom(models.Model):
     @api.model
     def create(self, vals):
         vals['ref'] = self.env['ir.sequence'].next_by_code('booking.room')
-        return super(BookingRoom, self).create(vals)
+
+        new = super(BookingRoom, self).create(vals)
+        user_id = new.organizer
+        date_deadline = datetime.now()
+
+        data = {
+            'res_id': new.id,
+            'res_model_id': self.env['ir.model'].search([('model', '=', 'booking.room')]).id,
+            'user_id': user_id.id,
+            'summary': 'foo bar',
+            'activity_type_id': self.env.ref('mail.mail_activity_data_todo').id,
+            'date_deadline': date_deadline
+        }
+        print(data, "===================================")
+        self.env['mail.activity'].create(data)
+        return new
 
 
     def confirm(self):

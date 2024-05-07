@@ -83,7 +83,7 @@
                             </div>
                             <field name="room_id"/>
 <!--                            <field name="employee_id"/>-->
-                            <field name="description" placeholder="Enter Meeting Description"/>
+                            <field name="description" placeholder="Meeting Description..."/>
                         </group>
                         <group>
                             <label for="start_date" string="Date and Time"/>
