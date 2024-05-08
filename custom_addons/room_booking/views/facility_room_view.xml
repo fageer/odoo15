@@ -7,7 +7,6 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="facility"/>
-                <field name="ref"/>
             </tree>
         </field>
     </record>
@@ -43,13 +42,6 @@
 <!--                    </button>-->
 <!--                </div>-->
                     <group>
-                        <group>
-                            <div>
-                                <h1>
-                                    <field name="ref" nolabel="1"/>
-                                </h1>
-                            </div>
-                        </group>
                         <group>
                             <field name="facility"/>
                         </group>
