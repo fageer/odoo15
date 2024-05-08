@@ -5,9 +5,9 @@
         <record id="booking_room_mail_template" model="mail.template">
             <field name="name">Booking Room Template</field>
             <field name="model_id" ref="room_booking.model_booking_room"/>
-            <field name="subject">Booking Room Details {{ object.ref }}</field>
+            <field name="subject">Booking Room Details [{{ object.ref }}]</field>
             <field name="email_from">{{ user.email }}</field>
-            <field name="email_to">{{ object.organizer.email }}</field>
+            <field name="email_to" >{{ object.guests_lines_ids }}</field>
             <field name="body_html" type="html">
                 <table border="0" cellpadding="0" cellspacing="0"
                        style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
@@ -51,10 +51,14 @@
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <div>
-                                                            Dear <t t-out="object.organizer.name"></t>,
+                                                            Dear <t t-out="object.guests_lines_ids.guests_id"></t>,
                                                             <br/>
                                                             <br/>
-                                                            Your room has been successfully booked from <t t-out="object.start_date"/> to <t t-out="object.end_date"/>
+                                                            We invite you to meeting with us:
+                                                            <br/>
+                                                            from [<t t-out="object.start_date"/>]
+                                                            <br/>
+                                                            to  [<t t-out="object.end_date"/>]
                                                             <br/>
                                                             Reference Number: <t t-out="object.ref"/>
                                                             <br/>
@@ -84,7 +88,7 @@
                                                    style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
                                                 <tr>
                                                     <td valign="middle" align="left">
-                                                        <t t-out="user.company_id.name">Plus Tech</t>
+                                                        <t t-out="user.company_id.name"></t>
                                                     </td>
                                                 </tr>
                                                 <tr>

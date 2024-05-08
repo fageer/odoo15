@@ -24,6 +24,23 @@ class BookingRoom(models.Model):
     guests_lines_ids = fields.One2many('guests.lines', 'booking_id', string='Guests Lines', tracking=True)
 
 
+    def send_email(self):
+        template = self.env.ref('room_booking.booking_room_mail_template')
+        for rec in self:
+            guests = rec.guests_lines_ids
+            print(template)
+            for guest in guests:
+                if guest:
+                    print(guest)
+                    template.email_to = guest.email
+                    guest_name = guest.guests_id.name
+                    print(guest_name)
+
+                    email_values = {
+                        'subject': guest_name
+                    }
+                    template.send_mail(rec.id, email_values=email_values, force_send=True)
+
 
     @api.model
     def create(self, vals):

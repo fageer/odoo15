@@ -49,6 +49,8 @@
                            statusbar_visible="draft,confirm,done"/>
                     <button name="confirm" string="Confirm Booking" attrs="{'invisible': ['|', ('status', '=', True), ('room_state', '=', 'done')]}"
                             type="object" class="oe_highlight"/>
+                    <button name="send_email" string="Send Email" attrs="{'invisible': [('room_state', '!=', 'confirm')]}"
+                            type="object" class="oe_highlight"/>
 
                 </header>
                 <sheet>
