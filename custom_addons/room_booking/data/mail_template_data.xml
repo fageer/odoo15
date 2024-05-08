@@ -51,22 +51,27 @@
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <div>
-                                                            Dear <t t-out="object.guests_lines_ids.guests_id"></t>,
+                                                            <t t-foreach="object.guests_lines_ids" t-as="guest">
+                                                                Dear <t t-esc="guest.guests_id.name"/>,
+                                                            </t>
                                                             <br/>
                                                             <br/>
-                                                            We invite you to meeting with us:
+                                                            We invite you to a meeting with us:
                                                             <br/>
                                                             from [<t t-out="object.start_date"/>]
                                                             <br/>
-                                                            to  [<t t-out="object.end_date"/>]
+                                                            to [<t t-out="object.end_date"/>]
                                                             <br/>
-                                                            Reference Number: <t t-out="object.ref"/>
+                                                            Reference Number:
+                                                            <t t-out="object.ref"/>
                                                             <br/>
                                                             <br/>
                                                             Thanks,
                                                             <t t-if="user.signature">
                                                                 <br/>
-                                                                <t t-out="user.signature">--<br/><t t-out="user.name"/>
+                                                                <t t-out="user.signature">--
+                                                                    <br/>
+                                                                    <t t-out="user.name"/>
                                                                 </t>
                                                             </t>
                                                         </div>

@@ -35,11 +35,7 @@ class BookingRoom(models.Model):
                     template.email_to = guest.email
                     guest_name = guest.guests_id.name
                     print(guest_name)
-
-                    email_values = {
-                        'subject': guest_name
-                    }
-                    template.send_mail(rec.id, email_values=email_values, force_send=True)
+                    template.send_mail(rec.id, force_send=True)
 
 
     @api.model
