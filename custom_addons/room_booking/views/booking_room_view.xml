@@ -29,10 +29,10 @@
             <tree>
                 <field name="ref"/>
                 <field name="room_id"/>
-<!--                <field name="employee_id"/>-->
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="organizer"/>
+                <field name="room_state"/>
                 <field name="activity_ids" widget="list_activity"/>
             </tree>
         </field>
@@ -86,7 +86,6 @@
                     <group>
                         <group>
                             <field name="room_id"/>
-<!--                            <field name="employee_id"/>-->
                             <field name="description" placeholder="Meeting Description..."/>
                         </group>
                         <group>
@@ -97,8 +96,8 @@
                                 <field name="end_date" widget="daterange" nolabel="1" class="oe_inline" options="{'related_start_date': 'start_date'}"/>
                             </div>
                             <field name="organizer"/>
-                            <field name="status"/>
-<!--                            <field name="room_state" readonly="1"/>-->
+                            <field name="department_id"/>
+                            <field name="status" invisible="1"/>
                         </group>
                     </group>
 
@@ -135,6 +134,13 @@
                                 </form>
                             </field>
                         </page>
+                        <page string="Agenda" name="agenda">
+                            <form>
+                                <group>
+                                    <field name="agenda"/>
+                                </group>
+                            </form>
+                        </page>
                     </notebook>
                 </sheet>
                 <!-- Chatter -->
@@ -152,7 +158,7 @@
         <field name="name">booking.room.kanban</field>
         <field name="model">booking.room</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban class="o_kanban_mobile" sample="1" quick_create="false">
                 <field name="ref"/>
                 <field name="organizer"/>
                 <field name="room_id"/>
@@ -163,15 +169,12 @@
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <div>
-                                <strong>
+                                <h1>
                                     <field name="ref"/>
-                                </strong>
-                                <br/>
-                                <br/>
+                                </h1>
                                 <strong>
                                     <field name="organizer"/>
                                 </strong>
-                                <br/>
                                 <br/>
                             </div>
                             <div class="oe_kanban_details">
@@ -190,6 +193,14 @@
                                             <field name="room_state"/>
                                         </li>
                                     </ul>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left text-muted">
+                                        <field name="activity_ids" widget="kanban_activity"/>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="room_state" widget="label_selection"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +239,7 @@
         <field name="name">Booking</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">booking.room</field>
-        <field name="view_mode">tree,kanban,calendar,activity,form</field>
+        <field name="view_mode">kanban,tree,calendar,activity,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

@@ -14,14 +14,21 @@ class BookingRoom(models.Model):
     start_date = fields.Datetime(string='From', tracking=True)
     end_date = fields.Datetime(string='To', tracking=True)
     status = fields.Boolean(string='Status', readonly=True)
-    organizer = fields.Many2one('res.users', string='Organizer')
+    organizer = fields.Many2one('res.users', string='Organizer', required=True)
     room_state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirm'),
         ('done', 'Done')], default='draft', string='Room Status', tracking=True)
     description = fields.Html(string='Description')
+    agenda = fields.Html(string='Agenda')
+    department_id = fields.Many2one('hr.department', string='Department')
     employee_lines_ids = fields.One2many('employee.lines', 'booking_id', string='Employee Lines', tracking=True)
     guests_lines_ids = fields.One2many('guests.lines', 'booking_id', string='Guests Lines', tracking=True)
+
+
+    @api.onchange('organizer')
+    def onchange_organizer(self):
+        self.department_id = self.organizer.department_id
 
 
     def send_email(self):
