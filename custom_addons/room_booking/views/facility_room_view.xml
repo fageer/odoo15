@@ -116,6 +116,6 @@
             name="Facilities"
             action="action_facilities_room"
             parent="menu_configration_master"
-            sequence="0"/>
+            sequence="10"/>
 
 </odoo>

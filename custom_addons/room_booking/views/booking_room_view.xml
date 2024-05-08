@@ -174,39 +174,37 @@
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <div>
-                                <h1>
-                                    <field name="ref"/>
-                                </h1>
+
+                                <div class="o_kanban_record_top" style="display: flex; justify-content: space-between;">
+                                    <div class="oe_kanban_top_left" style="margin-right: auto;">
+                                        <h1>
+                                            <field name="ref"/>
+                                        </h1>
+                                    </div>
+                                    <div class="oe_kanban_top_right">
+                                        <field name="room_state" widget="label_selection"/>
+                                    </div>
+                                </div>
                                 <strong>
-                                    <field name="organizer" widget="many2one_avatar_user"/>
+                                    <field name="organizer"/>
                                 </strong>
-                                <br/>
                             </div>
                             <div class="oe_kanban_details">
                                 <span>
                                     <field name="room_id"/>
                                 </span>
+                                <br/>
                                 <div class="oe_kanban_tags_section">
-                                    <ul>
-                                        <li>From:
-                                            <field name="start_date"/>
-                                        </li>
-                                        <li>To:
-                                            <field name="end_date"/>
-                                        </li>
-                                        <li>Room Status:
-                                            <field name="room_state"/>
-                                        </li>
-                                    </ul>
+                                    <span>[<field name="start_date"/>]</span>
+                                    <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                                    <span>[<field name="end_date"/>]</span>
                                 </div>
-                                <div class="o_kanban_record_bottom">
-                                    <div class="oe_kanban_bottom_left text-muted">
+                                <div class="o_kanban_record_bottom d-flex justify-content-end">
+                                    <div class="oe_kanban_bottom_right text-muted">
                                         <field name="activity_ids" widget="kanban_activity"/>
                                     </div>
-                                    <div class="oe_kanban_bottom_right">
-                                        <field name="room_state" widget="label_selection"/>
-                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </t>
@@ -237,6 +235,7 @@
             <search>
                 <searchpanel>
                     <field name="department_id" string="Department" enable_counters="1" icon="fa-users"/>
+                    <field name="room_id" string="Rooms" enable_counters="1" icon="fa-building"/>
                 </searchpanel>
             </search>
         </field>
@@ -244,7 +243,7 @@
 
 
     <record id="action_booking_room" model="ir.actions.act_window">
-        <field name="name">Booking</field>
+        <field name="name">Bookings</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">booking.room</field>
         <field name="view_mode">kanban,tree,calendar,activity,form</field>
@@ -257,10 +256,10 @@
     </record>
 
     <menuitem
-            id="menu_booking_room"
-            name="Booking"
-            action="action_booking_room"
-            parent="menu_booking_room_master"
-            sequence="0"/>
+        id="menu_booking_room_master"
+        name="Booking Room"
+        action="action_booking_room"
+        parent="menu_room_booking_root"
+        sequence="0"/>
 
 </odoo>
