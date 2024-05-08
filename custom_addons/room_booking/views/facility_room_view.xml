@@ -6,8 +6,8 @@
         <field name="model">facilities.room</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="ref"/>
                 <field name="facility"/>
+                <field name="ref"/>
             </tree>
         </field>
     </record>
