@@ -4,10 +4,10 @@
         <!-- Email template for booking room -->
         <record id="booking_room_mail_template" model="mail.template">
             <field name="name">Booking Room Template</field>
-            <field name="model_id" ref="room_booking.model_booking_room"/>
-            <field name="subject">Booking Room Details [{{ object.ref }}]</field>
+            <field name="model_id" ref="room_booking.model_guests_lines"/>
+            <field name="subject">Booking Room Details [{{ object.booking_id.ref }}]</field>
             <field name="email_from">{{ user.email }}</field>
-            <field name="email_to" >{{ object.guests_lines_ids }}</field>
+            <field name="email_to" >{{ object }}</field>
             <field name="body_html" type="html">
                 <table border="0" cellpadding="0" cellspacing="0"
                        style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
@@ -25,7 +25,7 @@
                                                     <td valign="middle">
                                                         <br/>
                                                         <span style="font-size: 20px; font-weight: bold;">
-                                                            <t t-out="object.ref"></t>
+                                                            <t t-out="object.booking_id.ref"></t>
                                                         </span>
                                                     </td>
                                                     <td valign="middle" align="right">
@@ -51,19 +51,19 @@
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <div>
-                                                            <t t-foreach="object.guests_lines_ids" t-as="guest">
+                                                            <t t-foreach="object" t-as="guest">
                                                                 Dear <t t-esc="guest.guests_id.name"/>,
                                                             </t>
                                                             <br/>
                                                             <br/>
                                                             We invite you to a meeting with us:
                                                             <br/>
-                                                            from [<t t-out="object.start_date"/>]
+                                                            from [<t t-out="object.booking_id.start_date"/>]
                                                             <br/>
-                                                            to [<t t-out="object.end_date"/>]
+                                                            to [<t t-out="object.booking_id.end_date"/>]
                                                             <br/>
                                                             Reference Number:
-                                                            <t t-out="object.ref"/>
+                                                            <t t-out="object.booking_id.ref"/>
                                                             <br/>
                                                             <br/>
                                                             Thanks,

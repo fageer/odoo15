@@ -34,15 +34,10 @@ class BookingRoom(models.Model):
     def send_email(self):
         template = self.env.ref('room_booking.booking_room_mail_template')
         for rec in self:
-            guests = rec.guests_lines_ids
-            print(template)
-            for guest in guests:
-                if guest:
-                    print(guest)
-                    template.email_to = guest.email
-                    guest_name = guest.guests_id.name
-                    print(guest_name)
-                    template.send_mail(rec.id, force_send=True)
+            for guest in rec.guests_lines_ids:
+                template.email_to = guest.email
+                template.send_mail(guest.id, force_send=True)
+
 
 
     @api.model
@@ -108,6 +103,7 @@ class EmployeeLines(models.Model):
 
 class GuestsLines(models.Model):
     _name = "guests.lines"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Guests Lines"
 
 
