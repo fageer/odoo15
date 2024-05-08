@@ -26,14 +26,19 @@
         <field name="name">booking.room.tree</field>
         <field name="model">booking.room</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-success="room_state == 'done'"
+                  decoration-info="room_state == 'confirm'"
+                  decoration-warning="room_state == 'draft'" sample="1" multi_edit="1">
                 <field name="ref"/>
                 <field name="room_id"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
-                <field name="organizer"/>
-                <field name="room_state"/>
+                <field name="organizer" widget="many2one_avatar_user"/>
                 <field name="activity_ids" widget="list_activity"/>
+                <field name="room_state" widget="badge"
+                       decoration-success="room_state == 'done'"
+                       decoration-info="room_state == 'confirm'"
+                       decoration-warning="room_state == 'draft'"/>
             </tree>
         </field>
     </record>
@@ -95,7 +100,7 @@
                                 <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
                                 <field name="end_date" widget="daterange" nolabel="1" class="oe_inline" options="{'related_start_date': 'start_date'}"/>
                             </div>
-                            <field name="organizer"/>
+                            <field name="organizer" widget="many2one_avatar_user"/>
                             <field name="department_id"/>
                             <field name="status" invisible="1"/>
                         </group>
@@ -173,7 +178,7 @@
                                     <field name="ref"/>
                                 </h1>
                                 <strong>
-                                    <field name="organizer"/>
+                                    <field name="organizer" widget="many2one_avatar_user"/>
                                 </strong>
                                 <br/>
                             </div>
@@ -218,7 +223,7 @@
             <calendar string="Booking Rooms Calendar" date_start="start_date" mode="month" quick_add="False" color="room_state">
                 <field name="ref"/>
                 <field name="room_id"/>
-                <field name="organizer"/>
+                <field name="organizer" widget="many2one_avatar_user"/>
             </calendar>
         </field>
     </record>
@@ -230,6 +235,9 @@
         <field name="model">booking.room</field>
         <field name="arch" type="xml">
             <search>
+                <searchpanel>
+                    <field name="department_id" string="Department" enable_counters="1" icon="fa-users"/>
+                </searchpanel>
             </search>
         </field>
     </record>
