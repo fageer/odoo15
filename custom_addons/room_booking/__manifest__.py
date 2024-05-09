@@ -16,6 +16,8 @@
         'views/facility_room_view.xml',
         'views/room_view.xml',
         'views/booking_room_view.xml',
+        'reports/report.xml',
+        'reports/booking_card.xml',
     ],
     'demo': [],
     'installable': True,
