@@ -106,7 +106,7 @@
                         <group>
                             <field name="hide_sales_price" groups="base.group_no_one"/>
                             <field name="appointment_time"/>
-                            <field name="ref"/>
+                            <field name="ref" readonly="1" force_save="1"/>
                             <button name="action_test" string="Object Button" type="object" class="oe_highlight"
                                     help="This will print a message in the python console" groups="base.group_no_one"/>
                             <button name="%(om_hospital.action_hospital_patient)d" string="Action Button"
