@@ -186,12 +186,12 @@
                                     </div>
                                 </div>
                                 <strong>
-                                    <field name="organizer"/>
+                                   Organizer: <field name="organizer"/>
                                 </strong>
                             </div>
                             <div class="oe_kanban_details">
                                 <span>
-                                    <field name="room_id"/>
+                                    Room: <field name="room_id"/>
                                 </span>
                                 <br/>
                                 <div class="oe_kanban_tags_section">
