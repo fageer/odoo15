@@ -18,7 +18,7 @@ class BookingRoom(models.Model):
     room_state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirm'),
-        ('done', 'Done')], default='draft', string='Room Status', tracking=True)
+        ('done', 'Done')], default='draft', string='Room Status', readonly=True, tracking=True)
     description = fields.Html(string='Description')
     agenda = fields.Html(string='Agenda')
     department_id = fields.Many2one('hr.department', string='Department')
