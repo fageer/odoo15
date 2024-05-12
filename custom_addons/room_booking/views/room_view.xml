@@ -10,7 +10,8 @@
                 <field name="ref"/>
                 <field name="room_name"/>
                 <field name="location_id"/>
-                <field name="facility_lines_ids"/>
+                <field name="room_domain"/>
+                <field name="price"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'available'"
                        decoration-danger="state == 'not_available'"/>
@@ -64,6 +65,15 @@
                         <group>
                             <field name="location_id"/>
                             <field name="state" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="room_domain"/>
+                        </group>
+                        <group>
+                            <field name="with_tax" attrs="{'invisible': [('room_domain', 'not in', ('external', 'both'))]}"/>
+                            <field name="price" attrs="{'invisible': [('with_tax', '=', False)]}"/>
                         </group>
                     </group>
 

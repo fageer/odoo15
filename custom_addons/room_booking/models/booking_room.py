@@ -1,3 +1,4 @@
+from dateutil.relativedelta import relativedelta
 import qrcode
 import base64
 from datetime import datetime
@@ -21,7 +22,8 @@ class BookingRoom(models.Model):
 
 
     ref = fields.Char(string='Reference', readonly=True)
-    room_id = fields.Many2one('room', string='Room', domain="[('state', '!=', 'not_available')]", tracking=True)
+    # domain="[('state', '!=', 'not_available'),('room_domain','=','room_domain')]",
+    room_id = fields.Many2one('room', string='Room',  tracking=True)
     # employee_id = fields.Many2one('hr.employee', string='Employee', required=True, tracking=True)
     start_date = fields.Datetime(string='From', tracking=True)
     end_date = fields.Datetime(string='To', tracking=True)
@@ -30,16 +32,32 @@ class BookingRoom(models.Model):
     room_state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirm'),
-        ('done', 'Done')], default='draft', string='Room Status', readonly=True, tracking=True)
+        ('done', 'Done')], string='Room Status', readonly=True, tracking=True)
     description = fields.Html(string='Description')
     agenda = fields.Html(string='Agenda')
     department_id = fields.Many2one('hr.department', string='Department')
     employee_lines_ids = fields.One2many('employee.lines', 'booking_id', string='Employee Lines', tracking=True)
     guests_lines_ids = fields.One2many('guests.lines', 'booking_id', string='Guests Lines', tracking=True)
 
+    room_domain = fields.Selection([
+        ('internal', 'Internal'),
+        ('external', 'External')], string='Room Type', required=True, tracking=True)
+    price = fields.Float(string='Fees', compute='_compute_price', required=True, tracking=True)
+    total = fields.Char()
+    total_of_hours = fields.Integer(string='Total Of Hours')
     
     qr_code = fields.Binary("QR Code", compute='generate_qr_code')
     
+    @api.onchange('room_domain')
+    def _onchange_room_domain(self):
+        domain =[('state', '!=', 'not_available')]
+        if self.room_domain == 'internal':
+            domain.append(('room_domain','in',['internal','both']))
+        else:
+            domain.append(('room_domain','in',['external','both']))
+        
+        return {'domain' : {'room_id' : domain}}
+            
     def generate_qr_code(self):
         for rec in self:
             if qrcode and base64:
@@ -62,6 +80,22 @@ class BookingRoom(models.Model):
                 img.save(temp, format="PNG")
                 qr_image = base64.b64encode(temp.getvalue())
                 rec.qr_code = qr_image
+                
+
+    
+    @api.depends('start_date', 'end_date', 'room_id')
+    def _compute_price(self):
+        for rec in self:
+            if rec.start_date and rec.end_date:
+                delta = relativedelta(rec.end_date, rec.start_date)
+                hours = delta.years * 8760 + delta.months * 730 + delta.days * 24 + delta.hours
+                rec.price = rec.room_id.price
+                rec.total = f"{hours * int(rec.room_id.price)} SAR"
+                rec.total_of_hours = hours
+                
+            else:
+                rec.price = 0
+                
 
     @api.onchange('organizer')
     def onchange_organizer(self):
@@ -80,6 +114,7 @@ class BookingRoom(models.Model):
     @api.model
     def create(self, vals):
         vals['ref'] = self.env['ir.sequence'].next_by_code('booking.room')
+        vals['room_state'] = 'draft'
 
         new = super(BookingRoom, self).create(vals)
         user_id = new.organizer
