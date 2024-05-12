@@ -89,20 +89,23 @@
                         </div>
                     </group>
                     <group>
+                        <field name="qr_code" widget='image' class="oe_avatar" nolabel="1"/>
+                    </group>
+                    <group>
                         <group>
                             <field name="room_id"/>
-                            <field name="description" placeholder="Meeting Description..."/>
-                        </group>
-                        <group>
                             <label for="start_date" string="Date and Time"/>
                             <div class="o_row">
                                 <field name="start_date" widget="daterange" nolabel="1" class="oe_inline" options="{'related_end_date': 'end_date'}"/>
                                 <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
                                 <field name="end_date" widget="daterange" nolabel="1" class="oe_inline" options="{'related_start_date': 'start_date'}"/>
                             </div>
+                        </group>
+                        <group>
                             <field name="organizer" widget="many2one_avatar_user"/>
                             <field name="department_id"/>
                             <field name="status" invisible="1"/>
+                            <field name="description" placeholder="Meeting Description..."/>
                         </group>
                     </group>
 

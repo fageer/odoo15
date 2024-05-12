@@ -1,5 +1,17 @@
+import qrcode
+import base64
 from datetime import datetime
 from odoo import api, fields, models, _
+try:
+    import qrcode
+except ImportError:
+    qrcode = None
+try:
+    import base64
+except ImportError:
+    base64 = None
+from io import BytesIO
+
 
 class BookingRoom(models.Model):
     _name = "booking.room"
@@ -25,6 +37,31 @@ class BookingRoom(models.Model):
     employee_lines_ids = fields.One2many('employee.lines', 'booking_id', string='Employee Lines', tracking=True)
     guests_lines_ids = fields.One2many('guests.lines', 'booking_id', string='Guests Lines', tracking=True)
 
+    
+    qr_code = fields.Binary("QR Code", compute='generate_qr_code')
+    
+    def generate_qr_code(self):
+        for rec in self:
+            if qrcode and base64:
+                qr = qrcode.QRCode(
+                    version=1,
+                    error_correction=qrcode.constants.ERROR_CORRECT_L,
+                    box_size=3,
+                    border=4,
+                )
+                qr.add_data("Reference : ")
+                qr.add_data({rec.ref})
+                qr.add_data(", Room : ")
+                qr.add_data(rec.room_id.room_name)
+                qr.add_data(", Date : ")
+                qr.add_data(f"[{rec.start_date}] --> ")
+                qr.add_data(f"[{rec.end_date}]")
+                qr.make(fit=True)
+                img = qr.make_image()
+                temp = BytesIO()
+                img.save(temp, format="PNG")
+                qr_image = base64.b64encode(temp.getvalue())
+                rec.qr_code = qr_image
 
     @api.onchange('organizer')
     def onchange_organizer(self):

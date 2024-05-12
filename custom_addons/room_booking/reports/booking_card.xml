@@ -9,7 +9,7 @@
                         <h1 style="text-align: center; margin-top: -50px;"> Booking Meeting Room </h1>
                         <br/>
                         <br/>
-                        <div class="details and qrcode">
+                        <div class="flex-container" style="position: relative;">
                             <div class="details">
                                 <h3>Ref # <t t-esc="doc.ref"/></h3>
                                 <ul>
@@ -21,8 +21,8 @@
                                     <span><t t-esc="doc.end_date"/></span>
                                 </ul>
                             </div>
-                            <div class="qrcode">
-                                
+                            <div class="qr-code" style="position: absolute; top: 0; right: 0; width: 30%;">
+                                <img t-att-src="'data:image/png;base64,%s' % to_text(doc.qr_code)"/>
                             </div>
                         </div>
 
