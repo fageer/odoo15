@@ -18,6 +18,7 @@
         'views/booking_room_view.xml',
         'reports/report.xml',
         'reports/booking_card.xml',
+        'reports/sale_report_inherit.xml',
     ],
     'demo': [],
     'installable': True,
