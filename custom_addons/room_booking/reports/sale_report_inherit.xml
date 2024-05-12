@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+        <!-- <xpath expr="//div[@class='row mt32 mb32']" position="after">
+            <h1>Fager Mohsen</h1>
+        </xpath> -->
+        <xpath expr="//div[@class='row mt32 mb32']" position="replace">
+            <h1>Fager Mohsen</h1>
+        </xpath>
+    </template>
+
+</odoo>
