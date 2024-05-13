@@ -50,9 +50,10 @@
             <form>
                 <!-- Statusbar -->
                 <header>
+                    <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight" attrs="{'invisible': [('room_state', 'not in', ('confirm', 'done'))]}"/>
                     <field name="room_state" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
                            statusbar_visible="draft,confirm,done"/>
-                    <button name="confirm" string="Confirm Booking" attrs="{'invisible': ['|', ('status', '=', True), ('room_state', '=', 'done')]}"
+                    <button name="confirm" string="Confirm Booking" attrs="{'invisible': [('room_state', '!=', 'draft')]}"
                             type="object" class="oe_highlight"/>
                     <button name="send_email" string="Send Email" attrs="{'invisible': [('room_state', '!=', 'confirm')]}"
                             type="object" class="oe_highlight"/>
@@ -109,6 +110,9 @@
                             <field name="department_id"/>
                             <field name="status" invisible="1"/>
                             <field name="description" placeholder="Meeting Description..."/>
+                            <field name="move_id"/>
+                            <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
                         </group>
                     </group>
 
@@ -135,7 +139,7 @@
                                 <group class="oe_subtotal_footer oe_right"  name="sale_total">
                                     <group colspan="4">
                                         <label for="price" string="Fees Per Hour:"/>
-                                        <field name="price" nolabel="1" readonly="1"/>
+                                        <field name="price" nolabel="1" readonly="1" widget='monetary'/>
                                     </group>
                                     <group colspan="2">
                                         <label for="total_of_hours" string="Total Of Hours:"/>
@@ -143,7 +147,7 @@
                                     </group>
                                     <group colspan="2">
                                         <label for="total" string="Total:"/>
-                                        <field name="total" nolabel="1" readonly="1"/>
+                                        <field name="total" nolabel="1" readonly="1" widget='monetary'/>
                                     </group>
                                 </group>
                                 <div class="oe_clear"/>

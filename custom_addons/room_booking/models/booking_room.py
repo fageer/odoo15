@@ -41,11 +41,38 @@ class BookingRoom(models.Model):
     room_domain = fields.Selection([
         ('internal', 'Internal'),
         ('external', 'External')], string='Room Type', required=True, tracking=True)
-    price = fields.Float(string='Fees', compute='_compute_price', required=True, tracking=True)
-    total = fields.Char()
+    price = fields.Monetary(string='Fees', compute='_compute_price', required=True, tracking=True)
+    total = fields.Monetary(string='Total')
     total_of_hours = fields.Integer(string='Total Of Hours')
+    move_id = fields.Many2one('account.move', 'Invoice')
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company.id)
+    currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
     
     qr_code = fields.Binary("QR Code", compute='generate_qr_code')
+    
+    
+    
+    def create_invoice(self):
+        """ Create a sample invoice """
+        print(self.organizer.id)
+        invoice = self.env['account.move'].with_context(default_move_type='out_invoice').create({
+            'move_type': 'out_invoice',
+            'partner_id': self.organizer.partner_id,
+            'currency_id': self.env.company.currency_id.id,
+            'invoice_date': fields.Date.today(),
+            'invoice_line_ids': [(0, 0, {
+                'name': self.organizer.name,
+                # 'product_id': self.room_id.id,
+                'quantity': self.total_of_hours,
+                'price_unit': self.price,
+                'tax_ids': 0,
+            })],
+        })
+        self.move_id = invoice.id
+        invoice.action_post()
+
+        return invoice
+    
     
     @api.onchange('room_domain')
     def _onchange_room_domain(self):
@@ -89,7 +116,7 @@ class BookingRoom(models.Model):
                 delta = relativedelta(rec.end_date, rec.start_date)
                 hours = delta.years * 8760 + delta.months * 730 + delta.days * 24 + delta.hours
                 rec.price = rec.room_id.price
-                rec.total = f"{hours * int(rec.room_id.price)} SAR"
+                rec.total = hours * rec.room_id.price
                 rec.total_of_hours = hours
             else:
                 rec.price = 0
