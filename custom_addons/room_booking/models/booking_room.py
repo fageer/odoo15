@@ -22,7 +22,6 @@ class BookingRoom(models.Model):
 
 
     ref = fields.Char(string='Reference', readonly=True)
-    # domain="[('state', '!=', 'not_available'),('room_domain','=','room_domain')]",
     room_id = fields.Many2one('room', string='Room',  tracking=True)
     # employee_id = fields.Many2one('hr.employee', string='Employee', required=True, tracking=True)
     start_date = fields.Datetime(string='From', tracking=True)
@@ -92,7 +91,6 @@ class BookingRoom(models.Model):
                 rec.price = rec.room_id.price
                 rec.total = f"{hours * int(rec.room_id.price)} SAR"
                 rec.total_of_hours = hours
-                
             else:
                 rec.price = 0
                 
