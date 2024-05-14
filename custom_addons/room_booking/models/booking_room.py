@@ -83,6 +83,7 @@ class BookingRoom(models.Model):
             'partner_id': self.organizer.partner_id,
             'currency_id': self.env.company.currency_id.id,
             'invoice_date': fields.Date.today(),
+            'booking_id': self.id,
             'invoice_line_ids': [(0, 0, {
                 'name': f"Booking Reference [{self.ref}]",
                 'product_id': int(product_id),
