@@ -23,7 +23,6 @@ class BookingRoom(models.Model):
 
     ref = fields.Char(string='Reference', readonly=True)
     room_id = fields.Many2one('room', string='Room',  tracking=True)
-    # employee_id = fields.Many2one('hr.employee', string='Employee', required=True, tracking=True)
     start_date = fields.Datetime(string='From', tracking=True)
     end_date = fields.Datetime(string='To', tracking=True)
     status = fields.Boolean(string='Status', readonly=True)
@@ -37,7 +36,6 @@ class BookingRoom(models.Model):
     department_id = fields.Many2one('hr.department', string='Department')
     employee_lines_ids = fields.One2many('employee.lines', 'booking_id', string='Employee Lines', tracking=True)
     guests_lines_ids = fields.One2many('guests.lines', 'booking_id', string='Guests Lines', tracking=True)
-
     room_domain = fields.Selection([
         ('internal', 'Internal'),
         ('external', 'External')], string='Room Type', required=True, tracking=True)
@@ -48,11 +46,8 @@ class BookingRoom(models.Model):
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company.id)
     currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
     invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
-    
     qr_code = fields.Binary("QR Code", compute='generate_qr_code')
     
-    
-    # user_id = fields.Char(string='User', default=lambda self: self.env.user.name)
 
     
     def _compute_invoice_count(self):

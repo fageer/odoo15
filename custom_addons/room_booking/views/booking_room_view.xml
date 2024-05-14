@@ -134,7 +134,6 @@
                             <field name="description" placeholder="Meeting Description..."/>
                             <field name="company_id" readonly="1" groups="base.group_multi_company"/>
                             <field name="currency_id" invisible="1"/>
-                            <!-- <field name="user_id" /> -->
                         </group>
                     </group>
 
