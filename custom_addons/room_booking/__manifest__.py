@@ -9,6 +9,7 @@
     'version': '1.0.0',
     'data':[
         'security/ir.model.access.csv',
+        'security/security.xml',
         'data/room_squ.xml',
         'data/booking_squ.xml',
         'data/mail_template_data.xml',
