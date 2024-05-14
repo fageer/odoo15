@@ -147,6 +147,6 @@
             name="Rooms"
             action="action_room"
             parent="menu_configration_master"
-            sequence="0"/>
+            sequence="5"/>
 
 </odoo>

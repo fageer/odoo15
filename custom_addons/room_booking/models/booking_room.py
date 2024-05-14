@@ -27,7 +27,7 @@ class BookingRoom(models.Model):
     start_date = fields.Datetime(string='From', tracking=True)
     end_date = fields.Datetime(string='To', tracking=True)
     status = fields.Boolean(string='Status', readonly=True)
-    organizer = fields.Many2one('res.users', string='Organizer', required=True)
+    organizer = fields.Many2one('res.users', string='Organizer', default=lambda self: self.env.user.id, required=True)
     room_state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirm'),
@@ -47,22 +47,45 @@ class BookingRoom(models.Model):
     move_id = fields.Many2one('account.move', 'Invoice')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company.id)
     currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
+    invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
     
     qr_code = fields.Binary("QR Code", compute='generate_qr_code')
     
+    
+    # user_id = fields.Char(string='User', default=lambda self: self.env.user.name)
+
+    
+    def _compute_invoice_count(self):
+        for record in self:
+            record.invoice_count = self.env['account.move'].search_count([('id', '=', record.move_id.id)])
+    
+    
+    def action_open_invoice(self):
+        print(self.move_id.ids)
+        print(self.invoice_count)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Invoice',
+            'res_model': 'account.move',
+            'domain': [('id', '=', self.move_id.id)],
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }
     
     
     def create_invoice(self):
         """ Create a sample invoice """
         print(self.organizer.id)
+        product_id = self.env['ir.config_parameter'].get_param('room_booking.product_id')
+        print('=========================================', product_id)
         invoice = self.env['account.move'].with_context(default_move_type='out_invoice').create({
             'move_type': 'out_invoice',
             'partner_id': self.organizer.partner_id,
             'currency_id': self.env.company.currency_id.id,
             'invoice_date': fields.Date.today(),
             'invoice_line_ids': [(0, 0, {
-                'name': self.organizer.name,
-                # 'product_id': self.room_id.id,
+                'name': f"Booking Reference [{self.ref}]",
+                'product_id': int(product_id),
                 'quantity': self.total_of_hours,
                 'price_unit': self.price,
                 'tax_ids': 0,

@@ -16,6 +16,7 @@
         'views/facility_room_view.xml',
         'views/room_view.xml',
         'views/booking_room_view.xml',
+        'views/res_config_settings_view.xml',
         'reports/report.xml',
         'reports/booking_card.xml',
         'reports/sale_report_inherit.xml',
