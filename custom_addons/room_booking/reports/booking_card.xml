@@ -153,7 +153,6 @@
                     <div class="page">
                         <h1 style="text-align: center; margin-top: -50px;"> Room Card </h1>
                         <br/>
-                        <br/>
                         <div class="flex-container" style="position: relative;">
                             <div class="details">
                                 <h3><t t-esc="o.ref"/></h3>

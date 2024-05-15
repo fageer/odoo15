@@ -15,6 +15,7 @@
         string="Room Card"
         model="booking.room"
         report_type="qweb-pdf"
+        paperformat="room_booking.paperformat_booking_room"
         name="room_booking.report_booking_room_card"
         file="room_booking.report_booking_room_card"/>
 
