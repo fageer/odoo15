@@ -38,7 +38,7 @@ class BookingRoom(models.Model):
     guests_lines_ids = fields.One2many('guests.lines', 'booking_id', string='Guests Lines', tracking=True)
     room_domain = fields.Selection([
         ('internal', 'Internal'),
-        ('external', 'External')], string='Room Type', required=True, tracking=True)
+        ('external', 'External')], string='Booking Type', required=True, tracking=True)
     price = fields.Monetary(string='Fees', compute='_compute_price', required=True, tracking=True)
     total = fields.Monetary(string='Total')
     total_of_hours = fields.Integer(string='Total Of Hours')

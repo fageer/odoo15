@@ -3,6 +3,8 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access.facilities.room,access_facilities_room,room_booking.model_facilities_room,base.group_user,1,1,1,1
 access.room,access_room,room_booking.model_room,base.group_user,1,1,1,1
 access.room.facility.lines,access_room_facility_lines,room_booking.model_room_facility_lines,base.group_user,1,1,1,1
-access.booking.room,access_booking_room,room_booking.model_booking_room,base.group_user,1,1,1,1
+access.booking.room.administrator,access_booking_room_administrator,room_booking.model_booking_room,room_booking.group_room_booking_administrator,1,1,1,1
+access.booking.room.all.documents,access_booking_room_all_documents,room_booking.model_booking_room,room_booking.group_room_booking_all_documents,1,1,1,0
+access.booking.room.own.documents,access_booking_room_own_documents,room_booking.model_booking_room,room_booking.group_room_booking_own_documents,1,1,1,0
 access.employee.lines,access_employee_lines,room_booking.model_employee_lines,base.group_user,1,1,1,1
 access.guests.lines,access_guests_lines,room_booking.model_guests_lines,base.group_user,1,1,1,1
