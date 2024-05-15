@@ -22,9 +22,9 @@ class BookingRoom(models.Model):
 
 
     ref = fields.Char(string='Reference', readonly=True)
-    room_id = fields.Many2one('room', string='Room',  tracking=True)
-    start_date = fields.Datetime(string='From', tracking=True)
-    end_date = fields.Datetime(string='To', tracking=True)
+    room_id = fields.Many2one('room', string='Room', required=True,  tracking=True)
+    start_date = fields.Datetime(string='From', required=True, tracking=True)
+    end_date = fields.Datetime(string='To', required=True, tracking=True)
     status = fields.Boolean(string='Status', readonly=True)
     organizer = fields.Many2one('res.users', string='Organizer', default=lambda self: self.env.user.id, required=True)
     room_state = fields.Selection([
