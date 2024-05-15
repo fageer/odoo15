@@ -9,4 +9,13 @@
         name="room_booking.report_booking"
         file="room_booking.report_booking"/>
 
+        
+    <report
+        id="report_booking_room_cards"
+        string="Room Card"
+        model="booking.room"
+        report_type="qweb-pdf"
+        name="room_booking.report_booking_room_card"
+        file="room_booking.report_booking_room_card"/>
+
 </odoo>

@@ -22,6 +22,7 @@
         'reports/report.xml',
         'reports/booking_card.xml',
         'reports/sale_report_inherit.xml',
+        # 'reports/peaper_format_report.xml',
     ],
     'demo': [],
     'installable': True,
