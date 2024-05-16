@@ -290,7 +290,7 @@
         <field name="arch" type="xml">
             <search>
                 <filter name="filter_my_booking" string="My Booking" domain="[('organizer', '=', uid)]"/>
-                <!-- <filter name="filter_my_department" string="My Department" domain="[('department_id', '=', uid.department_id.id)]"/> -->
+                <!-- <filter name="filter_my_department" string="My Department" domain="[('department_id','=',user.employee_id.department_id)]"/> -->
                 <!-- <filter name="filter_archived" string="Archived" domain="[('active', '=', False)]"/> -->
                 <separator/>
                 <filter name="filter_draft" string="Draft" domain="[('room_state', '=', 'draft')]"/>
