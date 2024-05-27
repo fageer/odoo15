@@ -1,7 +1,7 @@
 {
     'name': 'Room Booking',
     'sequence': -102,
-    'depends': ['base', 'mail', 'account', 'product'],
+    'depends': ['base', 'mail', 'account', 'product', 'sale'],
     'author': 'Plus Tech',
     'summary': """ Room Booking """,
     'description': """ Room Booking """,
