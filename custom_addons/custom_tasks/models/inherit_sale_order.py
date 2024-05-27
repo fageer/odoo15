@@ -1,5 +1,5 @@
 from datetime import datetime
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, float_compare
 from odoo.exceptions import ValidationError
 from odoo import api, fields, models, _
 
@@ -44,9 +44,22 @@ class SaleOrder(models.Model):
                 self.env['account.payment'].create(payment).action_post()
         
         else:
-            print("=======================================================================================================")
-            
-            super(SaleOrder, self).action_confirm()
+            invoices = self.env['account.move'].search([('move_type', '=', 'out_invoice'),
+                                                        ('partner_id', '=', self.partner_id.id)])
+            total_un_paid = 0
+            for invoice in invoices:
+                if invoice.state == 'posted':
+                    if invoice.payment_state == 'not_paid':
+                        total_un_paid += invoice.amount_residual
+            total_un_paid += self.amount_total
+            remaining_credit = self.partner_id.limit - float(total_un_paid)
+            if int(remaining_credit) <= 0:
+                print("=======================================================================================================", remaining_credit)
+                print("=======================================================================================================", total_un_paid)
+                raise ValidationError(_('Please you have reach limited amount.'))
+            else:
+                super(SaleOrder, self).action_confirm()
+                self._create_invoices().action_post()
 
 
     @api.onchange('bid_type')
