@@ -10,6 +10,7 @@
             <field name="vat" position="after">
                 <field name="cash" />
                 <field name="postpaid" />
+                <field name="limit" attrs="{'invisible': [('postpaid', '=', False)]}" />
             </field>
 
         </field>

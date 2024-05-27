@@ -5,3 +5,4 @@ class ResPartner(models.Model):
     
     cash = fields.Boolean(string='Cash')
     postpaid = fields.Boolean(string='Postpaid')
+    limit = fields.Float(string='Limit', default='100000')

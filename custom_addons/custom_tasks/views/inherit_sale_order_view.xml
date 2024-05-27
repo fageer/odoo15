@@ -8,11 +8,11 @@
         <field name="arch" type="xml">
 
             <field name="partner_id" position="before">
-                <field name="bid_type" widget="radio" />
+                <field name="bid_type" widget="radio" attrs="{'readonly': [('state', '=', 'sale')]}" />
             </field>
 
             <xpath expr="//sheet/notebook/page[@name='other_information']" position="before">
-                <page string="Payment Information">
+                <page string="Payment Information" attrs="{'invisible': [('bid_type', '=', 'postpaid')]}">
                     <field name="payment_info_ids">
                         <tree editable="bottom">
                             <field name="payment_type_id"/>
