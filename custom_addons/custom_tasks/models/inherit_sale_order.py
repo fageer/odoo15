@@ -12,13 +12,16 @@ class SaleOrder(models.Model):
     with_shipping = fields.Boolean(string='With Shipping')
     country_id = fields.Many2one('res.country', string='Country')
     city_id = fields.Many2one('res.city', string='City', domain="[('country_id', '=', country_id)]")
+    # stock_id = fields.Many2one('stock.picking', 'Stock')
     
     
     def action_calculate_shipping_fees(self):
         print("Calculating shipping=====================================================")
         product_id = self.env['ir.config_parameter'].get_param('custom_tasks.product_id') 
         products = self.env['product.product'].browse(int(product_id))
-        fees = self.env['sale.order.shipping.fees'].search([('shipping_country_id', '=', self.country_id.id)])
+        fees = self.env['sale.order.shipping.fees'].search([('shipping_country_id', '=', self.country_id.id),
+                                                            ('shipping_city_ids', '=', self.city_id.id)])
+        
         for product in products:
             sale_order_line = self.env['sale.order.line'].create({
             'order_id': self.id,
