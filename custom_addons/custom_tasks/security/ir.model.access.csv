@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access.sale.order.payment.info,access_sale_order_payment_info,custom_tasks.model_sale_order_payment_info,base.group_user,1,1,1,1
+access.sale.order.shipping.fees,access_sale_order_shipping_fees,custom_tasks.model_sale_order_shipping_fees,base.group_user,1,1,1,1

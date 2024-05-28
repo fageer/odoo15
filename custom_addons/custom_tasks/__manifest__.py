@@ -12,6 +12,7 @@
         'security/ir.model.access.csv',
         'views/inherit_res_partner_view.xml',
         'views/inherit_sale_order_view.xml',
+        'views/res_config_settings_view.xml',
     ],
     'demo': [
         'demo/demo.xml',

@@ -10,6 +10,12 @@
             <field name="partner_id" position="before">
                 <field name="bid_type" widget="radio" attrs="{'readonly': [('state', '=', 'sale')]}" />
             </field>
+            <field name="payment_term_id" position="after">
+                <field name="with_shipping" widget="boolean_toggle" />
+                <field name="country_id" attrs="{'invisible': [('with_shipping', '=', False)]}" />
+                <field name="city_id" attrs="{'invisible': [('with_shipping', '=', False)]}" />
+                <button name="action_calculate_shipping_fees" string="Add Shipping" type="object" class="oe_highlight" attrs="{'invisible': [('with_shipping', '=', False)]}"/>
+            </field>
 
             <xpath expr="//sheet/notebook/page[@name='other_information']" position="before">
                 <page string="Payment Information" attrs="{'invisible': [('bid_type', '=', 'postpaid')]}">
@@ -41,4 +47,60 @@
         </field>
     </record>
     
+
+<!-- Shipping Feeeeeeees -->
+
+    <record id="view_shipping_fees_tree" model="ir.ui.view">
+        <field name="name">shipping.fees.tree</field>
+        <field name="model">sale.order.shipping.fees</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="shipping_country_id"/>
+                <field name="shipping_city_ids" widget="many2many_tags"/>
+                <field name="fees"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_shipping_fees_form" model="ir.ui.view">
+        <field name="name">shipping.fees.form</field>
+        <field name="model">sale.order.shipping.fees</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="shipping_country_id"/>
+                        </group>
+                        <group>
+                            <field name="shipping_city_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="fees"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_shipping_fees" model="ir.actions.act_window">
+        <field name="name">Shipping Fees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.shipping.fees</field>
+        <field name="view_mode">tree,form,activity</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Fees !
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_sale_shipping_fees"
+            name="Shipping Fees"
+            action="action_shipping_fees"
+            parent="sale.menu_sale_config"
+            sequence="1"/>
 </odoo>

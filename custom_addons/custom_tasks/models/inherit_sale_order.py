@@ -8,7 +8,30 @@ class SaleOrder(models.Model):
     
     bid_type = fields.Selection([('cash', 'Cash'), ('postpaid', 'Postpaid')], string='Bid Type')
     payment_info_ids = fields.One2many('sale.order.payment.info', 'sale_order_id', string='Payment Information')
-
+    shipping_fees_ids = fields.One2many('sale.order.shipping.fees', 'sale_order_id', string='Shipping Fees')
+    with_shipping = fields.Boolean(string='With Shipping')
+    country_id = fields.Many2one('res.country', string='Country')
+    city_id = fields.Many2one('res.city', string='City', domain="[('country_id', '=', country_id)]")
+    
+    
+    def action_calculate_shipping_fees(self):
+        print("Calculating shipping=====================================================")
+        product_id = self.env['ir.config_parameter'].get_param('custom_tasks.product_id') 
+        products = self.env['product.product'].browse(int(product_id))
+        fees = self.env['sale.order.shipping.fees'].search([('shipping_country_id', '=', self.country_id.id)])
+        for product in products:
+            sale_order_line = self.env['sale.order.line'].create({
+            'order_id': self.id,
+            'product_id': product.id,
+            'product_uom_qty': 1,
+            'price_unit': fees.fees,
+            'name': f"Delivery to [{self.country_id.name}, {self.city_id.name}]",
+            'product_uom': product.uom_id.id,
+            })
+            print('=========================================', sale_order_line)
+            return sale_order_line
+        
+        
     def action_confirm(self):
         if self.bid_type == 'cash':
             if not self.payment_info_ids:
@@ -77,3 +100,15 @@ class SaleOrderPaymentInfo(models.Model):
     def _onchange_payment_type_id(self):
         if self.sale_order_id:
             self.total = self.sale_order_id.amount_total
+            
+            
+class SaleOrderShippingFees(models.Model):
+    _name = 'sale.order.shipping.fees'
+    _description = 'Sale Order Shipping Fees'
+
+    shipping_country_id = fields.Many2one('res.country', string='Country')
+    shipping_city_ids = fields.Many2many('res.city', string='City', domain="[('country_id', '=', shipping_country_id)]")
+    fees = fields.Float(string='Fees')
+    sale_order_id = fields.Many2one('sale.order', string='Sale Order')
+    
+    
