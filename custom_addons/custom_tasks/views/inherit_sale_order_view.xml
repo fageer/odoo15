@@ -11,10 +11,13 @@
                 <field name="bid_type" widget="radio" attrs="{'readonly': [('state', '=', 'sale')]}" />
             </field>
             <field name="payment_term_id" position="after">
-                <field name="with_shipping" widget="boolean_toggle" />
+                <label for="with_shipping" groups="product.group_product_pricelist"/>
+                <div groups="product.group_product_pricelist" class="o_row">
+                    <field name="with_shipping" widget="boolean_toggle" />
+                    <button name="action_calculate_shipping_fees" string="Add Shipping" type="object" class="oe_highlight" attrs="{'invisible': [('with_shipping', '=', False)]}" />
+                </div>
                 <field name="country_id" attrs="{'invisible': [('with_shipping', '=', False)]}" />
                 <field name="city_id" attrs="{'invisible': [('with_shipping', '=', False)]}" />
-                <button name="action_calculate_shipping_fees" string="Add Shipping" type="object" class="oe_highlight" attrs="{'invisible': [('with_shipping', '=', False)]}"/>
             </field>
 
             <xpath expr="//sheet/notebook/page[@name='other_information']" position="before">

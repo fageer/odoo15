@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
             'product_id': product.id,
             'product_uom_qty': 1,
             'price_unit': fees.fees,
-            'name': f"Delivery to [{self.country_id.name}, {self.city_id.name}]",
+            'name': f"Delivery To [{self.country_id.name}, {self.city_id.name}]",
             'product_uom': product.uom_id.id,
             })
             return sale_order_line
