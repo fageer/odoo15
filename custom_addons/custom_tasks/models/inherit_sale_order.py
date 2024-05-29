@@ -16,20 +16,21 @@ class SaleOrder(models.Model):
     
     def action_calculate_shipping_fees(self):
         product_id = self.env['ir.config_parameter'].get_param('custom_tasks.product_id') 
-        products = self.env['product.product'].browse(int(product_id))
-        fees = self.env['sale.order.shipping.fees'].search([('shipping_country_id', '=', self.country_id.id),
+        product = self.env['product.product'].browse(int(product_id))
+        fees = self.env['sale.order.shipping.fees'].search([('shipping_country_id', '=', self.country_id.id), 
                                                             ('shipping_city_ids', '=', self.city_id.id)])
-        
-        for product in products:
-            sale_order_line = self.env['sale.order.line'].create({
-            'order_id': self.id,
-            'product_id': product.id,
-            'product_uom_qty': 1,
-            'price_unit': fees.fees,
-            'name': f"Delivery To [{self.country_id.name}, {self.city_id.name}]",
-            'product_uom': product.uom_id.id,
-            })
-            return sale_order_line
+        for order in self.order_line:
+            if order.product_id.id == product.id:
+                raise ValidationError(_('You have already added a shipping fees.'))
+        sale_order_line = self.env['sale.order.line'].create({
+        'order_id': self.id,
+        'product_id': product.id,
+        'product_uom_qty': 1,
+        'price_unit': fees.fees,
+        'name': f"Delivery To [{self.country_id.name}, {self.city_id.name}]",
+        'product_uom': product.uom_id.id,
+        })
+        return sale_order_line
         
         
     def action_confirm(self):
