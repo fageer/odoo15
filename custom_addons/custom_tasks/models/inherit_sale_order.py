@@ -14,6 +14,16 @@ class SaleOrder(models.Model):
     city_id = fields.Many2one('res.city', string='City', domain="[('country_id', '=', country_id)]")
     
     
+    
+    
+    @api.onchange('with_shipping')
+    def onchange_with_shipping(self):
+        product_id = self.env['ir.config_parameter'].get_param('custom_tasks.product_id') 
+        product = self.env['product.product'].browse(int(product_id))
+        order_lines = self.order_line.filtered(lambda line: line.product_id == product)
+        if self.with_shipping == False:
+            order_lines.unlink()
+    
     def action_calculate_shipping_fees(self):
         product_id = self.env['ir.config_parameter'].get_param('custom_tasks.product_id') 
         product = self.env['product.product'].browse(int(product_id))
@@ -101,8 +111,9 @@ class SaleOrderPaymentInfo(models.Model):
     def _onchange_payment_type_id(self):
         if self.sale_order_id:
             self.total = self.sale_order_id.amount_total
-            
-            
+        
+        
+# Sale Order Shipping Fees       
 class SaleOrderShippingFees(models.Model):
     _name = 'sale.order.shipping.fees'
     _description = 'Sale Order Shipping Fees'
