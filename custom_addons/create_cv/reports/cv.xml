@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="cv">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <!-- <div class="page">
+                        <h1 style="text-align: center; margin-top: -50px;"> Booking Meeting Room </h1>
+                        <br/>
+                        <br/>
+                        <div class="flex-container" style="position: relative;">
+                            <div class="details">
+                                <h3>Ref # <t t-esc="doc.ref"/></h3>
+                                <ul>
+                                    <li>Organizer: <span><t t-esc="doc.organizer.name"/></span></li>
+                                    <li>Room: <span><t t-esc="doc.room_id.room_name"/></span></li>
+                                    <li>Date: [<span><t t-esc="doc.start_date"/></span>]
+                                        <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                                        [<span><t t-esc="doc.end_date"/></span>]</li>
+                                    
+                                </ul>
+                            </div>
+                            <div class="qr-code" style="position: absolute; top: 0; right: 0; width: 30%;">
+                                <img t-att-src="'data:image/png;base64,%s' % to_text(doc.qr_code)"/>
+                            </div>
+                        </div>
+
+
+                    
+                        <div class="tables">
+                            <div style="display: flex; flex-direction:column; margin-bottom:50px;">
+                                <h3 style="">Employee:- </h3>
+                                <table style="border: 2px solid black; width:100%;">
+                                    <thead>
+                                        <tr style="border: 2px solid black; background-color: rgb(109, 108, 108); color: white;">
+                                            <th style="padding: 10px; border: 2px solid black;"> Name</th>
+                                            <th style="padding: 10px; border: 2px solid black;"> Phone</th>
+                                            <th style="padding: 10px; border: 2px solid black;"> Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.employee_lines_ids" t-as="emp">
+                                            <tr style="border: 2px solid black;">
+                                                <td style="padding: 5px; border: 2px solid black;">
+                                                    <t t-esc="emp.employee_id.name"/>
+                                                </td>
+                                                <td style="padding: 10px; border: 2px solid black;">
+                                                    <t t-esc="emp.employee_id.work_phone"/>
+                                                </td>
+                                                <td style="padding: 10px; border: 2px solid black;">
+                                                    <t t-esc="emp.employee_id.work_email"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            
+                            <div style="display: flex; flex-direction:column; margin-bottom:20px;">
+                                <h3 style="">Guests:- </h3>
+                                <table style="border: 2px solid black; width:100%;">
+                                    <thead>
+                                        <tr style="border: 2px solid black; background-color: rgb(109, 108, 108); color: white;">
+                                            <th style="padding: 10px; border: 2px solid black;"> Name</th>
+                                            <th style="padding: 10px; border: 2px solid black;"> Phone</th>
+                                            <th style="padding: 10px; border: 2px solid black;"> Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.guests_lines_ids" t-as="gues">
+                                            <tr style="border: 2px solid black;">
+                                                <td style="padding: 5px; border: 2px solid black;">
+                                                    <t t-esc="gues.guests_id.name"/>
+                                                </td>
+                                                <td style="padding: 10px; border: 2px solid black;">
+                                                    <t t-esc="gues.guests_id.phone"/>
+                                                </td>
+                                                <td style="padding: 10px; border: 2px solid black;">
+                                                    <t t-esc="gues.guests_id.email"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div style="display: flex; flex-direction:column; margin-bottom:20px;">
+                                <h3 style="">Agenda:- </h3>
+                                <h5><t t-esc="doc.agenda"/></h5>
+                            </div>
+
+
+                            <div style="display: flex; flex-direction:column; margin-bottom:20px; float:right;">
+                                <h3 style="">Total Cost:- </h3>
+                                <table style="border: 2px solid black;">
+                                    <thead>
+                                        <tr style="border: 2px solid black; background-color: rgb(109, 108, 108); color: white;">
+                                            <th style="padding: 10px; border: 2px solid black;"> Fees Per Hour</th>
+                                            <th style="padding: 10px; border: 2px solid black;"> Total Of Hours</th>
+                                            <th style="padding: 10px; border: 2px solid black;"> Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border: 2px solid black;">
+                                            <td style="padding: 5px; border: 2px solid black;">
+                                                <t t-esc="doc.price"/>$
+                                            </td>
+                                            <td style="padding: 10px; border: 2px solid black;">
+                                                <t t-esc="doc.total_of_hours"/>
+                                            </td>
+                                            <td style="padding: 10px; border: 2px solid black;">
+                                                <t t-esc="doc.total"/>$
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+</odoo>

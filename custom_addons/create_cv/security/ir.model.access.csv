@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access.create.cv,access_create_cv,create_cv.model_create_cv,base.group_user,1,1,1,1
+access.skills.tags,access_skills_tags,create_cv.model_skills_tags,base.group_user,1,1,1,1
+access.experience.lines,access_experience_lines,create_cv.model_experience_lines,base.group_user,1,1,1,1
+access.education.lines,access_education_lines,create_cv.model_education_lines,base.group_user,1,1,1,1
+access.certificate.lines,access_certificate_lines,create_cv.model_certificate_lines,base.group_user,1,1,1,1

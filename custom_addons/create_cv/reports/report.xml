@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="report_create_cv"
+        string="Create CV"
+        model="create.cv"
+        report_type="qweb-pdf"
+        name="create_cv.cv"
+        file="create_cv.cv"/>
+
+</odoo>

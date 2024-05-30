@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_create_cv_tree" model="ir.ui.view">
+        <field name="name">create.cv.tree</field>
+        <field name="model">create.cv</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone_number"/>
+                <field name="job_title"/>
+                <field name="country_id"/>
+                <field name="city_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_create_cv_form" model="ir.ui.view">
+        <field name="name">create.cv.form</field>
+        <field name="model">create.cv</field>
+        <field name="arch" type="xml">
+            <form>
+<!--                &lt;!&ndash; Statusbar &ndash;&gt;-->
+<!--                <header>-->
+<!--                    <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"/>-->
+<!--                </header>-->
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class='oe_title'>
+                        <h2>
+                            <label for="name" string='Name' class='oe_edit_only'/>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="job_title"/>
+                            <field name="email"/>
+                            <field name="phone_number"/>
+                        </group>
+                        <group>
+                            <field name="country_id"/>
+                            <field name="city_id"/>
+                            <field name="skills_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string='LinkedIn Account' name='linkedin_account'>
+                            <field name="linkedin"/>
+                        </group>                        
+                        <group string='Languages' name='languages'>
+                            <field name="language_ids" widget="many2many_tags"/>
+                        </group>                        
+                    </group>
+
+                    <notebook>
+                        <page string="Summary" name="summary">
+                            <field name="summary" placeholder="Enter your job Summary"/>
+                        </page>
+                        <!-- Experience Lines -->
+                        <page string="Experience" name="experience">
+                            <field name="experience_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="company_name"/>
+                                    <field name="job_position"/>
+                                    <field name="experience_start_date"/>
+                                    <field name="experience_end_date"/>
+                                    <field name="experience_summary" placeholder="Enter your Experience Summary"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="company_name"/>
+                                        <field name="job_position"/>
+                                        <field name="experience_start_date"/>
+                                        <field name="experience_end_date"/>
+                                        <field name="experience_summary" placeholder="Enter your Experience Summary"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <!-- Education Lines -->
+                        <page string="Education" name="education">
+                            <field name="education_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="university_name"/>
+                                    <field name="degree"/>
+                                    <field name="education_start_date"/>
+                                    <field name="education_end_date"/>
+                                    <field name="education_summary" placeholder="Enter your Education Summary"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="university_name"/>
+                                        <field name="degree"/>
+                                        <field name="education_start_date"/>
+                                        <field name="education_end_date"/>
+                                        <field name="education_summary" placeholder="Enter your Education Summary"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <!-- Certificate Lines -->
+                        <page string="Certificate" name="certificate">
+                            <field name="certificate_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="organization"/>
+                                    <field name="issue_date"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="organization"/>
+                                        <field name="issue_date"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_fcreate_cv_search" model="ir.ui.view">
+        <field name="name">create.cv.search</field>
+        <field name="model">create.cv</field>
+        <field name="arch" type="xml">
+            <search>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_create_cv" model="ir.actions.act_window">
+        <field name="name">Create CV</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.cv</field>
+        <field name="view_mode">tree,form,activity</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first CV !
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_create_cv"
+            name="Create CV"
+            action="action_create_cv"
+            parent="menu_create_cv_root"
+            sequence="0"/>
+
+</odoo>
