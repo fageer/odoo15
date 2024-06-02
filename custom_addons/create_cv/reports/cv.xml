@@ -32,7 +32,7 @@
                             <div class="parent_exp" style="padding-left: 50px;">
                                 <t t-foreach="doc.experience_lines_ids" t-as="exp">
                                     <div class="exp">
-                                        <h3 style="margin:10px 0;"><t t-esc="exp.company_name"/></h3>
+                                        <h3 style="margin:10px 0;">* <t t-esc="exp.company_name"/></h3>
                                         <span><t t-esc="exp.experience_start_date"/> - <t t-esc="exp.experience_end_date"/></span>
                                         <h4 style="margin:10px 0;"><t t-esc="exp.job_position.job_name"/></h4>
                                         <p><t t-esc="exp.experience_summary"/>.</p>
@@ -66,8 +66,8 @@
                             <h1 style="border-bottom: 1px solid; font-size:18px;">Certificate</h1>
                             <div class="parent_edu" style="padding-left: 50px;">
                                 <t t-foreach="doc.certificate_lines_ids" t-as="certi">
-                                    <div class="certi">
-                                        <h3 style="margin:10px 0;"><t t-esc="certi.organization.university_name"/></h3>
+                                    <div class="certi" style="margin-bottom: 20px;">
+                                        <h3 style="margin:10px 0;">* <t t-esc="certi.organization.university_name"/></h3>
                                         <!-- <h6 style="margin:0 50%; padding:0;"></h6> -->
                                         <span><t t-esc="certi.issue_date"/></span>
                                         <h4 style="margin:10px 0;"><t t-esc="certi.name"/> - <t t-esc="certi.degree.name"/></h4>
@@ -81,7 +81,7 @@
                             <div class="parent_edu" style="padding-left: 50px;">
                                 <t t-foreach="doc.education_lines_ids" t-as="edu">
                                     <div class="edu">
-                                        <h3 style="margin:10px 0;"><t t-esc="edu.university_name.university_name"/></h3>
+                                        <h3 style="margin:10px 0;">* <t t-esc="edu.university_name.university_name"/></h3>
                                         <span><t t-esc="edu.education_start_date"/> - <t t-esc="edu.education_end_date"/></span>
                                         <h4 style="margin:10px 0;"><t t-esc="edu.degree.name"/></h4>
                                         <p><t t-esc="edu.education_summary"/>.</p>
