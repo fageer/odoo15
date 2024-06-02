@@ -12,8 +12,8 @@
                             </t>
                         </div>
                         <div style="text-align: center;">
-                            <h1 style="align-items: center;"><t t-esc="doc.name"/></h1>
-                            <h2><t t-esc="doc.job_title"/></h2>
+                            <h1 style="align-items: center;"><t t-esc="doc.name_id.name"/></h1>
+                            <h2><t t-esc="doc.job_title.job_name"/></h2>
                             <a href="#" style="margin-right: 10px;"><t t-esc="doc.country_id.name"/>, <t t-esc="doc.city_id.name"/></a>
                             <a href="#" style="margin-right: 10px;"><t t-esc="doc.phone_number"/></a>
                             <a href="#" style="margin-right: 10px;"><t t-esc="doc.email"/></a>
@@ -34,7 +34,7 @@
                                     <div class="exp">
                                         <h3 style="margin:10px 0;"><t t-esc="exp.company_name"/></h3>
                                         <span><t t-esc="exp.experience_start_date"/> - <t t-esc="exp.experience_end_date"/></span>
-                                        <h4 style="margin:10px 0;"><t t-esc="exp.job_position"/></h4>
+                                        <h4 style="margin:10px 0;"><t t-esc="exp.job_position.job_name"/></h4>
                                         <p><t t-esc="exp.experience_summary"/>.</p>
                                     </div>
                                 </t>
@@ -55,7 +55,7 @@
                             <div class="ul" style="padding-left: 50px;">
                                 <ul>
                                     <t t-foreach="doc.skills_ids" t-as="skill">
-                                        <li style="margin-bottom: 5px;"><t t-esc="skill.name"/>.</li>
+                                        <li style="margin-bottom: 5px;"><t t-esc="skill.skill_name"/>.</li>
                                     </t>
                                 </ul>
                             </div>
@@ -67,21 +67,22 @@
                             <div class="parent_edu" style="padding-left: 50px;">
                                 <t t-foreach="doc.certificate_lines_ids" t-as="certi">
                                     <div class="certi">
-                                        <h3 style="margin:10px 0;"><t t-esc="certi.organization"/></h3>
+                                        <h3 style="margin:10px 0;"><t t-esc="certi.organization.university_name"/></h3>
                                         <span><t t-esc="certi.issue_date"/></span>
                                         <h4 style="margin:10px 0;"><t t-esc="certi.name"/></h4>
                                     </div>
                                 </t>
                             </div>
                         </div>
+
                         <div class="EDUCATION" style="margin-top: 50px;">
                             <h1 style="border-bottom: 1px solid; font-size:18px;">EDUCATION</h1>
                             <div class="parent_edu" style="padding-left: 50px;">
                                 <t t-foreach="doc.education_lines_ids" t-as="edu">
                                     <div class="edu">
-                                        <h3 style="margin:10px 0;"><t t-esc="edu.university_name"/></h3>
+                                        <h3 style="margin:10px 0;"><t t-esc="edu.university_name.university_name"/></h3>
                                         <span><t t-esc="edu.education_start_date"/> - <t t-esc="edu.education_end_date"/></span>
-                                        <h4 style="margin:10px 0;"><t t-esc="edu.degree"/></h4>
+                                        <h4 style="margin:10px 0;"><t t-esc="edu.degree.name"/></h4>
                                         <p><t t-esc="edu.education_summary"/>.</p>
                                     </div>
                                 </t>

@@ -5,3 +5,6 @@ access.skills.tags,access_skills_tags,create_cv.model_skills_tags,base.group_use
 access.experience.lines,access_experience_lines,create_cv.model_experience_lines,base.group_user,1,1,1,1
 access.education.lines,access_education_lines,create_cv.model_education_lines,base.group_user,1,1,1,1
 access.certificate.lines,access_certificate_lines,create_cv.model_certificate_lines,base.group_user,1,1,1,1
+access.universities,access_universities,create_cv.model_universities,base.group_user,1,1,1,1
+access.jobs,access_jobs,create_cv.model_jobs,base.group_user,1,1,1,1
+access.degrees,access_degrees,create_cv.model_degrees,base.group_user,1,1,1,1

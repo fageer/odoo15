@@ -11,7 +11,7 @@ class CreateCv(models.Model):
     name_id = fields.Many2one('res.partner', string='Name', required=True, default=lambda self: self.env.user.partner_id.id)
     ref = fields.Char(string='Reference', readonly=True)
     email = fields.Char(string='Email')
-    job_title = fields.Char(string='Job Title')
+    job_title = fields.Many2one('jobs', string='Job Title')
     phone_number = fields.Char(string='Phone Number')
     country_id = fields.Many2one('res.country', string='Country')
     city_id = fields.Many2one('res.city', string='City', domain="[('country_id', '=', country_id)]")
@@ -45,7 +45,7 @@ class ExperienceLines(models.Model):
 
     # Experience
     company_name = fields.Char(string='Company Name', required=True)
-    job_position = fields.Char(string='Job Position')
+    job_position = fields.Many2one('jobs', string='Job Position')
     experience_start_date = fields.Date(string='From',  tracking=True)
     experience_end_date = fields.Date(string='To', tracking=True)
     experience_summary = fields.Html(string='Experience Summary')
@@ -60,8 +60,8 @@ class EducationLines(models.Model):
 
 
     # Education
-    university_name = fields.Char(string='University Name', required=True)
-    degree = fields.Char(string='Degree')
+    university_name = fields.Many2one('universities', string='University Name', required=True)
+    degree = fields.Many2one('degrees', string='Degree')
     education_start_date = fields.Date(string='From',  tracking=True)
     education_end_date = fields.Date(string='To', tracking=True)
     education_summary = fields.Html(string='Education Summary')
@@ -77,7 +77,7 @@ class CertificateLines(models.Model):
 
     # Certificate
     name = fields.Char(string='Certificate Name', required=True)
-    organization = fields.Char(string='Organization')
+    organization = fields.Many2one('universities', string='Organization')
     issue_date = fields.Date(string='Issue Date',  tracking=True)
     cv_id = fields.Many2one('create.cv', string='CV')
     

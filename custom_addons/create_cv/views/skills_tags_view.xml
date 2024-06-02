@@ -50,6 +50,6 @@
             name="Skills"
             action="action_skills_tags"
             parent="menu_configration_master"
-            sequence="0"/>
+            sequence="3"/>
 
 </odoo>
