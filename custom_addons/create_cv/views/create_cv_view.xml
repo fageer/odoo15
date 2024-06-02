@@ -109,12 +109,14 @@
                                 <tree editable="bottom">
                                     <field name="name"/>
                                     <field name="organization"/>
+                                    <field name="degree"/>
                                     <field name="issue_date"/>
                                 </tree>
                                 <form>
                                     <group>
                                         <field name="name"/>
                                         <field name="organization"/>
+                                        <field name="degree"/>
                                         <field name="issue_date"/>
                                     </group>
                                 </form>

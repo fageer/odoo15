@@ -11,12 +11,12 @@ class CreateCv(models.Model):
     name_id = fields.Many2one('res.partner', string='Name', required=True, default=lambda self: self.env.user.partner_id.id)
     ref = fields.Char(string='Reference', readonly=True)
     email = fields.Char(string='Email')
-    job_title = fields.Many2one('jobs', string='Job Title')
+    job_title = fields.Many2one('jobs', required=True, string='Job Title')
     phone_number = fields.Char(string='Phone Number')
     country_id = fields.Many2one('res.country', string='Country')
     city_id = fields.Many2one('res.city', string='City', domain="[('country_id', '=', country_id)]")
     linkedin = fields.Char(string='linkedIn URL')
-    summary = fields.Html(string='Summary')
+    summary = fields.Html(required=True, string='Summary')
     skills_ids = fields.Many2many('skills.tags', string='Skills')
     language_ids = fields.Many2many('res.lang', string='Language')
     experience_lines_ids = fields.One2many('experience.lines', 'cv_id', string='Experience Lines')
@@ -24,6 +24,10 @@ class CreateCv(models.Model):
     certificate_lines_ids = fields.One2many('certificate.lines', 'cv_id', string='Certificate Lines')
     
     
+    @api.model
+    def create(self, vals):
+        vals['ref'] = self.env['ir.sequence'].next_by_code('create.cv')
+        return super(CreateCv, self).create(vals)
     
     
     @api.onchange('name_id')
@@ -78,6 +82,7 @@ class CertificateLines(models.Model):
     # Certificate
     name = fields.Char(string='Certificate Name', required=True)
     organization = fields.Many2one('universities', string='Organization')
+    degree = fields.Many2one('degrees', string='Degree')
     issue_date = fields.Date(string='Issue Date',  tracking=True)
     cv_id = fields.Many2one('create.cv', string='CV')
     
