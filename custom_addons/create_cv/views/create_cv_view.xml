@@ -6,7 +6,8 @@
         <field name="model">create.cv</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
+                <field name="ref"/>
+                <field name="name_id"/>
                 <field name="email"/>
                 <field name="phone_number"/>
                 <field name="job_title"/>
@@ -27,19 +28,21 @@
 <!--                </header>-->
                 <sheet>
                     <field name="image" widget="image" class="oe_avatar"/>
-                    <div class='oe_title'>
-                        <h2>
-                            <label for="name" string='Name' class='oe_edit_only'/>
-                            <field name="name"/>
-                        </h2>
-                    </div>
                     <group>
-                        <group>
+                        <div>
+                            <h1>
+                                <field name="ref" nolabel="1"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group>
+                        <group string='General Informations' name='general_info'>
+                            <field name="name_id"/>
                             <field name="job_title"/>
                             <field name="email"/>
                             <field name="phone_number"/>
                         </group>
-                        <group>
+                        <group string='General Informations' name='general_info'>
                             <field name="country_id"/>
                             <field name="city_id"/>
                             <field name="skills_ids" widget="many2many_tags" options="{'color_field': 'color'}" />

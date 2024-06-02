@@ -6,7 +6,7 @@
         <field name="model">skills.tags</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="name"/>
+                <field name="skill_name"/>
                 <field name="color" widget="color_picker"/>
             </tree>
         </field>
@@ -20,7 +20,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="skill_name"/>
                         </group>
                         <group>
                             <field name="color" widget="color_picker"/>

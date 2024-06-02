@@ -9,6 +9,7 @@
     'version': '1.0.0',
     'data':[
         'security/ir.model.access.csv',
+        'data/cv_seq.xml',
         'views/menu.xml',
         'views/create_cv_view.xml',
         'views/skills_tags_view.xml',
