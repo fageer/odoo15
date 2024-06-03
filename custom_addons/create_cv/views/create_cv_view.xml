@@ -30,7 +30,9 @@
                     <field name="image" widget="image" class="oe_avatar"/>
                     <group>
                         <div>
-                            <h1>
+                            <h1 style=" position: absolute;
+                                        top: 60px;
+                                        font-size: 40px;">
                                 <field name="ref" nolabel="1"/>
                             </h1>
                         </div>
@@ -42,7 +44,7 @@
                             <field name="email"/>
                             <field name="phone_number"/>
                         </group>
-                        <group string='General Informations' name='general_info'>
+                        <group string='Personal Informations' name='personal_info'>
                             <field name="country_id"/>
                             <field name="city_id"/>
                             <field name="skills_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
