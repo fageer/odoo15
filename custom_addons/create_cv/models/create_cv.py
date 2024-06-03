@@ -33,7 +33,7 @@ class CreateCv(models.Model):
     @api.onchange('name_id')
     def _onchange_name_id(self):
         self.country_id = self.name_id.country_id.id
-        self.job_title = self.name_id.function
+        # self.job_title = self.name_id.function
         self.email = self.name_id.email
         self.phone_number = self.name_id.phone
         self.image = self.name_id.image_1920    
