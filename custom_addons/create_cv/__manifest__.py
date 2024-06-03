@@ -18,6 +18,7 @@
         'views/degrees_view.xml',
         'reports/report.xml',
         'reports/cv.xml',
+        'reports/cv2.xml',
     ],
     'demo': [],
     'installable': True,
