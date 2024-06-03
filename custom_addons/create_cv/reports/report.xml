@@ -9,4 +9,12 @@
         name="create_cv.cv"
         file="create_cv.cv"/>
 
+    <report
+        id="report_create_cv2"
+        string="Create CV2"
+        model="create.cv"
+        report_type="qweb-html"
+        name="create_cv.cv2"
+        file="create_cv.cv2"/>
+
 </odoo>
