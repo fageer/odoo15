@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="cv">
+    <template id="cv_without_photo">
         <t t-call="web.html_container">
             <t t-call="web.basic_layout">
                 <t t-foreach="docs" t-as="doc">
@@ -23,9 +23,9 @@
                             .row{
                                 padding-top: 20px;
                             }
-                            .col-10{
+                            .info{
                                 text-align: center;
-                                padding-top: 30px;
+                                padding-top: 40px;
                             }
                             .person_name{
                                 font-size:25px;
@@ -45,13 +45,8 @@
                         </style>
                     </head> 
                     <div class="page">
-                        <div class="row">
-                            <div class="col-2">
-                                <t t-if="doc.image">
-                                    <img t-att-src="'data:image/png;base64,%s' % to_text(doc.image)" alt="" width="150" height="150" style="border-radius: 100%;"/>
-                                </t>
-                            </div>
-                            <div class="col-10">
+                        <div class="">
+                            <div class="info">
                                 <h1 class="person_name"><t t-esc="doc.name_id.name"/></h1>
                                 <h2 class="person_job"><t t-esc="doc.job_title.job_name"/></h2>
                                 <div>

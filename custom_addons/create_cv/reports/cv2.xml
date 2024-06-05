@@ -127,7 +127,7 @@
                                 </div>
                     
                                 <div class="Certificate">
-                                    <h1>Certificate</h1>
+                                    <h1>CERTIFICATE</h1>
                                     <div class="parent_edu">
                                         <t t-foreach="doc.certificate_lines_ids" t-as="certi">
                                             <div class="certi">

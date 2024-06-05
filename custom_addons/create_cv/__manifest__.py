@@ -17,6 +17,7 @@
         'views/jobs_view.xml',
         'views/degrees_view.xml',
         'reports/report.xml',
+        'reports/cv_without_photo.xml',
         'reports/cv.xml',
         'reports/cv2.xml',
     ],

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    
+    <report
+        id="report_create_cv_without_photo"
+        string="Professional CV"
+        model="create.cv"
+        report_type="qweb-pdf"
+        name="create_cv.cv_without_photo"
+        file="create_cv.cv_without_photo"/>
 
     <report
         id="report_create_cv"
-        string="Create CV"
+        string="CV Template 1"
         model="create.cv"
         report_type="qweb-pdf"
         name="create_cv.cv"
@@ -11,7 +19,7 @@
 
     <report
         id="report_create_cv2"
-        string="Create CV2"
+        string="CV Template 2"
         model="create.cv"
         report_type="qweb-pdf"
         name="create_cv.cv2"
