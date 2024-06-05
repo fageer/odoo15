@@ -16,6 +16,8 @@ class CreateCv(models.Model):
     country_id = fields.Many2one('res.country', string='Country')
     city_id = fields.Many2one('res.city', string='City', domain="[('country_id', '=', country_id)]")
     linkedin = fields.Char(string='linkedIn URL')
+    website = fields.Char(string='Website')
+    github = fields.Char(string='Github')
     summary = fields.Html(required=True, string='Summary')
     skills_ids = fields.Many2many('skills.tags', string='Skills')
     language_ids = fields.Many2many('res.lang', string='Language')
@@ -33,10 +35,11 @@ class CreateCv(models.Model):
     @api.onchange('name_id')
     def _onchange_name_id(self):
         self.country_id = self.name_id.country_id.id
-        # self.job_title = self.name_id.function
         self.email = self.name_id.email
         self.phone_number = self.name_id.phone
-        self.image = self.name_id.image_1920    
+        self.image = self.name_id.image_1920
+        if self.name_id.website:
+            self.website = self.name_id.website    
     
 
 

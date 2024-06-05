@@ -50,10 +50,12 @@
                                 <h1 class="person_name"><t t-esc="doc.name_id.name"/></h1>
                                 <h2 class="person_job"><t t-esc="doc.job_title.job_name"/></h2>
                                 <div>
-                                    <a href="#" style="margin-right: 10px;"><i style="margin-right:8px;" class="fa-solid fa-location-dot"/><t t-esc="doc.country_id.name"/>, <t t-esc="doc.city_id.name"/></a>
-                                    <a href="#" style="margin-right: 10px;"><i style="margin-right:8px;" class="fa-regular fa-envelope"/><t t-esc="doc.email"/></a>
-                                    <a href="#" style="margin-right: 10px;"><i style="margin-right:8px;" class="fa-solid fa-phone"/><t t-esc="doc.phone_number"/></a>
-                                    <a t-att-href="doc.linkedin"><i style="margin-right:8px;" class="fa-brands fa-linkedin-in"/>LinkedIn</a>
+                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-solid fa-location-dot"/><t t-esc="doc.country_id.name"/>, <t t-esc="doc.city_id.name"/></a>
+                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-regular fa-envelope"/><t t-esc="doc.email"/></a>
+                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-solid fa-phone"/><t t-esc="doc.phone_number"/></a>
+                                    <a t-att-href="doc.website" style="margin-right: 10px;"><i style="margin-right:5px;"  class="fa-solid fa-briefcase"/>Portfolio</a>
+                                    <a t-att-href="doc.github" style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-brands fa-github"/>Github</a>
+                                    <a t-att-href="doc.linkedin"><i style="margin-right:5px;" class="fa-brands fa-linkedin-in"/>LinkedIn</a>
                                 </div>
                             </div>
                         </div>

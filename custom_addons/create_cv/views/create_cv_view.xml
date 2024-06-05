@@ -51,8 +51,10 @@
                         </group>
                     </group>
                     <group>
-                        <group string='LinkedIn Account' name='linkedin_account'>
+                        <group string='URL' name='url'>
                             <field name="linkedin"/>
+                            <field name="website"/>
+                            <field name="github"/>
                         </group>                        
                         <group string='Languages' name='languages'>
                             <field name="language_ids" widget="many2many_tags"/>
