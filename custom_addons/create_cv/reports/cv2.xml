@@ -53,7 +53,7 @@
                             <!-- End Left Col -->
                             <!-- Right Col -->
                             .right_col{
-                                padding:50px 20px;
+                                padding:50px 10px;
                             }
                             .right_col h1{
                                 text-align:left;

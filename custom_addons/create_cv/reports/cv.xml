@@ -46,11 +46,11 @@
                     </head> 
                     <div class="page">
                         <div class="row">
-                            <div class="col-2">
-                                <t t-if="doc.image">
-                                    <img t-att-src="'data:image/png;base64,%s' % to_text(doc.image)" alt="" width="150" height="150" style="border-radius: 100%;"/>
-                                </t>
-                            </div>
+                            <t t-if="doc.image">
+                                <div class="col-2">
+                                        <img t-att-src="'data:image/png;base64,%s' % to_text(doc.image)" alt="" width="150" height="150" style="border-radius: 100%;"/>
+                                </div>
+                            </t>
                             <div class="col-10">
                                 <h1 class="person_name"><t t-esc="doc.name_id.name"/></h1>
                                 <h2 class="person_job"><t t-esc="doc.job_title.job_name"/></h2>
