@@ -20,6 +20,7 @@
         'reports/cv_without_photo.xml',
         'reports/cv.xml',
         'reports/cv2.xml',
+        'views/website_form.xml',
     ],
     'demo': [],
     'installable': True,
