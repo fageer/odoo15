@@ -20,6 +20,7 @@
                             <div class="form-group">
                                 <label for='name_id' class="control-label">Name</label>
                                 <select  name="name_id" id="name_id" class="form-control link-style">
+                                    <option t-esc="current_partner.name" t-att-value="current_partner.id" selected="selected"/>
                                     <t t-foreach="partner_records" t-as="partner">
                                         <option t-esc="partner.name" t-att-value="partner.id"/>
                                     </t>
@@ -30,7 +31,7 @@
                                 <label for='email' class="control-label">Email</label>
                                 <input  type="email" 
                                         name="email" 
-                                        t-att-value="email" 
+                                        t-att-value="current_partner.email" 
                                         id="email" 
                                         class="form-control" 
                                         placeholder="Email..." 
@@ -41,7 +42,7 @@
                                 <label for='phone_number' class="control-label">Phone Number</label>
                                 <input  type="text" 
                                         name="phone_number" 
-                                        t-att-value="phone_number" 
+                                        t-att-value="current_partner.phone" 
                                         id="phone_number" 
                                         class="form-control" 
                                         placeholder="Phone Number..." 
@@ -60,6 +61,7 @@
                             <div class="form-group">
                                 <label for='country_id' class="control-label">Country</label>
                                 <select  name="country_id" id="country_id" class="form-control link-style">
+                                    <option t-esc="current_partner.country_id.name" t-att-value="current_partner.id" selected="selected"/>
                                     <t t-foreach="country_records" t-as="country">
                                         <option t-esc="country.name" t-att-value="country.id"/>
                                     </t>
@@ -69,6 +71,7 @@
                             <div class="form-group">
                                 <label for='city_id' class="control-label">City</label>
                                 <select  name="city_id" id="city_id" class="form-control link-style">
+                                    <option t-esc="current_partner.state_id.name" t-att-value="current_partner.id" selected="selected"/>
                                     <t t-foreach="city_records" t-as="city">
                                         <option t-esc="city.name" t-att-value="city.id"/>
                                     </t>
@@ -77,7 +80,7 @@
 
                             <div class="form-group">
                                 <label for='summary' class="control-label">Summary</label>
-                                <input  type="text" 
+                                <textarea cols="30" rows="10"
                                         name="summary" 
                                         t-att-value="summary" 
                                         id="summary" 

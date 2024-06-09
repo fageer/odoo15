@@ -5,7 +5,7 @@ from odoo.addons.website_sale_delivery.controllers.main import WebsiteSaleDelive
 
 
 class CreateCv(http.Controller):    
-    @http.route('/createcv_webform', type='http', auth="public", website=True)
+    @http.route('/createcv_webform', type='http', auth="user", website=True)
     def createcv_webform(self, **kwargs):
         print('excution==============================================================')
         partner_records = request.env['res.partner'].sudo().search([])
@@ -13,11 +13,13 @@ class CreateCv(http.Controller):
         city_records = request.env['res.country.state'].sudo().search([])
         job_records = request.env['jobs'].sudo().search([])
         print(country_records, "================================================================")
+        current_partner = request.env.user.partner_id
         return http.request.render('create_cv.create_cv_23', {
                                                                 'partner_records': partner_records,
                                                                 'country_records': country_records,
                                                                 'city_records': city_records,
                                                                 'job_records': job_records,
+                                                                'current_partner': current_partner,
                                                                 })
 
 

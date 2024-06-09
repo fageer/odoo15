@@ -14,7 +14,7 @@ class CreateCv(models.Model):
     job_title = fields.Many2one('jobs', required=True, string='Job Title')
     phone_number = fields.Char(string='Phone Number')
     country_id = fields.Many2one('res.country', string='Country')
-    city_id = fields.Many2one('res.country.state', string='City', domain="[('country_id', '=', country_id)]")
+    city_id = fields.Many2one('res.country.state', string='State', domain="[('country_id', '=', country_id)]")
     linkedin = fields.Char(string='linkedIn URL')
     website = fields.Char(string='Website')
     github = fields.Char(string='Github')
