@@ -24,6 +24,7 @@ class CreateCv(models.Model):
     experience_lines_ids = fields.One2many('experience.lines', 'cv_id', string='Experience Lines')
     education_lines_ids = fields.One2many('education.lines', 'cv_id', string='Education Lines')
     certificate_lines_ids = fields.One2many('certificate.lines', 'cv_id', string='Certificate Lines')
+    project_lines_ids = fields.One2many('project.lines', 'cv_id', string='Project Lines')
     
     
     @api.model
@@ -87,6 +88,21 @@ class CertificateLines(models.Model):
     organization = fields.Many2one('universities', string='Organization')
     degree = fields.Many2one('degrees', string='Degree')
     issue_date = fields.Date(string='Issue Date',  tracking=True)
+    cv_id = fields.Many2one('create.cv', string='CV')
+    
+    
+    
+# Project Lines
+class ProjectLines(models.Model):
+    _name = "project.lines"
+    _description = "Project Lines"
+
+
+    # Project
+    project_name = fields.Char(string='Project Name', required=True)
+    project_link = fields.Char(string='Project Link')
+    project_image = fields.Binary(string='Project Image')
+    project_description = fields.Html(string='Project Description')
     cv_id = fields.Many2one('create.cv', string='CV')
     
     

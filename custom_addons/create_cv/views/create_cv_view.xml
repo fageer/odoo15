@@ -126,6 +126,25 @@
                                 </form>
                             </field>
                         </page>
+                        <!-- Project Lines -->
+                        <page string="Projects" name="projects">
+                            <field name="project_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="project_name"/>
+                                    <field name="project_link"/>
+                                    <field name="project_image" widget="image" class="oe_avatar"/>
+                                    <field name="project_description"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="project_name"/>
+                                        <field name="project_link"/>
+                                        <field name="project_image" widget="image" class="oe_avatar"/>
+                                        <field name="project_description"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
                 <!-- Chatter -->

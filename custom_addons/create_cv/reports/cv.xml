@@ -130,7 +130,23 @@
                                     </t>
                                 </div>
                             </div>
-                
+                            
+
+
+                            <t t-if="doc.project_lines_ids">
+                                <div class="education" style="margin-top: 50px;">
+                                    <h1 style="border-bottom: 1px solid; font-size:18px;">PROJECTS</h1>
+                                    <div class="parent_edu" style="padding-left: 50px;">
+                                        <t t-foreach="doc.project_lines_ids" t-as="pro">
+                                            <div class="edu">
+                                                <h3><a t-att-href="pro.project_link"><t t-esc="pro.project_name"/></a></h3>
+                                                <p><t t-esc="pro.project_description"/></p>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+
                 
                             <div class="Languages" style="margin-top: 50px;">
                                 <h1 style="border-bottom: 1px solid; font-size:18px;">Languages</h1>
