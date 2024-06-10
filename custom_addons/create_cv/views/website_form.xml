@@ -97,6 +97,14 @@
                                 </div>
                                 <div class="col-6">
                                     <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">Personal Informations</h1>
+                                    <div class="form-group">
+                                        <label for='skills_ids' class="control-label">Skills</label>
+                                        <select  name="skills_ids" id="skills_ids" class="form-control link-style">
+                                            <t t-foreach="skill_records" t-as="skill">
+                                                <option t-esc="skill.skill_name" t-att-value="skill.id"/>
+                                            </t>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </form>

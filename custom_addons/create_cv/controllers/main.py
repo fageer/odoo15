@@ -12,13 +12,15 @@ class CreateCv(http.Controller):
         country_records = request.env['res.country'].sudo().search([])
         city_records = request.env['res.country.state'].sudo().search([])
         job_records = request.env['jobs'].sudo().search([])
+        skill_records = request.env['skills.tags'].sudo().search([])
         print(country_records, "================================================================")
         current_partner = request.env.user.partner_id
-        return http.request.render('create_cv.create_cv_23', {
+        return request.render('create_cv.create_cv_23', {
                                                                 'partner_records': partner_records,
                                                                 'country_records': country_records,
                                                                 'city_records': city_records,
                                                                 'job_records': job_records,
+                                                                'skill_records': skill_records,
                                                                 'current_partner': current_partner,
                                                                 })
 
