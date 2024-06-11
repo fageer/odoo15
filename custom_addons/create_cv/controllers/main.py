@@ -29,10 +29,8 @@ class CreateCv(http.Controller):
     @http.route('/create/webcv', type='http', auth="public", website=True)
     def create_webcv(self, **kwargs):
         print(kwargs, 'excution==============================================================')
-        image_file = kwargs.get('image')
-        image_data = image_file.read() if image_file else None
         cv_vals = {
-            'image': image_data,
+            'image': kwargs.get('image'),
             'name_id': kwargs.get('name_id'),
             'email': kwargs.get('email'),
             'job_title': kwargs.get('job_title'),

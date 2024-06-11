@@ -133,6 +133,19 @@
                                         </t>
                                     </div>
                                 </div>
+                                <div class="EDUCATION">
+                                    <h1>EDUCATION</h1>
+                                    <div class="parent_edu">
+                                        <t t-foreach="doc.education_lines_ids" t-as="edu">
+                                            <div class="edu">
+                                                <h3><t t-esc="edu.university_name.university_name"/></h3>
+                                                <span><t t-esc="edu.education_start_date"/> - <t t-esc="edu.education_end_date"/></span>
+                                                <h4><t t-esc="edu.degree.name"/></h4>
+                                                <p><t t-esc="edu.education_summary"/></p>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
                     
                                 <div class="Certificate">
                                     <h1>CERTIFICATE</h1>
@@ -147,19 +160,7 @@
                                     </div>
                                 </div>
         
-                                <div class="EDUCATION">
-                                    <h1>EDUCATION</h1>
-                                    <div class="parent_edu">
-                                        <t t-foreach="doc.education_lines_ids" t-as="edu">
-                                            <div class="edu">
-                                                <h3><t t-esc="edu.university_name.university_name"/></h3>
-                                                <span><t t-esc="edu.education_start_date"/> - <t t-esc="edu.education_end_date"/></span>
-                                                <h4><t t-esc="edu.degree.name"/></h4>
-                                                <p><t t-esc="edu.education_summary"/></p>
-                                            </div>
-                                        </t>
-                                    </div>
-                                </div>
+                                
 
 
 
