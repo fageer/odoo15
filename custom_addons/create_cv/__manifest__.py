@@ -1,7 +1,7 @@
 {
     'name': 'Create CV',
     'sequence': -105,
-    'depends': ['base', 'mail', 'account', 'product', 'sale'],
+    'depends': ['base', 'mail', 'account', 'product', 'sale', 'website'],
     'author': 'Fager Mohsen',
     'summary': """ Create CV """,
     'description': """ Create CV """,

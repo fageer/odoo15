@@ -29,16 +29,18 @@ class CreateCv(http.Controller):
     @http.route('/create/webcv', type='http', auth="public", website=True)
     def create_webcv(self, **kwargs):
         print(kwargs, 'excution==============================================================')
-        # partner_vals = {
-        #     'name': kwargs.get('name_id'),
-        #     'email': kwargs.get('email'),
-        #     'country_id': kwargs.get('country_id'),
-        #     'state_id': kwargs.get('city_id'),
-        #     'city': kwargs.get('city_id'),
-        #     'phone': kwargs.get('phone_number'),
-        # }
-        # request.env['res.partner'].sudo().create(partner_vals)
-        
-        request.env['create.cv'].sudo().create(kwargs)
+        image_file = kwargs.get('image')
+        image_data = image_file.read() if image_file else None
+        cv_vals = {
+            'image': image_data,
+            'name_id': kwargs.get('name_id'),
+            'email': kwargs.get('email'),
+            'job_title': kwargs.get('job_title'),
+            'phone_number': kwargs.get('phone_number'),
+            'country_id': kwargs.get('country_id'),
+            'city_id': kwargs.get('city_id'),
+            'summary': kwargs.get('summary'),
+        }
+        request.env['create.cv'].sudo().create(cv_vals)
         return request.render('create_cv.cv_thanks', {})
     

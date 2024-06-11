@@ -16,6 +16,10 @@
                     <div class="container">
                         <form role="form" action="/create/webcv" method="POST">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label for='image' class="control-label">Upload Image</label>
+                                <input type="file" name="image" id="image" class="form-control"/>
+                            </div>
                             <div class="row">
                                 <div class="col-6" style="border-right: 1px solid">
                                     <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">General Informations</h1>
