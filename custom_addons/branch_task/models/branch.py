@@ -8,8 +8,8 @@ class BranchBranch(models.Model):
     
     ref = fields.Char(string='Referance', readonly=True)
     name = fields.Char(string='Name', required=True)
-    employees_ids = fields.Many2many('res.partner', string='Employees')
-    responsible_id = fields.Many2one('res.partner', string='Responsible')
+    employees_ids = fields.Many2many('res.users', string='Employees')
+    responsible_id = fields.Many2one('res.users', string='Responsible')
     warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse')
     
     

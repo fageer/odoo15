@@ -1,4 +1,6 @@
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
+
 
 class StockRequest(models.Model):
     _name = "stock.request"
@@ -15,10 +17,43 @@ class StockRequest(models.Model):
         ('for_approval', 'For Approval'),
         ('confirmed', 'Confirmed')], string='Status', readonly=True, tracking=True)
     product_lines_ids = fields.One2many('product.lines', 'request_id', string='Product Lines')
+    branch_responsible_id = fields.Many2one(
+        'res.users', 
+        string="Branch Responsible", 
+        related='branch_id.responsible_id', 
+        store=True
+    )
+    is_responsible_user = fields.Boolean(
+        string="Is Responsible User",
+        compute="_compute_is_responsible_user",
+        default=False,
+        store=False
+    )
     
     
     
     
+    
+    # @api.depends('branch_id')
+    # def _compute_branch(self):
+    #     for record in self:
+    #         branches = self.env['branch.branch'].search([
+    #             '|',
+    #             ('responsible_id', '=', self.env.user.id),
+    #             ('employees_ids', 'in', [self.env.user.id])
+    #         ])
+    #         if branches:
+    #             for branch in branches:
+    #                 self.branch_id = branch.id
+    #             print(record.branch_id, 'Okkk ========================================================================================')
+    #         else:
+    #             print('Nooo ========================================================================================')
+
+
+    @api.depends('branch_responsible_id')
+    def _compute_is_responsible_user(self):
+        for record in self:
+            record.is_responsible_user = record.branch_responsible_id.id == self.env.user.id
     
     
     @api.model
@@ -34,12 +69,21 @@ class StockRequest(models.Model):
     
     
     def to_approval(self):
-        print("Aprovallllllllllllllll ==================================================================")
-        self.state = 'for_approval'
-    
+        responsible = self.branch_id.responsible_id.id
+        if responsible == self.env.user.id:
+            self.state = 'for_approval'
+        else:
+            raise ValidationError(_("You can't Approve The Request."))
+            return
+            
+
     def confirm(self):
-        print("Confirmed ==================================================================")
-        self.state = 'confirmed'
+        is_inventory_admin = self.env.user.has_group('stock.group_stock_manager')
+        if is_inventory_admin:
+            self.state = 'confirmed'
+        else:
+            raise ValidationError(_("You can't Confirm The Request."))
+            return
     
     
     
