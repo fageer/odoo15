@@ -31,23 +31,7 @@ class StockRequest(models.Model):
     )
     
     
-    
-    
-    
-    # @api.depends('branch_id')
-    # def _compute_branch(self):
-    #     for record in self:
-    #         branches = self.env['branch.branch'].search([
-    #             '|',
-    #             ('responsible_id', '=', self.env.user.id),
-    #             ('employees_ids', 'in', [self.env.user.id])
-    #         ])
-    #         if branches:
-    #             for branch in branches:
-    #                 self.branch_id = branch.id
-    #             print(record.branch_id, 'Okkk ========================================================================================')
-    #         else:
-    #             print('Nooo ========================================================================================')
+
 
 
     @api.depends('branch_responsible_id')
@@ -97,4 +81,15 @@ class ProductLines(models.Model):
     product_id = fields.Many2one('product.product', required=True)
     price_unit = fields.Float(related='product_id.list_price')
     qty = fields.Integer(string='Quantity', default='1')
+    stock_location_id = fields.Many2one('stock.location', string='Stock Location')
     request_id = fields.Many2one('stock.request', string='Request')
+    
+    
+    def action_forcast(self):
+        self.ensure_one()  # Ensure that there is exactly one record
+        action = self.env.ref('branch_task.action_forcast_stock').read()[0]
+        action['context'] = {
+            'default_request_id': self.request_id.id,
+        }
+        print("======================================", action['context']['default_request_id'])
+        return action

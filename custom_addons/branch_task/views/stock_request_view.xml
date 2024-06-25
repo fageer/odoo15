@@ -71,17 +71,29 @@
                                     <field name="product_id"/>
                                     <field name="price_unit"/>
                                     <field name="qty"/>
+                                    <!-- <button name="%(branch_task.action_forcast_stock)d"
+                                            context="{'default_request_id': active_id}"
+                                            type="action" class="fa fa-bars" 
+                                            style="transition: color 0.3s;"/> -->
+                                    <button name="action_forcast" type="object" class="fa fa-bars" style="transition: color 0.3s;"/>
+                                    <field name="stock_location_id"/>
                                 </tree>
                                 <form>
                                     <group>
                                         <field name="product_id"/>
                                         <field name="price_unit"/>
                                         <field name="qty"/>
+                                        <field name="stock_location_id"/>
                                     </group>
                                 </form>
                             </field>
                         </page>
                     </notebook>
+                    <style>
+                        .fa-arrow-up:hover {
+                            color: green;
+                        }
+                    </style>
                 </sheet>
                 <!-- Chatter -->
                 <div class="oe_chatter">

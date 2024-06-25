@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="view_forcast_stock_form" model="ir.ui.view">
+            <field name="name">forcast.stock.form</field>
+            <field name="model">forcast.stock.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Forcast Stock">
+                    <group>
+                        <field name="request_id"/>
+                    </group>
+                    <footer>
+                        <!-- <button name="action_lost_reason_apply" string="Submit" type="object" class="btn-primary" data-hotkey="q"/> -->
+                        <button string="Close" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_forcast_stock" model="ir.actions.act_window">
+            <field name="name">Forcast Stock</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">forcast.stock.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_forcast_stock_form"/>
+            <field name="target">new</field>
+        </record>
+</odoo>
