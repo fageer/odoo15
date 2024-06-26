@@ -3,4 +3,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access.branch.branch,access_branch_branch,branch_task.model_branch_branch,base.group_user,1,1,1,1
 access.stock.request,access_stock_request,branch_task.model_stock_request,base.group_user,1,1,1,1
 access.product.lines,access_product_lines,branch_task.model_product_lines,base.group_user,1,1,1,1
-access.forcast.stock.wizard,access_forcast_stock_wizard,branch_task.model_forcast_stock_wizard,base.group_user,1,1,1,1
+access.stock.quant,access_stock_quant,branch_task.model_stock_quant,base.group_user,1,1,1,1

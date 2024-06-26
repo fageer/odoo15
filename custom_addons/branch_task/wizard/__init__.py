@@ -1,1 +1,1 @@
-from . import forcast_stock
+from . import stock_quant_inherit

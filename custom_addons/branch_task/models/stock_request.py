@@ -73,7 +73,6 @@ class StockRequest(models.Model):
     
     
     
-    
 class ProductLines(models.Model):
     _name = "product.lines"
     _description = "Product Lines"
@@ -85,11 +84,13 @@ class ProductLines(models.Model):
     request_id = fields.Many2one('stock.request', string='Request')
     
     
+    
     def action_forcast(self):
         self.ensure_one()  # Ensure that there is exactly one record
         action = self.env.ref('branch_task.action_forcast_stock').read()[0]
         action['context'] = {
-            'default_request_id': self.request_id.id,
+            'default_product_id': self.product_id.id,
         }
-        print("======================================", action['context']['default_request_id'])
+        # self.stock_location_id = action['context']['default_product_id'].location_id.id
+        action['domain'] = [('product_id', '=', self.product_id.id)]
         return action
