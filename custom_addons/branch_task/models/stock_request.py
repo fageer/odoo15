@@ -93,4 +93,8 @@ class ProductLines(models.Model):
         }
         # self.stock_location_id = action['context']['default_product_id'].location_id.id
         action['domain'] = [('product_id', '=', self.product_id.id)]
+        if not action['domain']:
+            print("No Available Quantity ===========================================================", action['domain'])
+        else:
+            print("Available Quantity ===========================================================", action['domain'])
         return action
