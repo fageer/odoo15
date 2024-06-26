@@ -10,7 +10,7 @@ class BranchBranch(models.Model):
     name = fields.Char(string='Name', required=True)
     employees_ids = fields.Many2many('res.users', string='Employees')
     responsible_id = fields.Many2one('res.users', string='Responsible')
-    warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse')
+    location_id = fields.Many2one('stock.location', string='Location', required=True)
     
     
     

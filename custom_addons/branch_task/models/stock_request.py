@@ -11,11 +11,13 @@ class StockRequest(models.Model):
     
     ref = fields.Char(string='Referance', readonly=True)
     branch_id = fields.Many2one('branch.branch', string='Branch', required=True)
-    warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse')
+    location_id = fields.Many2one('stock.location', string='Location', required=True)
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('for_approval', 'For Approval'),
-        ('confirmed', 'Confirmed')], string='Status', readonly=True, tracking=True)
+        ('confirmed', 'Confirmed'),
+        ('transfer', 'Transfer'),
+        ('complete', 'Complete')], string='Status', readonly=True, tracking=True)
     product_lines_ids = fields.One2many('product.lines', 'request_id', string='Product Lines')
     branch_responsible_id = fields.Many2one(
         'res.users', 
@@ -49,30 +51,51 @@ class StockRequest(models.Model):
     
     @api.onchange('branch_id')
     def _onchange_branch_id(self):
-        self.warehouse_id = self.branch_id.warehouse_id.id
+        self.location_id = self.branch_id.location_id.id
     
     
-    def to_approval(self):
+    def action_to_approval(self):
         responsible = self.branch_id.responsible_id.id
         if responsible == self.env.user.id:
             self.state = 'for_approval'
         else:
             raise ValidationError(_("You can't Approve The Request."))
-            return
+            
             
 
-    def confirm(self):
+    def action_confirm(self):
         is_inventory_admin = self.env.user.has_group('stock.group_stock_manager')
         if is_inventory_admin:
             self.state = 'confirmed'
         else:
             raise ValidationError(_("You can't Confirm The Request."))
-            return
+        
+        
+    def action_transfer(self):
+        is_inventory_admin = self.env.user.has_group('stock.group_stock_manager')
+        if is_inventory_admin:
+            piking = self.env['stock.picking']
+            for line in self.product_lines_ids:
+                vals = {
+                    'picking_type_id': self.env.ref('stock.picking_type_out').id,
+                    'location_id': line.stock_location_id.id,
+                    'location_dest_id': self.location_id.id,
+                    'move_ids_without_package':{
+                        'product_id': line.product_id.id,
+                        'product_uom_qty': line.qty
+                    }
+                }
+                print(vals)
+                piking.create(vals)
+            self.state = 'draft'
+        else:
+            raise ValidationError(_("You can't Transfer The Request."))
+        
     
     
     
     
-    
+    # Product Lines ###########
 class ProductLines(models.Model):
     _name = "product.lines"
     _description = "Product Lines"
