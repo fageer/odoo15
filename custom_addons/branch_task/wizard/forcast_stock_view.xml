@@ -10,7 +10,6 @@
                 <field name="quantity"/>
                 <field name="available_quantity"/>
                 <button name='action_fill_loc' string="Select" class="btn-primary" type='object'/>
-
             </tree>
         </field>
     </record>

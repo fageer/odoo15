@@ -7,8 +7,13 @@ class StockQuantInherit(models.Model):
     _inherit = ['stock.quant']
     
     def action_fill_loc(self):
-        print('Location===================================================')
-        
+        pro = self.env['product.lines'].search([('product_id', '=', self.product_id.id)])
+        pro.stock_location_id = self.location_id.id
+    
+    
+    
+    
+    
     
     
     # name = fields.Char(string='Name')

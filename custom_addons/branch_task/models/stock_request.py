@@ -86,7 +86,7 @@ class ProductLines(models.Model):
     
     
     def action_forcast(self):
-        self.ensure_one()  # Ensure that there is exactly one record
+        self.ensure_one()  
         action = self.env.ref('branch_task.action_forcast_stock').read()[0]
         action['context'] = {
             'default_product_id': self.product_id.id,
