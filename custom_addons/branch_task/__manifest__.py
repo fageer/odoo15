@@ -12,7 +12,7 @@
         'security/ir.model.access.csv',
         'data/branches_seq.xml',
         'data/stock_request_seq.xml',
-        'wizard/forcast_stock_view.xml',
+        'wizard/stock_quant_inherit_view.xml',
         'views/menu.xml',
         'views/branches_view.xml',
         'views/stock_request_view.xml',
