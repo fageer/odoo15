@@ -74,19 +74,26 @@ class StockRequest(models.Model):
     def action_transfer(self):
         is_inventory_admin = self.env.user.has_group('stock.group_stock_manager')
         if is_inventory_admin:
-            piking = self.env['stock.picking']
+            picking_model = self.env['stock.picking']
+            move_model = self.env['stock.move']
+            
             for line in self.product_lines_ids:
-                vals = {
+                picking_vals = {
                     'picking_type_id': self.env.ref('stock.picking_type_out').id,
                     'location_id': line.stock_location_id.id,
                     'location_dest_id': self.location_id.id,
-                    'move_ids_without_package':{
+                    'move_ids_without_package': [(0, 0, {
                         'product_id': line.product_id.id,
-                        'product_uom_qty': line.qty
-                    }
+                        'product_uom_qty': line.qty,
+                        'product_uom': line.product_id.uom_id.id,
+                        'name': line.product_id.name,
+                        'location_id': line.stock_location_id.id,
+                        'location_dest_id': self.location_id.id,
+                    })]
                 }
-                print(vals)
-                piking.create(vals)
+                print(picking_vals)
+                picking_model.create(picking_vals).action_confirm()
+            
             self.state = 'draft'
         else:
             raise ValidationError(_("You can't Transfer The Request."))
