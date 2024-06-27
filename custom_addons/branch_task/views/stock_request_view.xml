@@ -79,8 +79,9 @@
                                             type="action" class="fa fa-bars" 
                                             style="transition: color 0.3s;"/> -->
                                     <field name="stock_location_id"/>
+                                    <field name="is_created_po" invisible="1"/>
                                     <button name="action_forcast" type="object" class="fa fa-bars" style="transition: color 0.3s;"/>
-                                    <button name="action_purchase_order" string="Purchase Order" type="object" class="oe_highlight" style="transition: color 0.3s;"/>
+                                    <button name="action_purchase_order" string="Purchase Order" type="object" attrs="{'invisible': [('is_created_po', '=', True)]}" class="oe_highlight" style="transition: color 0.3s;"/>
                                 </tree>
                                 <form>
                                     <group>

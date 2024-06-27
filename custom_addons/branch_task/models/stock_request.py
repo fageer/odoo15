@@ -106,7 +106,7 @@ class StockRequest(models.Model):
                 picking = picking_model.create(picking_vals)
                 picking.action_confirm()
 
-            self.state = 'draft'
+            self.state = 'complete'
         else:
             raise ValidationError(_("You can't Transfer The Request."))
 
@@ -116,11 +116,13 @@ class ProductLines(models.Model):
     _name = "product.lines"
     _description = "Product Lines"
 
-    product_id = fields.Many2one('product.product', required=True)
+    product_id = fields.Many2one('product.product', string='Product')  # Example field
     price_unit = fields.Float(related='product_id.list_price')
-    qty = fields.Integer(string='Quantity', default='1')
     stock_location_id = fields.Many2one('stock.location', string='Stock Location')
     request_id = fields.Many2one('stock.request', string='Request')
+    is_created_po = fields.Boolean(string='po created', default=False)
+    last_purchase_order_id = fields.Many2one('purchase.order', string='Last Purchase Order')
+    qty = fields.Float(string='Quantity', default='1')  # Example field
 
     def action_forcast(self):
         self.ensure_one()
@@ -137,19 +139,28 @@ class ProductLines(models.Model):
         return action
 
     def action_purchase_order(self):
-        purchase_order = self.env['purchase.order']
-        if self.product_id.seller_ids:
-            po_vals = {
-                        'partner_id': self.product_id.seller_ids[0].name.id,
-                        'date_order': fields.Date.today(),
-                        'picking_type_id': 7,
-                        'order_line': [(0, 0, {
-                                        'product_id': self.product_id.id,
-                                        'product_qty': self.qty,
-                                        'price_unit': self.product_id.seller_ids[0].price,
-                                        })],
-                        }
-            purchase_order.create(po_vals)
-            print("=============================================Okkkkkkkkkkkkkkk", self.product_id.seller_ids[0].name.id)
-        else:
+        if not self.product_id.seller_ids:
             raise ValidationError(_("This Product Don't Have Vendor."))
+
+        purchase_order = self.env['purchase.order']
+        self.is_created_po = True
+        po_vals = {
+                    'partner_id': self.product_id.seller_ids[0].name.id,
+                    'date_order': fields.Date.today(),
+                    'picking_type_id': 7,
+                    'order_line': [(0, 0, {
+                                    'product_id': self.product_id.id,
+                                    'product_qty': self.qty,
+                                    'price_unit': self.product_id.seller_ids[0].price,
+                                    })],
+                    }
+        purchase_order.create(po_vals)
+        print("=============================================Okkkkkkkkkkkkkkk", self.product_id.seller_ids[0].name.id)
+        return {
+                'effect': {
+                            'fadeout': 'slow',
+                            'message': 'Purchase Order Created Successfully',
+                            'type': 'rainbow_man',
+                            }
+                }
+
