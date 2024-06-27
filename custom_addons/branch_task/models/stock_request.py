@@ -110,8 +110,7 @@ class StockRequest(models.Model):
         else:
             raise ValidationError(_("You can't Transfer The Request."))
 
-    # Product Lines ###########
-
+    """Product Lines"""
 
 class ProductLines(models.Model):
     _name = "product.lines"
@@ -136,3 +135,21 @@ class ProductLines(models.Model):
         else:
             print("Available Quantity ===========================================================", action['domain'])
         return action
+
+    def action_purchase_order(self):
+        purchase_order = self.env['purchase.order']
+        if self.product_id.seller_ids:
+            po_vals = {
+                        'partner_id': self.product_id.seller_ids[0].name.id,
+                        'date_order': fields.Date.today(),
+                        'picking_type_id': 7,
+                        'order_line': [(0, 0, {
+                                        'product_id': self.product_id.id,
+                                        'product_qty': self.qty,
+                                        'price_unit': self.product_id.seller_ids[0].price,
+                                        })],
+                        }
+            purchase_order.create(po_vals)
+            print("=============================================Okkkkkkkkkkkkkkk", self.product_id.seller_ids[0].name.id)
+        else:
+            raise ValidationError(_("This Product Don't Have Vendor."))
