@@ -32,6 +32,10 @@ class CancelAppointmentWizard(models.TransientModel):
         if not self.reason:
             raise ValidationError(_('Please enter the reason of cancellation !'))
         self.appointment_id.state = 'cancel'
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
 
 

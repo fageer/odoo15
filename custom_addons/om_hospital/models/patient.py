@@ -7,7 +7,7 @@ class HospitalPatient(models.Model):
     _name = "hospital.patient"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Hospital Patient"
-
+    _order = 'id desc'
 
     name = fields.Char(string='Name', tracking=True)
     date_of_birth = fields.Date(string='Date Of Birth')
@@ -25,20 +25,17 @@ class HospitalPatient(models.Model):
         ('married', 'Married'),
         ('single', 'Single')], string='Marital Status', tracking=True)
     partner_name = fields.Char(string='Partner Name')
-    
-    
+
     @api.depends('appointment_ids')
     def _compute_appointment_count(self):
         for rec in self:
             rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
-
 
     @api.constrains('date_of_birth')
     def _check_date_of_birth(self):
         for rec in self:
             if rec.date_of_birth and rec.date_of_birth > date.today():
                 raise ValidationError(_('Date of Birth cannot be in the future.'))
-
 
     @api.depends('age')
     def _inverse_compute_age(self):
@@ -51,19 +48,16 @@ class HospitalPatient(models.Model):
         for rec in self:
             if rec.appointment_count > 0:
                 raise ValidationError(_("You Can't Delete Patient With Appointment !!"))
-            
-            
+
     @api.model
     def create(self, vals):
         vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
         return super(HospitalPatient, self).create(vals)
 
-
     def write(self, vals):
         if not self.ref and not vals.get('ref'):
             vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
         return super(HospitalPatient, self).write(vals)
-
 
     @api.depends('date_of_birth')
     def _compute_age(self):
@@ -73,7 +67,6 @@ class HospitalPatient(models.Model):
                 rec.age = today.year - rec.date_of_birth.year
             else:
                 rec.age = 0
-
 
     def name_get(self):
         return [(record.id, f"[{record.ref}] {record.name}") for record in self]
