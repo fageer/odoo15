@@ -22,6 +22,16 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="alert alert-success text-center o_form_header" role="alert"
+                         attrs="{'invisible': [('is_birthday', '=', False)]}">
+                      <a class="close" data-dismiss="alert" href="#">x</a>
+                      <div>
+                        <strong>Today is Your Birthday 🥳 !</strong>
+                      </div>
+                      <div>
+                          Wish All Your Dreams Come True <field name="name" readonly="1"/> 🎊.
+                      </div>
+                    </div>
                     <field name="image" widget="image" class="oe_avatar"/>
                     <div class='oe_title'>
                         <h4>
@@ -43,6 +53,7 @@
                             <field name="tag_ids" widget="many2many_checkboxes" options="{'color_field': 'color'}" />
                             <field name="appointment_count"/>
                             <field name="active" invisible="1"/>
+                            <field name="is_birthday" invisible="1"/>
                         </group>
                     </group>
                     <group>
