@@ -56,12 +56,17 @@
                             <field name="is_birthday" invisible="1"/>
                         </group>
                     </group>
-                    <group>
-                        <group string='Other Information' name='other_info'>
+                    <group string='Other Information' name='other_info'>
+                        <group>
                             <field name="parent" attrs="{'invisible': [('age', '&gt;=', 18), ('gender', '=', 'male')]}"/>
                             <field name="marital_status"/>
                             <field name="partner_name" attrs="{'readonly': [('marital_status', '!=', 'married')],
                                                                 'required': [('marital_status', '=', 'married')]}"/>
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="email" widget="email"/>
+                            <field name="website" widget="url"/>
                         </group>
                     </group>
                 </sheet>

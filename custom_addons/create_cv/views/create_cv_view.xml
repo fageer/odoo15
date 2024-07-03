@@ -41,8 +41,8 @@
                         <group string='General Informations' name='general_info'>
                             <field name="name_id"/>
                             <field name="job_title"/>
-                            <field name="email"/>
-                            <field name="phone_number"/>
+                            <field name="email" widget="email"/>
+                            <field name="phone_number" widget="phone"/>
                         </group>
                         <group string='Personal Informations' name='personal_info'>
                             <field name="country_id"/>
@@ -52,10 +52,10 @@
                     </group>
                     <group>
                         <group string='URL' name='url'>
-                            <field name="linkedin"/>
-                            <field name="website"/>
-                            <field name="github"/>
-                        </group>                        
+                            <field name="linkedin" widget="url"/>
+                            <field name="website" widget="url"/>
+                            <field name="github" widget="url"/>
+                        </group>
                         <group string='Languages' name='languages'>
                             <field name="language_ids" widget="many2many_tags"/>
                         </group>                        
