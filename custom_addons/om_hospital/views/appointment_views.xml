@@ -70,6 +70,7 @@
                 <button name="%(om_hospital.action_cancel_appointment)d" type="action"
                         context="{'default_appointment_id': active_id, 'default_reason': 'test', 'hide_appointment': '1'}"
                         class="fa fa-times btn-danger" attrs=" {'invisible': [('state', 'not in', ('draft', 'in_consultation'))]}"/>
+                <field name="progress" widget="progressbar"/>
             </tree>
         </field>
     </record>
@@ -129,6 +130,9 @@
 
 
                     <notebook>
+                        <page string="Progress" name="progress">
+                            <field name="progress" widget="gauge" options="{'style': 'width:100px; height:100px;'}"/>
+                        </page>
                         <page string="Prescription" name="prescription">
                             <field name="prescription" placeholder="Enter your prescription"
                                    options="{'collaborative': true, 'resizable': true, 'codeview': true}"/>

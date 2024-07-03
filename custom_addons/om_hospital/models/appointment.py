@@ -1,3 +1,4 @@
+import random
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
@@ -28,6 +29,8 @@ class HospitalAppointment(models.Model):
     doctor_id = fields.Many2one('res.users', string='Doctor', tracking=True)
     pharmacy_lines_ids = fields.One2many('appointment.pharmacy.lines', 'appointment_id', string='Pharmacy Lines')
     hide_sales_price = fields.Boolean(string='Hide Sales Price')
+    operation_id = fields.Many2one('hospital.operation', string='Operation')
+    progress = fields.Integer(string='Progress', compute='_compute_progress')
 
     def unlink(self):
         for rec in self:
@@ -71,7 +74,18 @@ class HospitalAppointment(models.Model):
         for rec in self:
             rec.state = 'draft'
 
-
+    @api.depends('state')
+    def _compute_progress(self):
+        for rec in self:
+            if rec.state == 'draft':
+                progress = random.randrange(0, 25)
+            elif rec.state == 'in_consultation':
+                progress = random.randrange(25, 80)
+            elif rec.state == 'done':
+                progress = 100
+            else:
+                progress = 0
+            rec.progress = progress
 class AppointmentPharmacyLines(models.Model):
     _name = "appointment.pharmacy.lines"
     _description = "Appointment Pharmacy Lines"
