@@ -38,14 +38,13 @@
                   decoration-warning="state == 'in_consultation'" sample="1" multi_edit="1">
                 <header>
                     <button name="action_in_consultation" string="In Consultation" type="object" class="oe_highlight"/>
-
                 </header>
+                <field name="ref"/>
                 <field name="patient_id" string="Patient Name"/>
                 <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
                 <field name="gender" optional="hide"/>
-                <field name="ref" optional="show"/>
                 <field name="activity_ids" widget="list_activity"/>
                 <field name="state"
                        widget="badge"
