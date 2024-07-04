@@ -50,7 +50,7 @@
         <field name="arch" type="xml">
             <calendar string="Appointments" date_start="booking_date" mode="month" date_delay="duration" color="state"
                         quick_add="False" hide_time="True" form_view_id="%(om_hospital.view_hospital_appointment_form)d"
-                        event_open_popup="True">
+                        event_open_popup="True" event_limit="4">
                 <field name="patient_id" filters="1" avatar_field="image"/>
                 <field name="state" filters="1" invisible="1"/>
             </calendar>
