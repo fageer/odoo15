@@ -21,6 +21,8 @@
                     record.action_done()
         </field>
     </record>
+
+
     <record id="view_hospital_appointment_activity" model="ir.ui.view">
         <field name="name">hospital.appointment.activity</field>
         <field name="model">hospital.appointment</field>
@@ -38,6 +40,20 @@
                     </div>
                 </templates>
             </activity>
+        </field>
+    </record>
+
+
+    <record id="view_hospital_appointment_calendar" model="ir.ui.view">
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments" date_start="booking_date" mode="month" date_delay="duration" color="state"
+                        quick_add="False" hide_time="True" form_view_id="%(om_hospital.view_hospital_appointment_form)d"
+                        event_open_popup="True">
+                <field name="patient_id" filters="1" avatar_field="image"/>
+                <field name="state" filters="1" invisible="1"/>
+            </calendar>
         </field>
     </record>
 
@@ -114,6 +130,7 @@
                             <field name="patient_id" default_focus="1"/>
                             <field name="gender"/>
                             <field name="booking_date"/>
+                            <field name="duration"/>
                             <field name="doctor_id" widget="many2one_avatar_user"/>
                         </group>
                         <group>
@@ -185,7 +202,7 @@
         <field name="name">Appointment</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.appointment</field>
-        <field name="view_mode">tree,form,activity</field>
+        <field name="view_mode">tree,form,calendar,activity</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
