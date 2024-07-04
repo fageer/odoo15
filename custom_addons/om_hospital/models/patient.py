@@ -40,21 +40,21 @@ class HospitalPatient(models.Model):
                     is_birthday = True
             rec.is_birthday = is_birthday
 
-    # @api.depends('appointment_ids')
-    # def _compute_appointment_count(self):
-    #     for rec in self:
-    #         rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
-
     @api.depends('appointment_ids')
     def _compute_appointment_count(self):
-        appointment_group = self.env['hospital.appointment'].read_group(domain=[('state', '=', 'done')],
-                                                                        fields=['patient_id'], groupby=['patient_id'])
-        for appointment in appointment_group:
-            patient_id = appointment.get('patient_id')[0]
-            patient_rec = self.browse(patient_id)
-            patient_rec.appointment_count = appointment['patient_id_count']
-            self -= patient_rec
-        self.appointment_count = 0
+        for rec in self:
+            rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
+
+    # @api.depends('appointment_ids')
+    # def _compute_appointment_count(self):
+    #     appointment_group = self.env['hospital.appointment'].read_group(domain=[], fields=['patient_id'],
+    #                                                                     groupby=['patient_id'])
+    #     for appointment in appointment_group:
+    #         patient_id = appointment.get('patient_id')[0]
+    #         patient_rec = self.browse(patient_id)
+    #         patient_rec.appointment_count = appointment['patient_id_count']
+    #         self -= patient_rec
+    #     self.appointment_count = 0
 
     @api.constrains('date_of_birth')
     def _check_date_of_birth(self):
@@ -95,4 +95,17 @@ class HospitalPatient(models.Model):
 
     def name_get(self):
         return [(record.id, f"[{record.ref}] {record.name}") for record in self]
+
+    def action_view_appointments(self):
+        return {
+                'name': 'Appointment',
+                'res_model': 'hospital.appointment',
+                'view_mode': 'tree,form,calendar,activity',
+                'context': {
+                            'default_patient_id': self.id,
+                            },
+                'domain': [('patient_id', '=', self.id)],
+                'target': 'current',
+                'type': 'ir.actions.act_window',
+                }
 
