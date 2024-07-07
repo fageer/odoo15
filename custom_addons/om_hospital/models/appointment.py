@@ -33,6 +33,9 @@ class HospitalAppointment(models.Model):
     progress = fields.Integer(string='Progress', compute='_compute_progress')
     duration = fields.Float(string='Duration')
 
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company.id)
+    currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
+
     def unlink(self):
         for rec in self:
             if rec.state != 'draft':
@@ -95,3 +98,11 @@ class AppointmentPharmacyLines(models.Model):
     price_unit = fields.Float(related='product_id.list_price')
     qty = fields.Integer(string='Quantity', default='1')
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
+    price_subtotal = fields.Monetary(string='Subtotal', compute='_compute_price_subtotal', currency_field='currency_id')
+
+    currency_id = fields.Many2one('res.currency', string='Currency', related='appointment_id.currency_id')
+
+    @api.depends('price_unit', 'qty')
+    def _compute_price_subtotal(self):
+        for rec in self:
+            rec.price_subtotal = rec.price_unit * rec.qty

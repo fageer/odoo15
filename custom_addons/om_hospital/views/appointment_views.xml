@@ -136,6 +136,8 @@
                         <group>
                             <field name="hide_sales_price" groups="base.group_no_one"/>
                             <field name="appointment_time"/>
+                            <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1" groups="base.group_multi_currency"/>
                             <field name="ref" readonly="1" force_save="1"/>
                             <button name="action_test" string="Object Button" type="object" class="oe_highlight"
                                     help="This will print a message in the python console" groups="base.group_no_one"/>
@@ -158,9 +160,11 @@
                             <field name="pharmacy_lines_ids">
                                 <tree editable="bottom">
                                     <field name="product_id"/>
-                                    <field name="price_unit"
+                                    <field name="price_unit" widget="monetary"
                                            attrs="{'column_invisible':[('parent.hide_sales_price', '=', True)]}"/>
                                     <field name="qty"/>
+                                    <field name="price_subtotal" widget="monetary"/>
+                                    <field name="currency_id" invisible="1" groups="base.group_multi_currency"/>
                                 </tree>
                                 <form>
                                     <group>
