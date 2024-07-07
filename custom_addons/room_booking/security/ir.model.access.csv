@@ -8,3 +8,4 @@ access.booking.room.all.documents,access_booking_room_all_documents,room_booking
 access.booking.room.own.documents,access_booking_room_own_documents,room_booking.model_booking_room,room_booking.group_room_booking_own_documents,1,1,1,0
 access.employee.lines,access_employee_lines,room_booking.model_employee_lines,base.group_user,1,1,1,1
 access.guests.lines,access_guests_lines,room_booking.model_guests_lines,base.group_user,1,1,1,1
+access.room.booking.report.wizard,access_room_booking_report_wizard,room_booking.model_room_booking_report_wizard,base.group_user,1,1,1,1

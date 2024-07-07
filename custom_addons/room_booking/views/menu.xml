@@ -14,4 +14,19 @@
         sequence="1"
         groups="group_room_booking_administrator"/>
 
+
+    <menuitem
+        id="menu_reporting"
+        name="Reporting"
+        parent="menu_room_booking_root"
+        sequence="2"/>
+
+
+    <menuitem
+        id="menu_booking_report"
+        name="Bookings"
+        parent="menu_reporting"
+        action="action_room_booking_report"
+        sequence="1"/>
+
 </odoo>

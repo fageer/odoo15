@@ -20,7 +20,6 @@ class BookingRoom(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'ref'
 
-
     ref = fields.Char(string='Reference', readonly=True)
     room_id = fields.Many2one('room', string='Room', required=True,  tracking=True)
     start_date = fields.Datetime(string='From', required=True, tracking=True)

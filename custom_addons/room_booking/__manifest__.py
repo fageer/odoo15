@@ -7,12 +7,13 @@
     'description': """ Room Booking """,
     'website': "http://www.plustech.com",
     'version': '1.0.0',
-    'data':[
+    'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/room_squ.xml',
         'data/booking_squ.xml',
         'data/mail_template_data.xml',
+        'wizard/room_booking_report_view.xml',
         'views/menu.xml',
         'views/facility_room_view.xml',
         'views/room_view.xml',
@@ -23,6 +24,7 @@
         'reports/report.xml',
         'reports/booking_card.xml',
         'reports/sale_report_inherit.xml',
+        'reports/booking_report.xml',
     ],
     'demo': [],
     'installable': True,
