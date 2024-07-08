@@ -9,9 +9,9 @@
 
     <menuitem
         id="menu_configration_master"
-        name="Configrations"
+        name="Configration"
         parent="menu_room_booking_root"
-        sequence="1"
+        sequence="2"
         groups="group_room_booking_administrator"/>
 
 
@@ -19,7 +19,7 @@
         id="menu_reporting"
         name="Reporting"
         parent="menu_room_booking_root"
-        sequence="2"/>
+        sequence="1"/>
 
 
     <menuitem
