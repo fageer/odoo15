@@ -13,6 +13,32 @@ class RoomBookingReportWizard(models.TransientModel):
     date_from = fields.Date(string='Date From')
     date_to = fields.Date(string='Date To')
 
+    def action_view_bookings(self):
+        domain = []
+        organizer_id = self.organizer_id
+        if organizer_id:
+            domain += [('organizer', '=', organizer_id.id)]
+        date_from = self.date_from
+        if date_from:
+            domain += [('create_date', '>=', date_from)]
+        date_to = self.date_to
+        if date_to:
+            domain += [('create_date', '<=', date_to)]
+        print("Domain", domain)
+        return {
+            'name': _('Bookings'),
+            'view_type': 'form',
+            'view_mode': 'tree',
+            'res_model': 'booking.room',
+            'type': 'ir.actions.act_window',
+            'context': {
+                'create': False,
+                'delete': False,
+            },
+            'target': "current",
+            'domain': domain,
+        }
+
     def action_print_excel_report(self):
         domain = []
         organizer_id = self.organizer_id

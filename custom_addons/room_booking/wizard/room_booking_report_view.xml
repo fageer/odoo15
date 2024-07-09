@@ -16,6 +16,7 @@
                     </group>
                 </group>
                 <footer>
+                    <button name="action_view_bookings" string="View" type="object" class="btn-primary"/>
                     <button name="action_print_report" string="Print PDF" type="object" class="btn-primary"/>
                     <button name="action_print_excel_report" string="Print Excel" type="object" class="btn-primary"/>
                     <button special="cancel" data-hotkey="z" string="Discard" class="btn-secondary"/>
