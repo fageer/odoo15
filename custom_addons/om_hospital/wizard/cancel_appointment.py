@@ -9,7 +9,6 @@ class CancelAppointmentWizard(models.TransientModel):
     _name = "cancel.appointment.wizard"
     _description = 'Cancel Appointment Wizard'
 
-
     @api.model
     def default_get(self, fields):
         res = super(CancelAppointmentWizard, self).default_get(fields)
@@ -18,19 +17,29 @@ class CancelAppointmentWizard(models.TransientModel):
             res['appointment_id'] = self.env.context.get('active_id')
         return res
 
-
-    appointment_id = fields.Many2one('hospital.appointment', string='Appointment', domain=[('state', '!=', 'done'), ('priority', 'in', ('0', '1', False))])
+    appointment_id = fields.Many2one('hospital.appointment', string='Appointment',
+                                     domain=[('state', '!=', 'done'), ('priority', 'in', ('0', '1', False))])
     reason = fields.Text(string='Reason')
     date_cancel = fields.Date(string='Cancellation Date')
 
     def action_cancel(self):
         cancel_days = self.env['ir.config_parameter'].get_param('om_hospital.cancel_days')
-        print('cancel_days', cancel_days)
+        # print('cancel_days', cancel_days)
         allowed_date = self.appointment_id.booking_date - relativedelta.relativedelta(days=int(cancel_days))
         if allowed_date < date.today():
             raise ValidationError(_('Sorry cancellation is not allowed for this booking !'))
         if not self.reason:
             raise ValidationError(_('Please enter the reason of cancellation !'))
+
+        # query = """ select id,patient_id from hospital_appointment where id = %s """ % self.appointment_id.id
+        # # self.env.cr.execute(query)
+        # self._cr.execute(query)
+        # # appointments = self.env.cr.fetchall()
+        # # appointments = self.env.cr.dictfetchall()
+        # # appointments = self.env.cr.dictfetchone()
+        # appointments = self.env.cr.dictfetchall()
+        # print(appointments)
+
         self.appointment_id.state = 'cancel'
         return {
             'type': 'ir.actions.client',
