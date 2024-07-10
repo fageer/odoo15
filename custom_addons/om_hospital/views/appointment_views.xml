@@ -72,8 +72,8 @@
                 <field name="patient_id" string="Patient Name"/>
                 <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="appointment_time"/>
-                <field name="booking_date"/>
-                <field name="gender" optional="hide"/>
+                <field name="booking_date" decoration-bf="1"/>
+                <field name="gender" optional="hide" decoration-it="1" decoration-bf="1" decoration-success="gender=='female'"/>
                 <field name="activity_ids" widget="list_activity"/>
                 <field name="state"
                        widget="badge"
