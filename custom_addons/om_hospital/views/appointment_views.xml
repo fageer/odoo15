@@ -139,8 +139,9 @@
                             <field name="company_id" readonly="1" groups="base.group_multi_company"/>
                             <field name="currency_id" invisible="1" groups="base.group_multi_currency"/>
                             <field name="ref" readonly="1" force_save="1"/>
-                            <button name="action_test" string="Object Button" type="object" class="oe_highlight"
-                                    help="This will print a message in the python console" groups="base.group_no_one"/>
+                            <button name="action_redirect" string="Redirect Button" type="object" class="oe_highlight"
+                                    help="This will print a message in the python console" groups="base.group_no_one"
+                                    confirm="are you sure you want to go to this url?"/>
                             <button name="%(om_hospital.action_hospital_patient)d" string="Action Button"
                                     confirm="Are you sure you want to open patient action?" type="action" class="oe_highlight"
                                     help="On clicking you will redirect to the patient tree view" groups="base.group_no_one"/>

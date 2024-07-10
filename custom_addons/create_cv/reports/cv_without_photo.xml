@@ -151,6 +151,15 @@
                                     </t>
                                 </ul>
                             </div>
+                            <div class="Recommendation" style="margin-top: 50px;">
+                                <h1 style="border-bottom: 1px solid; font-size:18px;">Recommendation</h1>
+                                <ul>
+                                    <li class="lang" style="margin-bottom: 5px;">Name: Mohammed Sadig</li>
+                                    <li class="lang" style="margin-bottom: 5px;">Job Position : Training Director</li>
+                                    <li class="lang" style="margin-bottom: 5px;">Company : Plus Tech</li>
+                                    <li class="lang" style="margin-bottom: 5px;"><i style="margin-right:5px;" class="fa-solid fa-phone"/>Phone : +966568880396</li>
+                                </ul>
+                            </div>
                 
                 
                         </div>

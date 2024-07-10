@@ -51,14 +51,10 @@ class HospitalAppointment(models.Model):
         vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.appointment')
         return super(HospitalAppointment, self).create(vals)
 
-    def action_test(self):
-        print('Clicked Button !!!!!!!')
+    def action_redirect(self):
         return {
-            'effect': {
-                'fadeout': 'slow',
-                'message': 'Clicked Successfully',
-                'type': 'rainbow_man',
-            }
+            'type': 'ir.actions.act_url',
+            'url': 'https://fager-portfolio.vercel.app/',
         }
 
     def action_in_consultation(self):
@@ -69,6 +65,13 @@ class HospitalAppointment(models.Model):
     def action_done(self):
         for rec in self:
             rec.state = 'done'
+        return {
+            'effect': {
+                'fadeout': 'slow',
+                'message': 'Done',
+                'type': 'rainbow_man',
+            }
+        }
 
     def action_cancel(self):
         action = self.env.ref('om_hospital.action_cancel_appointment').read()[0]
