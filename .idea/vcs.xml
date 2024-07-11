@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/custom_addons/eblagodoo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fageer" vcs="Git" />
   </component>
 </project>
