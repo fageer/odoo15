@@ -1,5 +1,3 @@
-<!-- views/sale_order_line_view.xml -->
-
 <odoo>
     <record id="view_order_form_inherit" model="ir.ui.view">
         <field name="name">sale.order.line.inherit</field>
