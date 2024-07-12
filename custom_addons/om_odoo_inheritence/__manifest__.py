@@ -6,9 +6,9 @@
     'author': "Fager Mohsen",
     'website': "http://www.github.com/fageer",
     'version': '0.1',
-    'depends': ['sale'],
+    'depends': ['base', 'sale'],
     'data': [
-        'views/sale_order_view.xml',
+        'views/sale_order_line_view.xml',
     ],
     'demo': [],
 }
