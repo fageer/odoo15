@@ -19,7 +19,8 @@
         id="menu_reporting"
         name="Reporting"
         parent="menu_room_booking_root"
-        sequence="1"/>
+        sequence="1"
+        groups="group_room_booking_administrator"/>
 
 
     <menuitem
