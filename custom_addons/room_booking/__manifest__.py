@@ -13,6 +13,7 @@
         'data/room_squ.xml',
         'data/booking_squ.xml',
         'data/mail_template_data.xml',
+        'data/meeting_done_cron.xml',
         'wizard/room_booking_report_view.xml',
         'views/menu.xml',
         'views/facility_room_view.xml',

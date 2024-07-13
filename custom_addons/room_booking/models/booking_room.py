@@ -46,14 +46,11 @@ class BookingRoom(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency', related='company_id.currency_id')
     invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
     qr_code = fields.Binary("QR Code", compute='generate_qr_code')
-    
 
-    
     def _compute_invoice_count(self):
         for record in self:
             record.invoice_count = self.env['account.move'].search_count([('id', '=', record.move_id.id)])
-    
-    
+
     def action_open_invoice(self):
         print(self.move_id.ids)
         print(self.invoice_count)
@@ -65,8 +62,7 @@ class BookingRoom(models.Model):
             'view_mode': 'tree,form',
             'target': 'current',
         }
-    
-    
+
     def create_invoice(self):
         """ Create a sample invoice """
         print(self.organizer.id)
@@ -90,8 +86,7 @@ class BookingRoom(models.Model):
         invoice.action_post()
 
         return invoice
-    
-    
+
     @api.onchange('room_domain')
     def _onchange_room_domain(self):
         domain =[('state', '!=', 'not_available')]
@@ -124,9 +119,7 @@ class BookingRoom(models.Model):
                 img.save(temp, format="PNG")
                 qr_image = base64.b64encode(temp.getvalue())
                 rec.qr_code = qr_image
-                
 
-    
     @api.depends('start_date', 'end_date', 'room_id')
     def _compute_price(self):
         for rec in self:
@@ -138,12 +131,10 @@ class BookingRoom(models.Model):
                 rec.total_of_hours = hours
             else:
                 rec.price = 0
-                
 
     @api.onchange('organizer')
     def onchange_organizer(self):
         self.department_id = self.organizer.department_id
-
 
     def send_email(self):
         template = self.env.ref('room_booking.booking_room_mail_template')
@@ -151,8 +142,6 @@ class BookingRoom(models.Model):
             for guest in rec.guests_lines_ids:
                 template.email_to = guest.email
                 template.send_mail(guest.id, force_send=True)
-
-
 
     @api.model
     def create(self, vals):
@@ -175,7 +164,6 @@ class BookingRoom(models.Model):
         self.env['mail.activity'].create(data)
         return new
 
-
     def confirm(self):
         for rec in self:
             if rec.room_id.state == 'available':
@@ -184,9 +172,8 @@ class BookingRoom(models.Model):
             rec.room_state = 'confirm'
         self.message_post(body="Room Booking Successfully")
 
-
-    def meeting_done(self):
-
+    @api.model
+    def _meeting_done(self):
         bookings = self.env['booking.room'].search([('end_date', '<=', fields.Datetime.now()),
                                                     ('room_state', '=', 'confirm')])
         for rec in bookings:
@@ -197,11 +184,9 @@ class BookingRoom(models.Model):
             rec.message_post(body="Room Booking Done")
 
 
-
 class EmployeeLines(models.Model):
     _name = "employee.lines"
     _description = "Employee Lines"
-
 
     employee_id = fields.Many2one('hr.employee', string='Employee')
     work_phone = fields.Char(string='Phone')
@@ -214,13 +199,10 @@ class EmployeeLines(models.Model):
         self.work_email = self.employee_id.work_email
 
 
-
-
 class GuestsLines(models.Model):
     _name = "guests.lines"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Guests Lines"
-
 
     guests_id = fields.Many2one('res.partner', string='Guests')
     phone = fields.Char(string='Phone')

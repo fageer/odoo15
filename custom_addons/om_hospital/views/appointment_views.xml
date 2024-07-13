@@ -44,30 +44,6 @@
     </record>
 
 
-    <record id="view_hospital_appointment_calendar" model="ir.ui.view">
-        <field name="name">hospital.appointment.calendar</field>
-        <field name="model">hospital.appointment</field>
-        <field name="arch" type="xml">
-            <calendar string="Appointments" date_start="booking_date" mode="month" date_delay="duration" color="patient_id"
-                        quick_add="False" hide_time="True" form_view_id="%(om_hospital.view_hospital_appointment_form)d"
-                        event_open_popup="True" event_limit="4">
-                <field name="patient_id" filters="1" avatar_field="image"/>
-                <field name="state" filters="1" invisible="1"/>
-            </calendar>
-        </field>
-    </record>
-
-    <record id="view_hospital_appointment_graph" model="ir.ui.view">
-        <field name="name">hospital.appointment.graph</field>
-        <field name="model">hospital.appointment</field>
-        <field name="arch" type="xml">
-            <graph string="Appointments Graph" type="pie">
-                <field name="patient_id"/>
-                <field name="duration" type="measure"/>
-            </graph>
-        </field>
-    </record>
-
     <record id="view_hospital_appointment_tree" model="ir.ui.view">
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
@@ -211,6 +187,30 @@
         </field>
     </record>
 
+
+    <record id="view_hospital_appointment_calendar" model="ir.ui.view">
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments" date_start="booking_date" mode="month" date_delay="duration" color="patient_id"
+                        quick_add="False" hide_time="True" form_view_id="%(om_hospital.view_hospital_appointment_form)d"
+                        event_open_popup="True" event_limit="4">
+                <field name="patient_id" filters="1" avatar_field="image"/>
+                <field name="state" filters="1" invisible="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_hospital_appointment_graph" model="ir.ui.view">
+        <field name="name">hospital.appointment.graph</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <graph string="Appointments Graph" type="pie">
+                <field name="patient_id"/>
+                <field name="duration" type="measure"/>
+            </graph>
+        </field>
+    </record>
 
     <record id="view_hospital_appointment_search" model="ir.ui.view">
         <field name="name">hospital.appointment.search</field>
