@@ -43,7 +43,7 @@ class HospitalAppointment(models.Model):
             for line in rec.pharmacy_lines_ids:
                 total += line.price_subtotal
             rec.total = total
-            print(total)
+            # print(total)
 
     def unlink(self):
         for rec in self:
@@ -64,6 +64,16 @@ class HospitalAppointment(models.Model):
         return {
             'type': 'ir.actions.act_url',
             'url': 'https://fager-portfolio.vercel.app/',
+        }
+
+    def action_send_whatsapp(self):
+        if not self.patient_id.phone:
+            raise ValidationError(_("Patient haven't phone number."))
+        message = """Hi _%s_, Your Appointment Number is: *%s*, Thank You.""" % (self.patient_id.name, self.ref)
+        whatsapp_api_url = 'https://api.whatsapp.com/send?phone=%s&text=%s' % (self.patient_id.phone, message)
+        return {
+            'type': 'ir.actions.act_url',
+            'url': whatsapp_api_url,
         }
 
     def action_in_consultation(self):

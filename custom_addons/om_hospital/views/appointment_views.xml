@@ -88,7 +88,8 @@
                 <header>
                     <button name="action_in_consultation" string="In Consultation" data-hotkey="i" type="object" states="draft" class="oe_highlight"/>
                     <button name="action_done" string="Mark As Done" type="object" data-hotkey="v" states="in_consultation" class="oe_highlight"/>
-                    <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" data-hotkey="z" 
+                    <button name="action_send_whatsapp" string="Send Whatsapp" type="object" data-hotkey="w" class="oe_highlight" icon="fa-whatsapp"/>
+                    <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" data-hotkey="z"
                         context="{'default_appointment_id': active_id,
                                     'default_reason': 'test',
                                     'hide_appointment': '1'}" 
