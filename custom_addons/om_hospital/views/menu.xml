@@ -9,7 +9,7 @@
 
     <menuitem
         id="menu_patient_master"
-        name="Patient_Details"
+        name="Patient Details"
         parent="menu_hospital_root"
         sequence="0"/>
 
