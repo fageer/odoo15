@@ -78,7 +78,14 @@
                                     <t t-foreach="doc.experience_lines_ids" t-as="exp">
                                         <div class="exp">
                                             <h3><t t-esc="exp.company_name"/></h3>
-                                            <span><t t-esc="exp.experience_start_date"/> - <t t-esc="exp.experience_end_date"/></span>
+                                            <span><t t-esc="exp.experience_start_date"/> -
+                                                <t t-if="exp.experience_end_date">
+                                                    <t t-esc="exp.experience_end_date"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <small>Present</small>
+                                                </t>
+                                               </span>
                                             <h4><t t-esc="exp.job_position.job_name"/></h4>
                                             <p><t t-esc="exp.experience_summary"/></p>
                                         </div>
@@ -157,7 +164,7 @@
                                     <li class="lang" style="margin-bottom: 5px;">Name: Mohammed Sadig</li>
                                     <li class="lang" style="margin-bottom: 5px;">Job Position : Training Director</li>
                                     <li class="lang" style="margin-bottom: 5px;">Company : Plus Tech</li>
-                                    <li class="lang" style="margin-bottom: 5px;"><i style="margin-right:5px;" class="fa-solid fa-phone"/>Phone : +966568880396</li>
+                                    <li class="lang" style="margin-bottom: 5px;">Phone : +966568880396</li>
                                 </ul>
                             </div>
                 

@@ -83,7 +83,14 @@
                                     <t t-foreach="doc.experience_lines_ids" t-as="exp">
                                         <div class="exp">
                                             <h3><t t-esc="exp.company_name"/></h3>
-                                            <span><t t-esc="exp.experience_start_date"/> - <t t-esc="exp.experience_end_date"/></span>
+                                            <span><t t-esc="exp.experience_start_date"/> -
+                                                <t t-if="exp.experience_end_date">
+                                                    <t t-esc="exp.experience_end_date"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <small>Present</small>
+                                                </t>
+                                               </span>
                                             <h4><t t-esc="exp.job_position.job_name"/></h4>
                                             <p><t t-esc="exp.experience_summary"/></p>
                                         </div>
