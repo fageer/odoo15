@@ -1,0 +1,14 @@
+<!-- views/stock_move_view.xml -->
+
+<odoo>
+    <record id="view_account_asset_category_inherit" model="ir.ui.view">
+        <field name="name">account.asset.category.inherit</field>
+        <field name="model">account.asset.category</field>
+        <field name="inherit_id" ref="om_account_asset.view_account_asset_category_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="after">
+                <field name="model_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
