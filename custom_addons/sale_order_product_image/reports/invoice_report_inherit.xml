@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="invoice_report_inherit" inherit_id="account.report_invoice_document">
+
+        <xpath expr="//th[@name='th_description']" position="after">
+            <th name="th_img" class="text-left">Product Image</th>
+        </xpath>
+        <xpath expr="//td[@name='account_invoice_line_name']" position="after">
+            <td name="td_product_img">
+                <img t-att-src="'data:image/png;base64,%s' % to_text(line.product_img)" style="width:100px; height:100px;" alt="Product Image"/>
+            </td>
+        </xpath>
+
+    </template>
+</odoo>
