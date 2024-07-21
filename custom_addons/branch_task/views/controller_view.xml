@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_details_page" name="Sale Details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center><h3 style="">Sale Order Details:- </h3></center>
+                    <br/>
+                    <table class="table-striped table">
+                        <thead>
+                            <tr style="border: 2px solid black; background-color: rgb(109, 108, 108); color: white;">
+                                <h6><b>
+                                    <th > Sale Order</th>
+                                    <th > Customer</th>
+                                    <th > Date</th>
+                                    <th > State</th>
+                                </b></h6>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <t t-foreach="my_details" t-as="order">
+                                <tr>
+                                    <td >
+                                        <span><t t-esc="order['name']"/></span>
+                                    </td>
+                                    <td >
+                                        <span><t t-esc="order['partner_id']['name']"/></span>
+                                    </td>
+                                    <td >
+                                        <span><t t-esc="order['date_order']"/></span>
+                                    </td>
+                                    <td >
+                                        <span><t t-esc="order['state']"/></span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-body" style="padding: 1px 50px;">
+                    <form method="post" class="s website_form form-horizontal container-fluid mt32" action="/branch_request_submit">
+                        <center>
+                            <h6 class="">Name</h6>
+                            <input type="input" name="branch_name" id="branch_name"/>
+                            <br/>
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-info">
+                                    Create
+                                    <i class="fa fa-check-square" aria-hidden="true"/>
+                                </button>
+                            </div>
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

@@ -7,7 +7,7 @@
     'website': "http://www.yourcompany.com",
     'category': 'Uncategorized',
     'version': '0.1',
-    'depends': ['base', 'mail', 'account', 'product', 'sale', 'stock'],
+    'depends': ['base', 'mail', 'account', 'product', 'sale', 'stock', 'website'],
     'data': [
         'security/ir.model.access.csv',
         'data/branches_seq.xml',
@@ -16,5 +16,6 @@
         'views/menu.xml',
         'views/branches_view.xml',
         'views/stock_request_view.xml',
+        'views/controller_view.xml',
     ],
 }
