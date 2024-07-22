@@ -6,11 +6,23 @@ class BranchBranch(models.Model):
     _description = "Branches"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    ref = fields.Char(string='Referance', readonly=True)
+    ref = fields.Char(string='Reference', readonly=True)
     name = fields.Char(string='Name', required=True)
     employees_ids = fields.Many2many('res.users', string='Employees')
     responsible_id = fields.Many2one('res.users', string='Responsible')
     location_id = fields.Many2one('stock.location', string='Location', required=True)
+
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if not default.get('name'):
+            default['name'] = _(f"{self.name} (Copy)")
+        return super(BranchBranch, self).copy(default)
+
+    _sql_constraints = [
+        ('unique_name', 'unique (name)', 'Name Already Exists.'),
+    ]
 
     @api.model
     def create(self, vals):
