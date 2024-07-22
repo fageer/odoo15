@@ -20,15 +20,14 @@ class BranchApi(http.Controller):
             request.env['branch.branch'].sudo().create(vals)
             return {'message': 'Branch Created Successfully'}
         except Exception as error:
-            print("ERROR", error)
+            return {'error': error}
 
     @http.route("/v1/branch/<int:branch_id>", methods=["PUT"], type="json", auth="public", csrf=False)
     def update_branch(self, **kw):
         args = request.httprequest.data.decode()
         vals = json.loads(args)
-        # print(vals)
-        # try:
-        branch = request.env['branch.branch'].browse(kw.get('branch_id')).write(vals)
-        print(branch.name)
-        # except Exception as error:
-        #     print("ERROR: ", error)
+        try:
+            request.env['branch.branch'].browse(kw.get('branch_id')).write(vals)
+            return {'message': 'Branch Updated Successfully'}
+        except Exception as error:
+            return {'error': error}
