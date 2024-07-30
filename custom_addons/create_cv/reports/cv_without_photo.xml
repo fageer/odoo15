@@ -50,17 +50,17 @@
                                 <h1 class="person_name"><t t-esc="doc.name_id.name"/></h1>
                                 <h2 class="person_job"><t t-esc="doc.job_title.job_name"/></h2>
                                 <div>
-                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-solid fa-location-dot"/><t t-esc="doc.city_id.name"/>, <t t-esc="doc.country_id.name"/></a>
-                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-regular fa-envelope"/><t t-esc="doc.email"/></a>
-                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-solid fa-phone"/><t t-esc="doc.phone_number"/></a>
+                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-solid fa-location-dot"/><t t-esc="doc.city_id.name"/>, <t t-esc="doc.country_id.name"/> | </a>
+                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-regular fa-envelope"/><t t-esc="doc.email"/> | </a>
+                                    <a style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-solid fa-phone"/><t t-esc="doc.phone_number"/> | </a>
                                     <t t-if="doc.website">
-                                        <a t-att-href="doc.website" style="margin-right: 10px;"><i style="margin-right:5px;"  class="fa-solid fa-briefcase"/>Portfolio</a>
+                                        <a t-att-href="doc.website" style="margin-right: 10px;"><i style="margin-right:5px;"  class="fa-solid fa-briefcase"/><t t-esc="doc.website"/> | </a>
                                     </t>
                                     <t t-if="doc.github">
-                                        <a t-att-href="doc.github" style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-brands fa-github"/>Github</a>
+                                        <a t-att-href="doc.github" style="margin-right: 10px;"><i style="margin-right:5px;" class="fa-brands fa-github"/><t t-esc="doc.github"/> | </a>
                                     </t>
                                     <t t-if="doc.linkedin">
-                                        <a t-att-href="doc.linkedin"><i style="margin-right:5px;" class="fa-brands fa-linkedin-in"/>LinkedIn</a>
+                                        <a t-att-href="doc.linkedin"><i style="margin-right:5px;" class="fa-brands fa-linkedin-in"/><t t-esc="doc.linkedin"/> | </a>
                                     </t>
                                 </div>
                             </div>
@@ -158,16 +158,6 @@
                                     </t>
                                 </ul>
                             </div>
-                            <div class="Recommendation" style="margin-top: 50px;">
-                                <h1 style="border-bottom: 1px solid; font-size:18px;">Recommendation</h1>
-                                <ul>
-                                    <li class="lang" style="margin-bottom: 5px;">Name: Mohammed Sadig</li>
-                                    <li class="lang" style="margin-bottom: 5px;">Job Position : Training Director</li>
-                                    <li class="lang" style="margin-bottom: 5px;">Company : Plus Tech</li>
-                                    <li class="lang" style="margin-bottom: 5px;">Phone : +966568880396</li>
-                                </ul>
-                            </div>
-                
                 
                         </div>
                     </div>
