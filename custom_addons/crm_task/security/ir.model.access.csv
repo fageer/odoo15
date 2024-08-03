@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.advertiser.advertiser,access_advertiser_advertiser,crm_task.model_advertiser_advertiser,base.group_user,1,1,1,1
+access.advertisement.type.lines,access_advertisement_type_lines,crm_task.model_advertisement_type_lines,base.group_user,1,1,1,1
+

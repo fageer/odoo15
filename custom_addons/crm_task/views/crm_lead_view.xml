@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_crm_lead_form_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
+                <field name="advertiser_id" />
+                <field name="advertisement_type" />
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button name="action_create_quotation" type="object" string="Create Quotation" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
