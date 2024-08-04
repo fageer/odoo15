@@ -9,6 +9,10 @@ class CrmLead(models.Model):
     advertisement_type = fields.Many2one('advertisement.type.lines', string="Advertiser Type", domain="[('advertiser_id', '=', advertiser_id)]")
 
     def action_create_purchase_order(self):
+        advertiser_percentage = self.advertisement_type.percentage
+        total = self.expected_revenue
+        advertiser_price = (advertiser_percentage / 100) * total
+
         # Create the Purchase Order
         purchase_order = self.env['purchase.order'].create({
             'partner_id': self.advertiser_id.advertiser_id.id,
@@ -17,12 +21,12 @@ class CrmLead(models.Model):
                 'product_id': 75,
                 'name': self.advertisement_type.advertiser_type,
                 'product_uom_qty': 1,
-                'price_unit': self.expected_revenue
+                'price_unit': advertiser_price
             })],
         })
+        purchase_order.button_confirm()
 
     def action_create_quotation(self):
-        # Ensure that the partner (customer) is set
         if not self.partner_id:
             raise ValidationError(_("The lead must have a customer before creating a quotation."))
 
@@ -37,11 +41,9 @@ class CrmLead(models.Model):
                 'price_unit': self.expected_revenue
             })],
         })
+        sale_order.action_confirm()
 
         self.action_create_purchase_order()
-
-        # Optionally, you can perform additional actions like confirming the sale order
-        # sale_order.action_confirm()
 
         return {
             'type': 'ir.actions.act_window',
@@ -51,7 +53,3 @@ class CrmLead(models.Model):
             'res_id': sale_order.id,
             'target': 'current',
         }
-
-
-
-
