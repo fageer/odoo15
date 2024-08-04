@@ -6,7 +6,7 @@ class Advertiser(models.Model):
     _description = "Advertiser"
     _rec_name = "advertiser_id"
 
-    advertiser_id = fields.Many2one('res.partner', strring="Advertiser")
+    advertiser_id = fields.Many2one('res.partner', string="Advertiser")
     email = fields.Char(string="Email")
     phone = fields.Char(string="Phone")
     advertisement_type_lines_ids = fields.One2many('advertisement.type.lines', 'advertiser_id', string='Advertisement Type Lines')
