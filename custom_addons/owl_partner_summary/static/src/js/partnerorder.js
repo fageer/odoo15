@@ -17,9 +17,10 @@ class PartnerSummary extends Component {
         alert("Hello")
     }
 };
-Object.assign(PartnerSummary, {
-    template: "owl_partner_summary.PartnerSummary"
-});
+PartnerSummary.template = "owl_partner_summary.PartnerSummary";
+//Object.assign(PartnerSummary, {
+//    template: "owl_partner_summary.PartnerSummary"
+//});
 
 FormRenderer.include({
     async _renderView(){
