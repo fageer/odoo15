@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <t t-name="owl_partner_summary.PartnerSummary" owl="1">
+        <div class="card" style="width: 30rem; text-align: center;">
+          <img
+               t-attf-src="data:image/jpg;base64,{{partner.image_256}}"
+               width="75px"
+               height="75px"
+               style="background-color: #ccc; border-radius: 50%; margin: 10px auto; "/>
+
+          <div class="card-body">
+              <h2 class="card-title"><t t-esc="partner.name"/></h2>
+              <strong><t t-esc="partner.sale_order_count"/></strong>
+              <h5>Orders</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <button href="#" class="btn btn-primary" t-on-click="resPartner">Read more...</button>
+          </div>
+
+        </div>
+    </t>
+</template>

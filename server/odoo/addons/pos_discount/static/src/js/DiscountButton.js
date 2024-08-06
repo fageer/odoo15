@@ -12,6 +12,7 @@ odoo.define('pos_discount.DiscountButton', function(require) {
             useListener('click', this.onClick);
         }
         async onClick() {
+            console.log("==================================Faka")
             var self = this;
             const { confirmed, payload } = await this.showPopup('NumberPopup',{
                 title: this.env._t('Discount Percentage'),
