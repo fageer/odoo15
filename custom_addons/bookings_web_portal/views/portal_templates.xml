@@ -170,6 +170,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="container py-5">
+                        <h1>Chatter Feature</h1>
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="booking"/>
+                        </t>
+                    </div>
                 </section>
             </t>
         </xpath>
