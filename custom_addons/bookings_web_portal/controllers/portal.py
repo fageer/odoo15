@@ -17,12 +17,15 @@ class BookingPortal(CustomerPortal):
                              total=total_bookings,
                              page=page,
                              step=2)
+
         bookings = booking_obj.search([], limit=2, offset=page_details['offset'])
+
         vals = {
             'bookings': bookings,
             'page_name': 'bookings_list_view',
             'pager': page_details,
         }
+
         return request.render('bookings_web_portal.bookings_list_view_portal', vals)
 
     @http.route(['/my/booking/<model("booking.room"):booking_id>'], type='http', website=True)
@@ -31,4 +34,14 @@ class BookingPortal(CustomerPortal):
             "booking": booking_id,
             'page_name': 'bookings_form_view',
         }
+
+        booking_records = request.env['booking.room'].search([])
+        booking_ids = booking_records.ids
+        booking_index = booking_ids.index(booking_id.id)
+
+        if booking_index != 0 and booking_ids[booking_index - 1]:
+            vals['prev_record'] = '/my/booking/{}'.format(booking_ids[booking_index - 1])
+        if booking_index < len(booking_ids) - 1 and booking_ids[booking_index + 1]:
+            vals['next_record'] = '/my/booking/{}'.format(booking_ids[booking_index + 1])
+
         return request.render("bookings_web_portal.bookings_form_view_portal", vals)
