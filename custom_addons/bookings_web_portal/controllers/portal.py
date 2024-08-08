@@ -11,10 +11,17 @@ class BookingPortal(CustomerPortal):
 
     @http.route(['/my/bookings', '/my/bookings/page/<int:page>'], type='http', website=True)
     def bookings_list_view(self, page=1, **kwargs):
-        bookings = request.env['booking.room'].search([])
+        booking_obj = request.env['booking.room']
+        total_bookings = booking_obj.search_count([])
+        page_details = pager(url='/my/bookings',
+                             total=total_bookings,
+                             page=page,
+                             step=2)
+        bookings = booking_obj.search([], limit=2, offset=page_details['offset'])
         vals = {
             'bookings': bookings,
             'page_name': 'bookings_list_view',
+            'pager': page_details,
         }
         return request.render('bookings_web_portal.bookings_list_view_portal', vals)
 
