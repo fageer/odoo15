@@ -9,16 +9,16 @@ class BookingPortal(CustomerPortal):
         res["booking_counts"] = request.env['booking.room'].search_count([])
         return res
 
-    @http.route(['/my/bookings', '/my/bookings/page/<int:page>'], type='http', website=True)
+    @http.route(['/my/bookings', '/my/bookings/page/<int:page>'], type='http', auth="user", website=True)
     def bookings_list_view(self, page=1, **kwargs):
         booking_obj = request.env['booking.room']
-        total_bookings = booking_obj.search_count([])
+        total_bookings = booking_obj.sudo().search_count([])
         page_details = pager(url='/my/bookings',
                              total=total_bookings,
                              page=page,
                              step=5)
 
-        bookings = booking_obj.search([], limit=5, offset=page_details['offset'])
+        bookings = booking_obj.sudo().search([], limit=5, offset=page_details['offset'])
 
         vals = {
             'bookings': bookings,
@@ -27,14 +27,14 @@ class BookingPortal(CustomerPortal):
         }
         return request.render('bookings_web_portal.bookings_list_view_portal', vals)
 
-    @http.route(['/my/booking/<model("booking.room"):booking_id>'], type='http', website=True)
+    @http.route(['/my/booking/<model("booking.room"):booking_id>'], type='http', auth="user", website=True)
     def bookings_form_view(self, booking_id, **kwargs):
         vals = {
             "booking": booking_id,
             'page_name': 'bookings_form_view',
         }
 
-        booking_records = request.env['booking.room'].search([])
+        booking_records = request.env['booking.room'].sudo().search([])
         booking_ids = booking_records.ids
         booking_index = booking_ids.index(booking_id.id)
 

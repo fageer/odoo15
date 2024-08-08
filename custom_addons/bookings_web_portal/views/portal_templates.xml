@@ -15,9 +15,7 @@
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'bookings_list_view'" class="breadcrumb-item">Bookings</li>
             <li t-if="page_name == 'bookings_form_view'" class="breadcrumb-item">
-                <a href="/my/bookings">
-                    Bookings
-                </a>
+                <a href="/my/bookings">Bookings</a> / <span t-out="booking.ref"/>
             </li>
         </xpath>
     </template>
