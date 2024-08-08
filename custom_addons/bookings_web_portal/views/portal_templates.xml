@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="url">/my/bookings</t>
+                <t t-set="title">Bookings Rooms</t>
+                <t t-set="placeholder_count" t-value="'booking_counts'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'bookings_list_view'" class="breadcrumb-item">Bookings</li>
+            <li t-if="page_name == 'bookings_form_view'" class="breadcrumb-item">
+                <a href="/my/bookings">
+                    Bookings
+                </a>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="bookings_list_view_portal">
+            <t t-call="portal.portal_layout">
+                <t t-call="portal.portal_table">
+                    <thead>
+                        <tr>
+                            <th> Reference</th>
+                            <th> Room</th>
+                            <th> Organizer</th>
+                            <th> Total Of Hours</th>
+                            <th> Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <t t-foreach="bookings" t-as="booking">
+                            <tr>
+                                <td>
+                                    <a t-attf-href="/my/booking/#{booking.id}">
+                                        <t t-out="booking.ref"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <t t-out="booking.room_id.room_name"/>
+                                </td>
+                                <td>
+                                    <t t-out="booking.organizer.name"/>
+                                </td>
+                                <td>
+                                    <t t-out="booking.total_of_hours"/> hours
+                                </td>
+                                <td>
+                                    $<t t-out="booking.total"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </t>
+            </t>
+    </template>
+
+    <template id="bookings_form_view_portal" inherit_id="portal.portal_sidebar">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-if="page_name == 'bookings_form_view'">
+                <section style="background-color: #eee;">
+                    <div class="container py-5">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card mb-4">
+                                    <div class="card-body text-center">
+                                        <h3 class="text-muted">Organizer Info</h3>
+                                        <img t-att-src="'data:image/png;base64,%s' % to_text(booking.organizer.partner_id.image_1920)"
+                                             alt="avatar" class="rounded-circle img-fluid" style="width: 150px;" />
+                                        <h5 class="my-3"><t t-out="booking.organizer.name"/></h5>
+                                        <p class="text-muted mb-1"><t t-out="booking.organizer.partner_id.function"/></p>
+                                        <p class="text-muted mb-1">
+                                            <t t-out="booking.organizer.partner_id.email"/>
+                                        </p>
+                                        <p class="text-muted mb-4">
+                                            <t t-out="booking.organizer.phone"/>
+                                        </p>
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button type="button" class="btn btn-primary">Follow</button>
+                                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Reference</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="booking.ref"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Room</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="booking.room_id.room_name"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Room Type</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="booking.room_domain"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Booking Status</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="booking.room_state"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Date and time</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">
+                                                    [<span><t t-out="booking.start_date"/></span>]
+                                                    <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                                                    [<span><t t-out="booking.end_date"/></span>]
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Total Of Hours</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="booking.total_of_hours"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Total</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0">$<t t-out="booking.total"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Address</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="booking.room_id.location_id.name"/></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
