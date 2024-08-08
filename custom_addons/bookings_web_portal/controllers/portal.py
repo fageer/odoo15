@@ -16,16 +16,15 @@ class BookingPortal(CustomerPortal):
         page_details = pager(url='/my/bookings',
                              total=total_bookings,
                              page=page,
-                             step=2)
+                             step=5)
 
-        bookings = booking_obj.search([], limit=2, offset=page_details['offset'])
+        bookings = booking_obj.search([], limit=5, offset=page_details['offset'])
 
         vals = {
             'bookings': bookings,
             'page_name': 'bookings_list_view',
             'pager': page_details,
         }
-
         return request.render('bookings_web_portal.bookings_list_view_portal', vals)
 
     @http.route(['/my/booking/<model("booking.room"):booking_id>'], type='http', website=True)
@@ -43,5 +42,4 @@ class BookingPortal(CustomerPortal):
             vals['prev_record'] = '/my/booking/{}'.format(booking_ids[booking_index - 1])
         if booking_index < len(booking_ids) - 1 and booking_ids[booking_index + 1]:
             vals['next_record'] = '/my/booking/{}'.format(booking_ids[booking_index + 1])
-
         return request.render("bookings_web_portal.bookings_form_view_portal", vals)
