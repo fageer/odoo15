@@ -47,6 +47,13 @@ class BookingRoom(models.Model):
     invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
     qr_code = fields.Binary("QR Code", compute='generate_qr_code')
 
+    def print_custom_report(self):
+        return self.env.ref("room_booking.report_booking_card").report_action(self)
+
+    def _get_report_base_filename(self):
+        return "{} Report".format(self.ref) # Dynamic Report Name
+        # return "Booking Report" # Static Report Name
+
     def _compute_invoice_count(self):
         for record in self:
             record.invoice_count = self.env['account.move'].search_count([('id', '=', record.move_id.id)])

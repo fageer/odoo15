@@ -43,3 +43,11 @@ class BookingPortal(CustomerPortal):
         if booking_index < len(booking_ids) - 1 and booking_ids[booking_index + 1]:
             vals['next_record'] = '/my/booking/{}'.format(booking_ids[booking_index + 1])
         return request.render("bookings_web_portal.bookings_form_view_portal", vals)
+
+    @http.route(['/my/booking/print/<model("booking.room"):booking_id>'], type='http', auth="user", website=True)
+    def bookings_report_print(self, booking_id, **kwargs):
+        print("=============== calling", booking_id)
+        return self._show_report(model=booking_id,
+                                 report_type="pdf",
+                                 report_ref="room_booking.report_booking_card",
+                                 download=True)

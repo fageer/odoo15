@@ -15,7 +15,7 @@
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'bookings_list_view'" class="breadcrumb-item">Bookings</li>
             <li t-if="page_name == 'bookings_form_view'" class="breadcrumb-item">
-                <a href="/my/bookings">Bookings</a> / <span t-out="booking.ref"/>
+                <a href="/my/bookings">Bookings</a> / <span class="text-muted" t-out="booking.ref"/>
             </li>
         </xpath>
     </template>
@@ -72,6 +72,11 @@
                                         <h3 class="text-muted">Organizer Info</h3>
                                         <img t-att-src="'data:image/png;base64,%s' % to_text(booking.organizer.partner_id.image_1920)"
                                              alt="avatar" class="rounded-circle img-fluid" style="width: 150px;" />
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button type="button" class="btn btn-primary mt-3">
+                                                <a t-attf-href="/my/booking/print/{{booking.id}}" class="fa fa-download" style="color: white;"> Download</a>
+                                            </button>
+                                        </div>
                                         <h5 class="my-3"><t t-out="booking.organizer.name"/></h5>
                                         <p class="text-muted mb-1"><t t-out="booking.organizer.partner_id.function"/></p>
                                         <p class="text-muted mb-1">

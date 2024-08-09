@@ -71,6 +71,11 @@
                             attrs="{'invisible': [('room_state', '!=', 'confirm')]}"
                             type="object" class="oe_highlight"/>
 
+
+                    <button name="print_custom_report"
+                            string="Print Report"
+                            type="object" class="oe_highlight"/>
+
                 </header>
                 <sheet>
 
