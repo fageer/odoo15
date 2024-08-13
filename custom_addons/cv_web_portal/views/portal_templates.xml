@@ -14,9 +14,9 @@
     <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'cvs_list_view'" class="breadcrumb-item">CVs</li>
-<!--            <li t-if="page_name == 'cvs_form_view'" class="breadcrumb-item">-->
-<!--                <a href="/my/cvs">cvs</a> / <span class="text-muted" t-out="cv.ref"/>-->
-<!--            </li>-->
+            <li t-if="page_name == 'cvs_form_view'" class="breadcrumb-item">
+                <a href="/my/cvs">cvs</a> / <span class="text-muted" t-out="cv.ref"/>
+            </li>
         </xpath>
     </template>
 
@@ -56,130 +56,79 @@
             </t>
     </template>
 
-<!--    <template id="cvs_form_view_portal" inherit_id="portal.portal_sidebar">-->
-<!--        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">-->
-<!--            <t t-if="page_name == 'cvs_form_view'">-->
-<!--                <section style="background-color: #eee;">-->
-<!--                    <div class="container py-5">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-lg-4">-->
-<!--                                <div class="card mb-4">-->
-<!--                                    <div class="card-body text-center">-->
-<!--                                        <h3 class="text-muted">Organizer Info</h3>-->
-<!--                                        <img t-att-src="'data:image/png;base64,%s' % to_text(cv.organizer.partner_id.image_1920)"-->
-<!--                                             alt="avatar" class="rounded-circle img-fluid" style="width: 150px;" />-->
+    <template id="cvs_form_view_portal" inherit_id="portal.portal_sidebar">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-if="page_name == 'cvs_form_view'">
+                <section style="background-color: #eee;">
+                    <div class="container py-5">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card mb-4">
+                                    <div class="card-body text-center">
+                                        <img t-att-src="'data:image/png;base64,%s' % to_text(cv.name_id.image_1920)"
+                                             alt="avatar" class="rounded-circle img-fluid" style="width: 150px;" />
 <!--                                        <div class="d-flex justify-content-center mb-2">-->
 <!--                                            <button type="button" class="btn btn-primary mt-3">-->
 <!--                                                <a t-attf-href="/my/cv/print/{{cv.id}}" class="fa fa-download" style="color: white;"> Download</a>-->
 <!--                                            </button>-->
 <!--                                        </div>-->
-<!--                                        <h5 class="my-3"><t t-out="cv.organizer.name"/></h5>-->
-<!--                                        <p class="text-muted mb-1"><t t-out="cv.organizer.partner_id.function"/></p>-->
-<!--                                        <p class="text-muted mb-1">-->
-<!--                                            <t t-out="cv.organizer.partner_id.email"/>-->
-<!--                                        </p>-->
-<!--                                        <p class="text-muted mb-4">-->
-<!--                                            <t t-out="cv.organizer.phone"/>-->
-<!--                                        </p>-->
-<!--                                        <div class="d-flex justify-content-center mb-2">-->
-<!--                                            <button type="button" class="btn btn-primary">Follow</button>-->
-<!--                                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="col-lg-8">-->
-<!--                                <div class="card mb-4">-->
-<!--                                    <div class="card-body">-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">Reference</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0"><t t-out="cv.ref"/></p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <hr/>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">Room</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0"><t t-out="cv.room_id.room_name"/></p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <hr/>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">Room Type</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0"><t t-out="cv.room_domain"/></p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <hr/>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">cv Status</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0"><t t-out="cv.room_state"/></p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <hr/>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">Date and time</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0">-->
-<!--                                                    [<span><t t-out="cv.start_date"/></span>]-->
-<!--                                                    <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>-->
-<!--                                                    [<span><t t-out="cv.end_date"/></span>]-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <hr/>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">Total Of Hours</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0"><t t-out="cv.total_of_hours"/></p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <hr/>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">Total</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0">$<t t-out="cv.total"/></p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <hr/>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-sm-3">-->
-<!--                                                <p class="mb-0">Address</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-sm-9">-->
-<!--                                                <p class="text-muted mb-0"><t t-out="cv.room_id.location_id.name"/></p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="container py-5">-->
-<!--                        <h1>Chatter Feature</h1>-->
-<!--                        <t t-call="portal.message_thread">-->
-<!--                            <t t-set="object" t-value="cv"/>-->
-<!--                        </t>-->
-<!--                    </div>-->
-<!--                </section>-->
-<!--            </t>-->
-<!--        </xpath>-->
-<!--    </template>-->
+                                        <h5 class="my-3"><t t-out="cv.name_id.name"/></h5>
+                                        <p class="text-muted mb-1"><t t-out="cv.job_title.job_name"/></p>
+                                        <p class="text-muted mb-1">
+                                            <t t-out="cv.name_id.email"/>
+                                        </p>
+                                        <p class="text-muted mb-4">
+                                            <t t-out="cv.name_id.phone"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Reference</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="cv.ref"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Name</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="cv.name_id.name"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Email</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="cv.name_id.email"/></p>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Phone Number</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><t t-out="cv.name_id.phone"/></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
 
 </odoo>
