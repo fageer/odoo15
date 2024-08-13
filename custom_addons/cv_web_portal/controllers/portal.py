@@ -44,10 +44,10 @@ class CvPortal(CustomerPortal):
             vals['next_record'] = '/my/cv/{}'.format(cv_ids[cv_index + 1])
         return request.render("cv_web_portal.cvs_form_view_portal", vals)
 
-    # @http.route(['/my/booking/print/<model("booking.room"):booking_id>'], type='http', auth="user", website=True)
-    # def bookings_report_print(self, booking_id, **kwargs):
-    #     print("=============== calling", booking_id)
-    #     return self._show_report(model=booking_id,
-    #                              report_type="pdf",
-    #                              report_ref="room_booking.report_booking_card",
-    #                              download=True)
+    @http.route(['/my/cv/print/<model("create.cv"):cv_id>'], type='http', auth="user", website=True)
+    def cv_print(self, cv_id, **kwargs):
+        print("=============== calling", cv_id)
+        return self._show_report(model=cv_id,
+                                 report_type="pdf",
+                                 report_ref="create_cv.report_create_cv_without_photo",
+                                 download=True)

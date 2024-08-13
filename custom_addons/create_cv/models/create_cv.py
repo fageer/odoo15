@@ -6,7 +6,6 @@ class CreateCv(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'ref'
 
-
     image = fields.Image(string='Image')
     name_id = fields.Many2one('res.partner', string='Name', required=True, default=lambda self: self.env.user.partner_id.id)
     ref = fields.Char(string='Reference', readonly=True)
@@ -25,8 +24,11 @@ class CreateCv(models.Model):
     education_lines_ids = fields.One2many('education.lines', 'cv_id', string='Education Lines')
     certificate_lines_ids = fields.One2many('certificate.lines', 'cv_id', string='Certificate Lines')
     project_lines_ids = fields.One2many('project.lines', 'cv_id', string='Project Lines')
-    
-    
+
+    def _get_report_base_filename(self):
+        return self.ref # Dynamic Report Name
+        # return "Booking Report" # Static Report Name
+
     @api.model
     def create(self, vals):
         vals['ref'] = self.env['ir.sequence'].next_by_code('create.cv')
