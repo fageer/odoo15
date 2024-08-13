@@ -12,31 +12,42 @@ class CvPortal(CustomerPortal):
         job_records = request.env['jobs'].sudo().search([])
         skill_records = request.env['skills.tags'].sudo().search([])
         current_partner = request.env.user.partner_id
+        # VALS
+        vals = {
+            'partner_records': partner_records,
+            'country_records': country_records,
+            'city_records': city_records,
+            'job_records': job_records,
+            'skill_records': skill_records,
+            'current_partner': current_partner,
+            'page_name': 'new_cv'
+        }
+        # Check Values
         if request.httprequest.method == "POST":
             print(kwargs)
-            cv_vals = {
-                'image': kwargs.get('image'),
-                'name_id': kwargs.get('name_id'),
-                'email': kwargs.get('email'),
-                'job_title': kwargs.get('job_title'),
-                'phone_number': kwargs.get('phone_number'),
-                'country_id': kwargs.get('country_id'),
-                'city_id': kwargs.get('city_id'),
-                'summary': kwargs.get('summary')
-            }
-            request.env['create.cv'].sudo().create(cv_vals)
+            error_list = []
+            if not kwargs.get('name_id'):
+                error_list.append("Name field is mandatory.")
+            if not kwargs.get('summary'):
+                error_list.append("Summary field is mandatory.")
+            if not error_list:
+                cv_vals = {
+                    'image': kwargs.get('image'),
+                    'name_id': kwargs.get('name_id'),
+                    'email': kwargs.get('email'),
+                    'job_title': kwargs.get('job_title'),
+                    'phone_number': kwargs.get('phone_number'),
+                    'country_id': kwargs.get('country_id'),
+                    'city_id': kwargs.get('city_id'),
+                    'summary': kwargs.get('summary')
+                }
+                request.env['create.cv'].sudo().create(cv_vals)
+                success = "CV Created Successfully!"
+                vals['success_msg'] = success
+            else:
+                vals['error_list'] = error_list
         else:
             print("calling GET Method =============")
-
-        vals = {
-                'partner_records': partner_records,
-                'country_records': country_records,
-                'city_records': city_records,
-                'job_records': job_records,
-                'skill_records': skill_records,
-                'current_partner': current_partner,
-                'page_name': 'new_cv'
-                }
         return request.render('cv_web_portal.new_cv_form_view_portal', vals)
 
     def _prepare_home_portal_values(self, counters):
