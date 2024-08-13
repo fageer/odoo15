@@ -16,9 +16,9 @@ class BookingPortal(CustomerPortal):
         page_details = pager(url='/my/bookings',
                              total=total_bookings,
                              page=page,
-                             step=5)
+                             step=10)
 
-        bookings = booking_obj.sudo().search([], limit=5, offset=page_details['offset'])
+        bookings = booking_obj.sudo().search([], limit=10, offset=page_details['offset'])
 
         vals = {
             'bookings': bookings,
