@@ -24,7 +24,6 @@ class CvPortal(CustomerPortal):
         }
         # Check Values
         if request.httprequest.method == "POST":
-            print(kwargs)
             error_list = []
             if not kwargs.get('name_id'):
                 error_list.append("Name field is mandatory.")
@@ -52,19 +51,19 @@ class CvPortal(CustomerPortal):
 
     def _prepare_home_portal_values(self, counters):
         res = super(CvPortal, self)._prepare_home_portal_values(counters)
-        res["cv_counts"] = request.env['create.cv'].search_count([])
+        res["cv_counts"] = request.env['create.cv'].search_count([('name_id','=',request.env.user.partner_id.id)])
         return res
 
     @http.route(['/my/cvs', '/my/cvs/page/<int:page>'], type='http', auth="user", website=True)
     def cvs_list_view(self, page=1, **kwargs):
         cv_obj = request.env['create.cv']
-        total_cvs = cv_obj.sudo().search_count([])
+        total_cvs = cv_obj.sudo().search_count([('name_id','=',request.env.user.partner_id.id)])
         page_details = pager(url='/my/cvs',
                              total=total_cvs,
                              page=page,
                              step=10)
 
-        cvs = cv_obj.sudo().search([], limit=10, offset=page_details['offset'])
+        cvs = cv_obj.sudo().search([('name_id','=',request.env.user.partner_id.id)], limit=10, offset=page_details['offset'])
 
         vals = {
             'cvs': cvs,
@@ -80,7 +79,7 @@ class CvPortal(CustomerPortal):
             'page_name': 'cvs_form_view',
         }
 
-        cv_records = request.env['create.cv'].sudo().search([])
+        cv_records = request.env['create.cv'].sudo().search([('name_id','=',request.env.user.partner_id.id)])
         cv_ids = cv_records.ids
         cv_index = cv_ids.index(cv_id.id)
 
