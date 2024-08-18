@@ -15,19 +15,16 @@ class SaleOrder(models.Model):
         super(SaleOrder, self).action_quotation_sent()
         partner_id = self.partner_id.id
         partner = self.env['res.partner'].browse(partner_id)
-        print("=================== Sent", partner)
         partner.message_post(body="Quotation Sent")
 
     def action_cancel(self):
         super(SaleOrder, self).action_cancel()
         partner_id = self.partner_id.id
         partner = self.env['res.partner'].browse(partner_id)
-        print("=================== Cancel", partner)
         partner.message_post(body=f"Quotation [{self.name}] Canceled")
 
     def action_confirm(self):
         super(SaleOrder, self).action_confirm()
         partner_id = self.partner_id.id
         partner = self.env['res.partner'].browse(partner_id)
-        print("=================== Confirm", partner)
         partner.message_post(body=f"Quotation [{self.name}] Confirmed")
