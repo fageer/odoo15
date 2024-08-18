@@ -1,14 +1,6 @@
 from odoo import api, fields, models
 
 
-# class ResPartner(models.Model):
-#     _inherit = 'res.partner'
-#
-#     def _compute_sale_order_count(self):
-#         super(ResPartner, self)._compute_sale_order_count()
-#         # self.message_post(body="Sale Order Created")
-
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -16,6 +8,26 @@ class SaleOrder(models.Model):
     def create(self, vals):
         sale_order = super(SaleOrder, self).create(vals)
         partner = self.env['res.partner'].browse(vals.get('partner_id'))
-        partner.message_post(body="Sale Order Created")
+        partner.message_post(body="New Quotation Created")
         return sale_order
 
+    def action_quotation_sent(self):
+        super(SaleOrder, self).action_quotation_sent()
+        partner_id = self.partner_id.id
+        partner = self.env['res.partner'].browse(partner_id)
+        print("=================== Sent", partner)
+        partner.message_post(body="Quotation Sent")
+
+    def action_cancel(self):
+        super(SaleOrder, self).action_cancel()
+        partner_id = self.partner_id.id
+        partner = self.env['res.partner'].browse(partner_id)
+        print("=================== Cancel", partner)
+        partner.message_post(body=f"Quotation [{self.name}] Canceled")
+
+    def action_confirm(self):
+        super(SaleOrder, self).action_confirm()
+        partner_id = self.partner_id.id
+        partner = self.env['res.partner'].browse(partner_id)
+        print("=================== Confirm", partner)
+        partner.message_post(body=f"Quotation [{self.name}] Confirmed")
