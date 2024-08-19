@@ -10,6 +10,11 @@
     'data': [
         'views/portal_templates.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'cv_web_portal/static/src/js/get_values.js',
+        ],
+    },
     'demo': [],
     'installable': True,
     'auto_install': False,

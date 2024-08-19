@@ -1,5 +1,6 @@
 from odoo import api, fields, models, _
 
+
 class OwlTodo(models.Model):
     _name = "owl.todo.list"
     _description = "Owl Todo List App"
