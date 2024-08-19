@@ -7,24 +7,22 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, vals):
         sale_order = super(SaleOrder, self).create(vals)
-        partner = self.env['res.partner'].browse(vals.get('partner_id'))
-        partner.message_post(body="New Quotation Created")
-        return sale_order
-
-    def action_quotation_sent(self):
-        super(SaleOrder, self).action_quotation_sent()
-        partner_id = self.partner_id.id
+        partner_id = sale_order.partner_id.id
         partner = self.env['res.partner'].browse(partner_id)
-        partner.message_post(body="Quotation Sent")
+        sale_order_url = f"http://localhost:8066/web#cids=1&menu_id=243&action=398&model=sale.order&view_type=form&id={sale_order.id}"
+        partner.message_post(body=f"Quotation [<a href='{sale_order_url}'>{sale_order.name}</a>] Created")
+        return sale_order
 
     def action_cancel(self):
         super(SaleOrder, self).action_cancel()
         partner_id = self.partner_id.id
         partner = self.env['res.partner'].browse(partner_id)
-        partner.message_post(body=f"Quotation [{self.name}] Canceled")
+        sale_order_url = f"http://localhost:8066/web#cids=1&menu_id=243&action=398&model=sale.order&view_type=form&id={self.id}"
+        partner.message_post(body=f"Quotation [<a href='{sale_order_url}'>{self.name}</a>] Canceled")
 
     def action_confirm(self):
         super(SaleOrder, self).action_confirm()
         partner_id = self.partner_id.id
         partner = self.env['res.partner'].browse(partner_id)
-        partner.message_post(body=f"Quotation [{self.name}] Confirmed")
+        sale_order_url = f"http://localhost:8066/web#cids=1&menu_id=243&action=398&model=sale.order&view_type=form&id={self.id}"
+        partner.message_post(body=f"Quotation [<a href='{sale_order_url}'>{self.name}</a>] Confirmed")
