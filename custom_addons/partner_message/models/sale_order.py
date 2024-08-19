@@ -6,14 +6,17 @@ class SaleOrder(models.Model):
 
     @api.onchange('payment_term_id')
     def onchange_payment_term_id(self):
-        partner_id = self.partner_id.id
-        partner = self.env['res.partner'].browse(partner_id)
-        message = f"""
-           Payment Term
-           <i class="fa fa-long-arrow-right" aria-label="Arrow icon" title="Arrow"/>
-           {self.payment_term_id.name}
-        """
-        partner.message_post(body=message)
+        if self.partner_id:
+            partner = self.partner_id
+            message = f"""
+               Payment Term
+               <i class="fa fa-long-arrow-right" aria-label="Arrow icon" title="Arrow"/>
+               {self.payment_term_id.name}
+            """
+            partner.message_post(body=message)
+        else:
+            # Handle the case where there is no partner associated
+            pass
 
     @api.model
     def create(self, vals):
