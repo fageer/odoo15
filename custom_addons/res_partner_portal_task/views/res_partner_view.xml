@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_inherit" model="ir.ui.view">
+        <field name="name">res_partner_inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <!--Custom Fields-->
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="nationality" />
+                <field name="date_of_birth" />
+                <field name="birth_address" />
+                <field name="id_number" />
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='title']" position="replace">
+                <field name="nationality" />
+                <field name="relationship" />
+                <field name="id_number" />
+            </xpath>
+            <!--End Custom Fields-->
+
+            <!--Invisible Fields-->
+            <xpath expr="//field[@name='child_ids']/form//field[@name='comment']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//label" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//div[@name='div_address']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!--End Invisible Fields-->
+
+        </field>
+    </record>
+
+</odoo>
