@@ -13,12 +13,10 @@ class ResPartnerPortal(CustomerPortal):
         if request.httprequest.method == "POST":
             error_list = []
             if not kwargs.get('name'):
-                error_list.append("Name field is mandatory.")
+                error_list.append("Name field is mandatory ❌!")
             if not error_list:
-                name = kwargs.get('image').filename
-                file = kwargs.get('image')
                 partner_vals = {
-                    'image_1920': base64.b64encode(file.read()),
+                    # 'image_1920': base64.b64encode(file.read()),
                     'name': kwargs.get('name'),
                     'nationality': kwargs.get('nationality'),
                     'date_of_birth': kwargs.get('date_of_birth'),
@@ -26,7 +24,7 @@ class ResPartnerPortal(CustomerPortal):
                     'id_number': kwargs.get('id_number'),
                 }
                 request.env['res.partner'].sudo().create(partner_vals)
-                vals['success_msg'] = "CV Created Successfully!"
+                vals['success_msg'] = "Submited Successfully ✔!"
             else:
                 vals['error_list'] = error_list
 
