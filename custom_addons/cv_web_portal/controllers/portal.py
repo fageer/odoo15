@@ -14,7 +14,6 @@ class CvPortal(CustomerPortal):
         job_records = request.env['jobs'].sudo().search([])
         skill_records = request.env['skills.tags'].sudo().search([])
         current_partner = request.env.user.partner_id
-
         vals = {
             'partner_records': partner_records,
             'country_records': country_records,
@@ -59,7 +58,6 @@ class CvPortal(CustomerPortal):
                 }
                 print("Exp Lines: ", experience_lines)
                 new_cv_id = request.env['create.cv'].sudo().create(cv_vals)
-
                 vals['success_msg'] = "CV Created Successfully ✔!"
             else:
                 vals['error_list'] = error_list
