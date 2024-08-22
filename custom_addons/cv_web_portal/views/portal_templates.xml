@@ -36,127 +36,169 @@
                       <t t-out="error"/>
                     </div>
                 </t>
+                <div class="p-3">
+                    <form method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>General Information</h4>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label for='image' class="input-group-text">Upload Image</label>
+                            <input type="file" name="image" id="image" multiple="true" data-show-upload="true"
+                                   data-show-caption="true" data-show-preview="true" class="form-control"/>
+                        </div>
 
-                <form method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                    <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">General Informations</h1>
+                        <div class="form-group mb-3">
+                            <label for='name_id' class="control-label text-muted">Name</label>
+                            <select  name="name_id" id="name_id" class="form-control link-style">
+                                <option t-esc="current_partner.name" t-att-value="current_partner.id" selected="selected"/>
+                                <t t-foreach="partner_records" t-as="partner">
+                                    <option t-esc="partner.name" t-att-value="partner.id"/>
+                                </t>
+                            </select>
+                        </div>
 
-                    <div class="input-group mb-3">
-                        <label for='image' class="input-group-text">Upload Image</label>
-                        <input type="file" name="image" id="image" multiple="true" data-show-upload="true"
-                               data-show-caption="true" data-show-preview="true" class="form-control"/>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for='email' class="control-label text-muted">Email</label>
+                            <input type="email" name="email" t-att-value="current_partner.email" id="email" class="form-control" placeholder="Email..." required="required"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label for='name_id' class="control-label">Name</label>
-                        <select  name="name_id" id="name_id" class="form-control link-style">
-                            <option t-esc="current_partner.name" t-att-value="current_partner.id" selected="selected"/>
-                            <t t-foreach="partner_records" t-as="partner">
-                                <option t-esc="partner.name" t-att-value="partner.id"/>
-                            </t>
-                        </select>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for='phone_number' class="control-label text-muted">Phone Number</label>
+                            <input type="text" name="phone_number" t-att-value="current_partner.phone" id="phone_number" class="form-control" placeholder="Phone Number..." required="required"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label for='email' class="control-label">Email</label>
-                        <input type="email" name="email" t-att-value="current_partner.email" id="email" class="form-control" placeholder="Email..." required="required"/>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for='job_title' class="control-label text-muted">Job</label>
+                            <select  name="job_title" id="job_title" class="form-control link-style">
+                                <t t-foreach="job_records" t-as="job">
+                                    <option t-esc="job.job_name" t-att-value="job.id"/>
+                                </t>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for='phone_number' class="control-label">Phone Number</label>
-                        <input type="text" name="phone_number" t-att-value="current_partner.phone" id="phone_number" class="form-control" placeholder="Phone Number..." required="required"/>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for='country_id' class="control-label text-muted">Country</label>
+                            <select  name="country_id" id="country_id" class="form-control link-style">
+                                <option t-esc="current_partner.country_id.name" t-att-value="current_partner.id" selected="selected"/>
+                                <t t-foreach="country_records" t-as="country">
+                                    <option t-esc="country.name" t-att-value="country.id"/>
+                                </t>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for='job_title' class="control-label">Job</label>
-                        <select  name="job_title" id="job_title" class="form-control link-style">
-                            <t t-foreach="job_records" t-as="job">
-                                <option t-esc="job.job_name" t-att-value="job.id"/>
-                            </t>
-                        </select>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for='city_id' class="control-label text-muted">City</label>
+                            <select name="city_id" id="city_id" class="form-control link-style">
+                                <option t-esc="current_partner.state_id.name" t-att-value="current_partner.id" selected="selected"/>
+                                <t t-foreach="city_records" t-as="city">
+                                    <option t-esc="city.name" t-att-value="city.id"/>
+                                </t>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for='country_id' class="control-label">Country</label>
-                        <select  name="country_id" id="country_id" class="form-control link-style">
-                            <option t-esc="current_partner.country_id.name" t-att-value="current_partner.id" selected="selected"/>
-                            <t t-foreach="country_records" t-as="country">
-                                <option t-esc="country.name" t-att-value="country.id"/>
-                            </t>
-                        </select>
-                    </div>
+                        <div class="input-group">
+                          <span class="input-group-text">Summary</span>
+                          <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="summary" name="summary" id="summary"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label for='city_id' class="control-label">City</label>
-                        <select name="city_id" id="city_id" class="form-control link-style">
-                            <option t-esc="current_partner.state_id.name" t-att-value="current_partner.id" selected="selected"/>
-                            <t t-foreach="city_records" t-as="city">
-                                <option t-esc="city.name" t-att-value="city.id"/>
-                            </t>
-                        </select>
-                    </div>
 
-                    <div class="input-group">
-                      <span class="input-group-text">Summary</span>
-                      <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="summary" name="summary" id="summary"/>
-                    </div>
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>Personal Information</h4>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for='skills_ids' class="control-label text-muted">Skills</label>
+                            <select name="skills_ids" id="skills_ids" class="js-example-basic-multiple col-xl-6 mb-1 new-get_data" multiple="multiple">
+                                <t t-foreach="skill_records" t-as="skill">
+                                    <option t-att-value="skill.id"><t t-esc="skill.skill_name"/></option>
+                                </t>
+                            </select>
+                        </div>
 
-                    <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">Personal Informations</h1>
-                    <div class="form-group">
-                        <label for='skills_ids' class="control-label">Skills</label>
-                        <select name="skills_ids" id="skills_ids" class="js-example-basic-multiple col-xl-6 mb-1 new-get_data" multiple="multiple">
-                            <t t-foreach="skill_records" t-as="skill">
-                                <option t-att-value="skill.id"><t t-esc="skill.skill_name"/></option>
-                            </t>
-                        </select>
-                    </div>
 
-                    <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">Experience</h1>
-                    <div id="experience_fields">
-                        <div class="experience_block mt-3" >
-                            <div class="row">
-                                <div class="form-group col-6">
-                                    <label for='company_name_1' class="control-label">Company Name</label>
-                                    <input type="text" name="company_name_1" id="company_name_1" class="form-control" placeholder="Company Name..."/>
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>Experience Information</h4>
+                        </div>
+                        <div id="experience_fields">
+                            <div class="experience_block mt-3" >
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='company_name_1' class="control-label text-muted">Company Name</label>
+                                        <input type="text" name="company_name_1" id="company_name_1" class="form-control" placeholder="Company Name..."/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='job_position_1' class="control-label text-muted">Job Position</label>
+                                        <select name="job_position_1" id="job_position_1" class="form-control link-style">
+                                            <t t-foreach="job_records" t-as="job">
+                                                <option t-esc="job.job_name" t-att-value="job.id"/>
+                                            </t>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group col-6">
-                                    <label for='job_position_1' class="control-label">Job Position</label>
-                                    <select name="job_position_1" id="job_position_1" class="form-control link-style">
-                                        <t t-foreach="job_records" t-as="job">
-                                            <option t-esc="job.job_name" t-att-value="job.id"/>
-                                        </t>
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="form-group col-6">
-                                    <label for='experience_start_date_1' class="control-label text-muted">From</label>
-                                    <input type="date" name="experience_start_date_1" id="experience_start_date_1" class="form-control"/>
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='experience_start_date_1' class="control-label text-muted">From</label>
+                                        <input type="date" name="experience_start_date_1" id="experience_start_date_1" class="form-control"/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='experience_end_date_1' class="control-label text-muted">To</label>
+                                        <input type="date" name="experience_end_date_1" id="experience_end_date_1" class="form-control"/>
+                                    </div>
                                 </div>
-                                <div class="form-group col-6">
-                                    <label for='experience_end_date_1' class="control-label text-muted">To</label>
-                                    <input type="date" name="experience_end_date_1" id="experience_end_date_1" class="form-control"/>
-                                </div>
-                            </div>
 
-                            <div class="input-group">
-                              <span class="input-group-text">Experience Summary</span>
-                              <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="experience_summary_1" id="experience_summary_1"/>
+                                <div class="input-group">
+                                  <span class="input-group-text">Experience Summary</span>
+                                  <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="experience_summary_1" id="experience_summary_1"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" id="add_experience" class="btn btn-secondary mt-3">Add Experience</button>
-                    </div>
+    <!--                    <div id="experience_fields">-->
+    <!--                        <div class="experience_block mt-3" >-->
+    <!--                            <div class="row">-->
+    <!--                                <div class="form-group mb-3 col-6">-->
+    <!--                                    <label for='company_name_2' class="control-label text-muted">Company Name</label>-->
+    <!--                                    <input type="text" name="company_name_2" id="company_name_2" class="form-control" placeholder="Company Name..."/>-->
+    <!--                                </div>-->
+    <!--                                <div class="form-group mb-3 col-6">-->
+    <!--                                    <label for='job_position_2' class="control-label text-muted">Job Position</label>-->
+    <!--                                    <select name="job_position_2" id="job_position_2" class="form-control link-style">-->
+    <!--                                        <t t-foreach="job_records" t-as="job">-->
+    <!--                                            <option t-esc="job.job_name" t-att-value="job.id"/>-->
+    <!--                                        </t>-->
+    <!--                                    </select>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
 
+    <!--                            <div class="row">-->
+    <!--                                <div class="form-group mb-3 col-6">-->
+    <!--                                    <label for='experience_start_date_2' class="control-label text-muted">From</label>-->
+    <!--                                    <input type="date" name="experience_start_date_2" id="experience_start_date_2" class="form-control"/>-->
+    <!--                                </div>-->
+    <!--                                <div class="form-group mb-3 col-6">-->
+    <!--                                    <label for='experience_end_date_2' class="control-label text-muted">To</label>-->
+    <!--                                    <input type="date" name="experience_end_date_2" id="experience_end_date_2" class="form-control"/>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
 
-                    <div class="form-group">
-                        <div>
-                            <button type="submit" class="btn btn-success mt-3">Create CV</button>
+    <!--                            <div class="input-group">-->
+    <!--                              <span class="input-group-text">Experience Summary</span>-->
+    <!--                              <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="experience_summary_2" id="experience_summary_2"/>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+                        <div class="form-group mb-3">
+                            <button type="button" id="add_experience" class="btn btn-secondary mt-3">Add Experience</button>
                         </div>
-                    </div>
-                </form>
+
+
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-success mt-3">Create CV</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </t>
         </t>
         <script type="text/javascript">
