@@ -40,6 +40,7 @@
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                     <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">General Informations</h1>
+
                     <div class="input-group mb-3">
                         <label for='image' class="input-group-text">Upload Image</label>
                         <input type="file" name="image" id="image" multiple="true" data-show-upload="true"
@@ -95,10 +96,11 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for='summary' class="control-label">Summary</label>
-                        <textarea cols="30" rows="10" name="summary" t-att-value="summary" id="summary" class="form-control" placeholder="Summary..." />
+                    <div class="input-group">
+                      <span class="input-group-text">Summary</span>
+                      <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="summary" name="summary" id="summary"/>
                     </div>
+
                     <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">Personal Informations</h1>
                     <div class="form-group">
                         <label for='skills_ids' class="control-label">Skills</label>
@@ -109,9 +111,41 @@
                         </select>
                     </div>
 
+                    <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">Experience</h1>
                     <div class="form-group">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Create CV</button>
+                        <label for='company_name' class="control-label">Company Name</label>
+                        <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Company Name..."/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for='job_position' class="control-label">Job Position</label>
+                        <select name="job_position" id="job_position" class="form-control link-style">
+                            <t t-foreach="job_records" t-as="job">
+                                <option t-esc="job.job_name" t-att-value="job.id"/>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for='experience_start_date' class="control-label text-muted">From</label>
+                            <input type="date" name="experience_start_date" id="experience_start_date" class="form-control"/>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for='experience_end_date' class="control-label text-muted">To</label>
+                            <input type="date" name="experience_end_date" id="experience_end_date" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                      <span class="input-group-text">Experience Summary</span>
+                      <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="experience_summary" name="experience_summary" id="experience_summary"/>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" class="btn btn-success mt-3">Create CV</button>
                         </div>
                     </div>
                 </form>

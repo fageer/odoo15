@@ -28,10 +28,17 @@ class CvPortal(CustomerPortal):
         if request.httprequest.method == "POST":
             error_list = []
             if not kwargs.get('name_id'):
-                error_list.append("Name field is mandatory.")
+                error_list.append("Name field is mandatory ❌.")
             if not kwargs.get('summary'):
-                error_list.append("Summary field is mandatory.")
+                error_list.append("Summary field is mandatory ❌.")
             if not error_list:
+                exp_vals = [(0, 0, {
+                    'company_name': kwargs.get('company_name'),
+                    'job_position': kwargs.get('job_position'),
+                    'experience_start_date': kwargs.get('experience_start_date'),
+                    'experience_end_date': kwargs.get('experience_end_date'),
+                    'experience_summary': kwargs.get('experience_summary'),
+                })]
                 file = request.httprequest.files.get('image')
                 cv_vals = {
                     'image': base64.b64encode(file.read()),
@@ -42,12 +49,13 @@ class CvPortal(CustomerPortal):
                     'country_id': kwargs.get('country_id'),
                     'city_id': kwargs.get('city_id'),
                     'summary': kwargs.get('summary'),
+                    'experience_lines_ids': exp_vals,
                 }
-                request.env['create.cv'].sudo().create(cv_vals)
-                vals['success_msg'] = "CV Created Successfully!"
+                new_cv_id = request.env['create.cv'].sudo().create(cv_vals)
+
+                vals['success_msg'] = "CV Created Successfully ✔!"
             else:
                 vals['error_list'] = error_list
-
         return request.render('cv_web_portal.new_cv_form_view_portal', vals)
 
     def _prepare_home_portal_values(self, counters):
