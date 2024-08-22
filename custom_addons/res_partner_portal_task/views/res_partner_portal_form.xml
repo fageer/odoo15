@@ -65,6 +65,24 @@
                             <input type="text" name="id_number" id="id_number" class="form-control" placeholder="ID Number..."/>
                         </div>
 
+                        <div class="form-group mb-3">
+                            <label for='country_id' class="control-label">Country</label>
+                            <select name="country_id" id="country_id" class="form-control link-style">
+                                <t t-foreach="country_records" t-as="country">
+                                    <option t-esc="country.name" t-att-value="country.id"/>
+                                </t>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for='state_id' class="control-label">State</label>
+                            <select name="state_id" id="state_id" class="form-control link-style">
+                                <t t-foreach="state_records" t-as="state">
+                                    <option t-esc="state.name" t-att-value="state.id"/>
+                                </t>
+                            </select>
+                        </div>
+
 
                         <div class="form-group">
                             <div>

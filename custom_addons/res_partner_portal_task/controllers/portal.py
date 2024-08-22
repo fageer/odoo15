@@ -7,8 +7,12 @@ import base64
 class ResPartnerPortal(CustomerPortal):
     @http.route(['/new/partner'], type='http', method=['POST', 'GET'], auth="user", website=True)
     def new_partner(self, **kwargs):
+        country_records = request.env['res.country'].sudo().search([])
+        state_records = request.env['res.country.state'].sudo().search([])
         vals = {
-            'page_name': 'new_partner'
+            'country_records': country_records,
+            'state_records': state_records,
+            'page_name': 'new_partner',
         }
         if request.httprequest.method == "POST":
             error_list = []
@@ -18,6 +22,8 @@ class ResPartnerPortal(CustomerPortal):
                 partner_vals = {
                     # 'image_1920': base64.b64encode(file.read()),
                     'name': kwargs.get('name'),
+                    'country_id': int(kwargs.get('country_id')) if kwargs.get('country_id') else False,
+                    'state_id': int(kwargs.get('state_id')) if kwargs.get('state_id') else False,
                     'nationality': kwargs.get('nationality'),
                     'date_of_birth': kwargs.get('date_of_birth'),
                     'birth_address': kwargs.get('birth_address'),
