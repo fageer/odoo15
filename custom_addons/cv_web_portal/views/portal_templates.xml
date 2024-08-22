@@ -112,34 +112,43 @@
                     </div>
 
                     <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">Experience</h1>
-                    <div class="form-group">
-                        <label for='company_name' class="control-label">Company Name</label>
-                        <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Company Name..."/>
-                    </div>
+                    <div id="experience_fields">
+                        <div class="experience_block mt-3" >
+                            <hr/>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for='company_name_1' class="control-label">Company Name</label>
+                                    <input type="text" name="company_name_1" id="company_name_1" class="form-control" placeholder="Company Name..."/>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for='job_position_1' class="control-label">Job Position</label>
+                                    <select name="job_position_1" id="job_position_1" class="form-control link-style">
+                                        <t t-foreach="job_records" t-as="job">
+                                            <option t-esc="job.job_name" t-att-value="job.id"/>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label for='job_position' class="control-label">Job Position</label>
-                        <select name="job_position" id="job_position" class="form-control link-style">
-                            <t t-foreach="job_records" t-as="job">
-                                <option t-esc="job.job_name" t-att-value="job.id"/>
-                            </t>
-                        </select>
-                    </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for='experience_start_date_1' class="control-label text-muted">From</label>
+                                    <input type="date" name="experience_start_date_1" id="experience_start_date_1" class="form-control"/>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for='experience_end_date_1' class="control-label text-muted">To</label>
+                                    <input type="date" name="experience_end_date_1" id="experience_end_date_1" class="form-control"/>
+                                </div>
+                            </div>
 
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for='experience_start_date' class="control-label text-muted">From</label>
-                            <input type="date" name="experience_start_date" id="experience_start_date" class="form-control"/>
+                            <div class="input-group">
+                              <span class="input-group-text">Experience Summary</span>
+                              <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="experience_summary_1" id="experience_summary_1"/>
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label for='experience_end_date' class="control-label text-muted">To</label>
-                            <input type="date" name="experience_end_date" id="experience_end_date" class="form-control"/>
-                        </div>
                     </div>
-
-                    <div class="input-group">
-                      <span class="input-group-text">Experience Summary</span>
-                      <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="experience_summary" name="experience_summary" id="experience_summary"/>
+                    <div class="form-group">
+                        <button type="button" id="add_experience" class="btn btn-secondary mt-3">Add Experience</button>
                     </div>
 
 
@@ -151,6 +160,24 @@
                 </form>
             </t>
         </t>
+        <script type="text/javascript">
+            let experienceCount = 1;
+
+            document.getElementById('add_experience').addEventListener('click', function() {
+                experienceCount++;
+                let newBlock = document.querySelector('.experience_block').cloneNode(true);
+
+                newBlock.querySelectorAll('input, select, textarea').forEach(function(el) {
+                    let newId = el.id.replace(/\d+$/, experienceCount);
+                    let newName = el.name.replace(/\d+$/, experienceCount);
+                    el.id = newId;
+                    el.name = newName;
+                    el.value = '';  // Clear the value
+                });
+
+                document.getElementById('experience_fields').appendChild(newBlock);
+            });
+        </script>
     </template>
 
     <template id="cvs_list_view_portal">

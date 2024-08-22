@@ -32,13 +32,18 @@ class CvPortal(CustomerPortal):
             if not kwargs.get('summary'):
                 error_list.append("Summary field is mandatory ❌.")
             if not error_list:
-                exp_vals = [(0, 0, {
-                    'company_name': kwargs.get('company_name'),
-                    'job_position': kwargs.get('job_position'),
-                    'experience_start_date': kwargs.get('experience_start_date'),
-                    'experience_end_date': kwargs.get('experience_end_date'),
-                    'experience_summary': kwargs.get('experience_summary'),
-                })]
+                experience_lines = []
+                index = 1
+                while f'company_name_{index}' in kwargs:
+                    exp_vals = {
+                        'company_name': kwargs.get(f'company_name_{index}'),
+                        'job_position': kwargs.get(f'job_position_{index}'),
+                        'experience_start_date': kwargs.get(f'experience_start_date_{index}'),
+                        'experience_end_date': kwargs.get(f'experience_end_date_{index}'),
+                        'experience_summary': kwargs.get(f'experience_summary_{index}'),
+                    }
+                    experience_lines.append((0, 0, exp_vals))
+                    index += 1
                 file = request.httprequest.files.get('image')
                 cv_vals = {
                     'image': base64.b64encode(file.read()),
@@ -49,7 +54,7 @@ class CvPortal(CustomerPortal):
                     'country_id': kwargs.get('country_id'),
                     'city_id': kwargs.get('city_id'),
                     'summary': kwargs.get('summary'),
-                    'experience_lines_ids': exp_vals,
+                    'experience_lines_ids': experience_lines,
                 }
                 new_cv_id = request.env['create.cv'].sudo().create(cv_vals)
 
