@@ -7,7 +7,6 @@ import base64
 class CvPortal(CustomerPortal):
     @http.route(['/new/cv'], type='http', method=['POST', 'GET'], auth="user", website=True)
     def new_cv(self, **kwargs):
-        # Fetch records to be used in the form
         partner_records = request.env['res.partner'].sudo().search([])
         country_records = request.env['res.country'].sudo().search([])
         city_records = request.env['res.country.state'].sudo().search([])
