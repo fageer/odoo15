@@ -34,7 +34,8 @@ class ResPartnerPortal(CustomerPortal):
                     'birth_address': kwargs.get('birth_address'),
                     'id_number': kwargs.get('id_number'),
                 }
-                request.env['res.partner'].sudo().create(partner_vals)
+                new_partner_id = request.env['res.partner'].sudo().create(partner_vals)
+                print("-================", new_partner_id)
                 vals['success_msg'] = "Submited Successfully ✔!"
             else:
                 vals['error_list'] = error_list
