@@ -35,6 +35,7 @@ class CvPortal(CustomerPortal):
                 experience_lines = []
                 index = 1
                 while f'company_name_{index}' in kwargs:
+                    print(f"Processing experience block {index}")
                     exp_vals = {
                         'company_name': kwargs.get(f'company_name_{index}'),
                         'job_position': kwargs.get(f'job_position_{index}'),
@@ -56,6 +57,7 @@ class CvPortal(CustomerPortal):
                     'summary': kwargs.get('summary'),
                     'experience_lines_ids': experience_lines,
                 }
+                print("Exp Lines: ", experience_lines)
                 new_cv_id = request.env['create.cv'].sudo().create(cv_vals)
 
                 vals['success_msg'] = "CV Created Successfully ✔!"

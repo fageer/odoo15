@@ -114,7 +114,6 @@
                     <h1 style="color: #114B5F; font-size:20px; margin:10px 0;">Experience</h1>
                     <div id="experience_fields">
                         <div class="experience_block mt-3" >
-                            <hr/>
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label for='company_name_1' class="control-label">Company Name</label>
