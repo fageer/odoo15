@@ -197,28 +197,28 @@
                                 <button type="submit" class="btn btn-success mt-3">Create CV</button>
                             </div>
                         </div>
+                        <script type="text/javascript">
+                            let experienceCount = 1;
+
+                            document.getElementById('add_experience').addEventListener('click', function() {
+                                experienceCount++;
+                                let newBlock = document.querySelector('.experience_block').cloneNode(true);
+
+                                newBlock.querySelectorAll('input, select, textarea').forEach(function(el) {
+                                    let newId = el.id.replace(/\d+$/, experienceCount);
+                                    let newName = el.name.replace(/\d+$/, experienceCount);
+                                    el.id = newId;
+                                    el.name = newName;
+                                    el.value = '';  // Clear the value
+                                });
+
+                                document.getElementById('experience_fields').appendChild(newBlock);
+                            });
+                        </script>
                     </form>
                 </div>
             </t>
         </t>
-        <script type="text/javascript">
-            let experienceCount = 1;
-
-            document.getElementById('add_experience').addEventListener('click', function() {
-                experienceCount++;
-                let newBlock = document.querySelector('.experience_block').cloneNode(true);
-
-                newBlock.querySelectorAll('input, select, textarea').forEach(function(el) {
-                    let newId = el.id.replace(/\d+$/, experienceCount);
-                    let newName = el.name.replace(/\d+$/, experienceCount);
-                    el.id = newId;
-                    el.name = newName;
-                    el.value = '';  // Clear the value
-                });
-
-                document.getElementById('experience_fields').appendChild(newBlock);
-            });
-        </script>
     </template>
 
     <template id="cvs_list_view_portal">
