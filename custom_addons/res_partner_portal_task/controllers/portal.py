@@ -19,7 +19,7 @@ class ResPartnerPortal(CustomerPortal):
             if not kwargs.get('name'):
                 error_list.append("Name field is mandatory ❌!")
             if not error_list:
-                file = kwargs.get('image')
+                file = request.httprequest.files.get('image')
                 partner_vals = {
                     'image_1920': base64.b64encode(file.read()),
                     'name': kwargs.get('name'),

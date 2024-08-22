@@ -28,7 +28,7 @@
                     </div>
                 </t>
                 <div class="p-3">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>Partner Information</h4>
