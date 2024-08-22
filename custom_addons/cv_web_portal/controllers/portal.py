@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager
+import base64
 
 
 class CvPortal(CustomerPortal):
@@ -31,13 +32,9 @@ class CvPortal(CustomerPortal):
             if not kwargs.get('summary'):
                 error_list.append("Summary field is mandatory.")
             if not error_list:
-                # Handle many2many field
-                skills_ids = kwargs.get('skills_ids', [])
-                if isinstance(skills_ids, str):
-                    skills_ids = [skills_ids]  # Convert to list if only one item selected
-
+                file = request.httprequest.files.get('image')
                 cv_vals = {
-                    'image': kwargs.get('image'),
+                    'image': base64.b64encode(file.read()),
                     'name_id': kwargs.get('name_id'),
                     'email': kwargs.get('email'),
                     'job_title': kwargs.get('job_title'),
@@ -45,7 +42,6 @@ class CvPortal(CustomerPortal):
                     'country_id': kwargs.get('country_id'),
                     'city_id': kwargs.get('city_id'),
                     'summary': kwargs.get('summary'),
-                    'skills_ids': [(6, 0, [int(skill_id) for skill_id in skills_ids])]
                 }
                 request.env['create.cv'].sudo().create(cv_vals)
                 vals['success_msg'] = "CV Created Successfully!"
