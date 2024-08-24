@@ -36,8 +36,10 @@ class CvPortal(CustomerPortal):
             if not error_list:
                 experience_lines = []
                 education_lines = []
+                certificate_lines = []
                 exp_index = 1
                 edu_index = 1
+                certi_index = 1
 
                 while f'company_name_{exp_index}' in kwargs:
                     print(f"Processing experience block {exp_index}")
@@ -63,6 +65,17 @@ class CvPortal(CustomerPortal):
                     education_lines.append((0, 0, edu_vals))
                     edu_index += 1
 
+                while f'certificate_name_{certi_index}' in kwargs:
+                    print(f"Processing certificate block {certi_index}")
+                    certi_vals = {
+                        'name': kwargs.get(f'certificate_name_{certi_index}'),
+                        'organization': kwargs.get(f'organization_name_{certi_index}'),
+                        'degree': kwargs.get(f'certi_degree_name_{certi_index}'),
+                        'issue_date': kwargs.get(f'issue_date_{certi_index}'),
+                    }
+                    certificate_lines.append((0, 0, certi_vals))
+                    certi_index += 1
+
                 file = request.httprequest.files.get('image')
                 cv_vals = {
                     'image': base64.b64encode(file.read()),
@@ -75,6 +88,7 @@ class CvPortal(CustomerPortal):
                     'summary': kwargs.get('summary'),
                     'experience_lines_ids': experience_lines,
                     'education_lines_ids': education_lines,
+                    'certificate_lines_ids': certificate_lines,
                 }
                 print("Exp Lines: ", experience_lines)
                 new_cv_id = request.env['create.cv'].sudo().create(cv_vals)
