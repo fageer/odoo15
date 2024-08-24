@@ -103,6 +103,19 @@
                         </div>
 
                         <div class="form-group mb-3">
+                            <label for='website' class="control-label text-muted">Your Website Link</label>
+                            <input type="text" name="website" t-att-value="current_partner.website" id="website" class="form-control" placeholder="https://..."/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for='linkedin' class="control-label text-muted">Linkedin Profile Link</label>
+                            <input type="text" name="linkedin" id="linkedin" class="form-control" placeholder="https://..."/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for='github' class="control-label text-muted">Github Profile Link</label>
+                            <input type="text" name="github" id="github" class="form-control" placeholder="https://..."/>
+                        </div>
+
+                        <div class="form-group mb-3">
                             <label for='skills_ids' class="control-label text-muted">Skills</label>
                             <select name="skills_ids" id="skills_ids" class="js-example-basic-multiple col-xl-6 mb-1 new-get_data" multiple="multiple">
                                 <t t-foreach="skill_records" t-as="skill">
