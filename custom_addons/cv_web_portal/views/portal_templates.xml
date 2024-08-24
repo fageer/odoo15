@@ -102,17 +102,22 @@
                           <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="summary" name="summary" id="summary"/>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for='website' class="control-label text-muted">Your Website Link</label>
-                            <input type="text" name="website" t-att-value="current_partner.website" id="website" class="form-control" placeholder="https://..."/>
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>Socials Links</h4>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for='linkedin' class="control-label text-muted">Linkedin Profile Link</label>
-                            <input type="text" name="linkedin" id="linkedin" class="form-control" placeholder="https://..."/>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for='github' class="control-label text-muted">Github Profile Link</label>
-                            <input type="text" name="github" id="github" class="form-control" placeholder="https://..."/>
+                        <div class="form-group mb-3 row">
+                            <div class="form-group mb-3 col-4">
+                                <label for='website' class="control-label text-muted">Your Website Link</label>
+                                <input type="text" name="website" t-att-value="current_partner.website" id="website" class="form-control" placeholder="https://..."/>
+                            </div>
+                            <div class="form-group mb-3 col-4">
+                                <label for='linkedin' class="control-label text-muted">Linkedin Profile Link</label>
+                                <input type="text" name="linkedin" id="linkedin" class="form-control" placeholder="https://..."/>
+                            </div>
+                            <div class="form-group mb-3 col-4">
+                                <label for='github' class="control-label text-muted">Github Profile Link</label>
+                                <input type="text" name="github" id="github" class="form-control" placeholder="https://..."/>
+                            </div>
                         </div>
 
                         <div class="form-group mb-3">
