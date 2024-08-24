@@ -102,10 +102,6 @@
                           <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="summary" name="summary" id="summary"/>
                         </div>
 
-
-                        <div class="p-1 text-center my-3 text-muted">
-                            <h4>Personal Information</h4>
-                        </div>
                         <div class="form-group mb-3">
                             <label for='skills_ids' class="control-label text-muted">Skills</label>
                             <select name="skills_ids" id="skills_ids" class="js-example-basic-multiple col-xl-6 mb-1 new-get_data" multiple="multiple">
