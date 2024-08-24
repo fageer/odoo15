@@ -345,6 +345,7 @@
                         <script type="text/javascript">
                             let experienceCount = 1;
                             let educationCount = 1;
+                            let certificateCount = 1;
 
                             document.getElementById('add_experience').addEventListener('click', function() {
                                 experienceCount++;
@@ -374,6 +375,21 @@
                                 });
 
                                 document.getElementById('education_fields').appendChild(newBlock);
+                            });
+
+                            document.getElementById('add_certificate').addEventListener('click', function() {
+                                certificateCount++;
+                                let newBlock = document.querySelector('.certificate_block').cloneNode(true);
+
+                                newBlock.querySelectorAll('input, select, textarea').forEach(function(el) {
+                                    let newId = el.id.replace(/\d+$/, certificateCount);
+                                    let newName = el.name.replace(/\d+$/, certificateCount);
+                                    el.id = newId;
+                                    el.name = newName;
+                                    el.value = '';  // Clear the value
+                                });
+
+                                document.getElementById('certificate_fields').appendChild(newBlock);
                             });
                         </script>
                     </form>
