@@ -11,6 +11,8 @@ class CvPortal(CustomerPortal):
         country_records = request.env['res.country'].sudo().search([])
         city_records = request.env['res.country.state'].sudo().search([])
         job_records = request.env['jobs'].sudo().search([])
+        university_records = request.env['universities'].sudo().search([])
+        degree_records = request.env['degrees'].sudo().search([])
         skill_records = request.env['skills.tags'].sudo().search([])
         current_partner = request.env.user.partner_id
         vals = {
@@ -18,6 +20,8 @@ class CvPortal(CustomerPortal):
             'country_records': country_records,
             'city_records': city_records,
             'job_records': job_records,
+            'university_records': university_records,
+            'degree_records': degree_records,
             'skill_records': skill_records,
             'current_partner': current_partner,
             'page_name': 'new_cv'
@@ -31,18 +35,34 @@ class CvPortal(CustomerPortal):
                 error_list.append("Summary field is mandatory ❌.")
             if not error_list:
                 experience_lines = []
-                index = 1
-                while f'company_name_{index}' in kwargs:
-                    print(f"Processing experience block {index}")
+                education_lines = []
+                exp_index = 1
+                edu_index = 1
+
+                while f'company_name_{exp_index}' in kwargs:
+                    print(f"Processing experience block {exp_index}")
                     exp_vals = {
-                        'company_name': kwargs.get(f'company_name_{index}'),
-                        'job_position': kwargs.get(f'job_position_{index}'),
-                        'experience_start_date': kwargs.get(f'experience_start_date_{index}'),
-                        'experience_end_date': kwargs.get(f'experience_end_date_{index}'),
-                        'experience_summary': kwargs.get(f'experience_summary_{index}'),
+                        'company_name': kwargs.get(f'company_name_{exp_index}'),
+                        'job_position': kwargs.get(f'job_position_{exp_index}'),
+                        'experience_start_date': kwargs.get(f'experience_start_date_{exp_index}'),
+                        'experience_end_date': kwargs.get(f'experience_end_date_{exp_index}'),
+                        'experience_summary': kwargs.get(f'experience_summary_{exp_index}'),
                     }
                     experience_lines.append((0, 0, exp_vals))
-                    index += 1
+                    exp_index += 1
+
+                while f'university_name_{edu_index}' in kwargs:
+                    print(f"Processing education block {edu_index}")
+                    edu_vals = {
+                        'university_name': kwargs.get(f'university_name_{edu_index}'),
+                        'degree': kwargs.get(f'degree_name_{edu_index}'),
+                        'education_start_date': kwargs.get(f'education_start_date_{edu_index}'),
+                        'education_end_date': kwargs.get(f'education_end_date_{edu_index}'),
+                        'education_summary': kwargs.get(f'education_summary_{edu_index}'),
+                    }
+                    education_lines.append((0, 0, edu_vals))
+                    edu_index += 1
+
                 file = request.httprequest.files.get('image')
                 cv_vals = {
                     'image': base64.b64encode(file.read()),
@@ -54,6 +74,7 @@ class CvPortal(CustomerPortal):
                     'city_id': kwargs.get('city_id'),
                     'summary': kwargs.get('summary'),
                     'experience_lines_ids': experience_lines,
+                    'education_lines_ids': education_lines,
                 }
                 print("Exp Lines: ", experience_lines)
                 new_cv_id = request.env['create.cv'].sudo().create(cv_vals)

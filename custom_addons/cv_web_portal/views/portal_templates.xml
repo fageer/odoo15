@@ -149,42 +149,127 @@
                                 </div>
                             </div>
                         </div>
-    <!--                    <div id="experience_fields">-->
-    <!--                        <div class="experience_block mt-3" >-->
-    <!--                            <div class="row">-->
-    <!--                                <div class="form-group mb-3 col-6">-->
-    <!--                                    <label for='company_name_2' class="control-label text-muted">Company Name</label>-->
-    <!--                                    <input type="text" name="company_name_2" id="company_name_2" class="form-control" placeholder="Company Name..."/>-->
-    <!--                                </div>-->
-    <!--                                <div class="form-group mb-3 col-6">-->
-    <!--                                    <label for='job_position_2' class="control-label text-muted">Job Position</label>-->
-    <!--                                    <select name="job_position_2" id="job_position_2" class="form-control link-style">-->
-    <!--                                        <t t-foreach="job_records" t-as="job">-->
-    <!--                                            <option t-esc="job.job_name" t-att-value="job.id"/>-->
-    <!--                                        </t>-->
-    <!--                                    </select>-->
-    <!--                                </div>-->
-    <!--                            </div>-->
+                        <div id="experience_fields">
+                            <div class="experience_block mt-3" >
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='company_name_2' class="control-label text-muted">Company Name</label>
+                                        <input type="text" name="company_name_2" id="company_name_2" class="form-control" placeholder="Company Name..."/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='job_position_2' class="control-label text-muted">Job Position</label>
+                                        <select name="job_position_2" id="job_position_2" class="form-control link-style">
+                                            <t t-foreach="job_records" t-as="job">
+                                                <option t-esc="job.job_name" t-att-value="job.id"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
 
-    <!--                            <div class="row">-->
-    <!--                                <div class="form-group mb-3 col-6">-->
-    <!--                                    <label for='experience_start_date_2' class="control-label text-muted">From</label>-->
-    <!--                                    <input type="date" name="experience_start_date_2" id="experience_start_date_2" class="form-control"/>-->
-    <!--                                </div>-->
-    <!--                                <div class="form-group mb-3 col-6">-->
-    <!--                                    <label for='experience_end_date_2' class="control-label text-muted">To</label>-->
-    <!--                                    <input type="date" name="experience_end_date_2" id="experience_end_date_2" class="form-control"/>-->
-    <!--                                </div>-->
-    <!--                            </div>-->
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='experience_start_date_2' class="control-label text-muted">From</label>
+                                        <input type="date" name="experience_start_date_2" id="experience_start_date_2" class="form-control"/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='experience_end_date_2' class="control-label text-muted">To</label>
+                                        <input type="date" name="experience_end_date_2" id="experience_end_date_2" class="form-control"/>
+                                    </div>
+                                </div>
 
-    <!--                            <div class="input-group">-->
-    <!--                              <span class="input-group-text">Experience Summary</span>-->
-    <!--                              <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="experience_summary_2" id="experience_summary_2"/>-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
+                                <div class="input-group">
+                                  <span class="input-group-text">Experience Summary</span>
+                                  <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="experience_summary_2" id="experience_summary_2"/>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group mb-3">
                             <button type="button" id="add_experience" class="btn btn-secondary mt-3">Add Experience</button>
+                        </div>
+
+
+
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>Education Information</h4>
+                        </div>
+                        <div id="education_fields">
+                            <div class="education_block mt-3" >
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='university_name_1' class="control-label text-muted">University Name</label>
+                                        <select name="university_name_1" id="university_name_1" class="form-control link-style">
+                                            <t t-foreach="university_records" t-as="university">
+                                                <option t-esc="university.university_name" t-att-value="university.id"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='degree_name_1' class="control-label text-muted">Degree</label>
+                                        <select name="degree_name_1" id="degree_name_1" class="form-control link-style">
+                                            <t t-foreach="degree_records" t-as="degree">
+                                                <option t-esc="degree.name" t-att-value="degree.id"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='education_start_date_1' class="control-label text-muted">From</label>
+                                        <input type="date" name="education_start_date_1" id="education_start_date_1" class="form-control"/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='education_end_date_1' class="control-label text-muted">To</label>
+                                        <input type="date" name="education_end_date_1" id="education_end_date_1" class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                  <span class="input-group-text">Education Summary</span>
+                                  <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="education_summary_1" id="education_summary_1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="education_fields">
+                            <div class="education_block mt-3" >
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='university_name_2' class="control-label text-muted">University Name</label>
+                                        <select name="university_name_2" id="university_name_2" class="form-control link-style">
+                                            <t t-foreach="university_records" t-as="university">
+                                                <option t-esc="university.university_name" t-att-value="university.id"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='degree_name_2' class="control-label text-muted">Degree</label>
+                                        <select name="degree_name_2" id="degree_name_2" class="form-control link-style">
+                                            <t t-foreach="degree_records" t-as="degree">
+                                                <option t-esc="degree.name" t-att-value="degree.id"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='education_start_date_2' class="control-label text-muted">From</label>
+                                        <input type="date" name="education_start_date_2" id="education_start_date_2" class="form-control"/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='education_end_date_2' class="control-label text-muted">To</label>
+                                        <input type="date" name="education_end_date_2" id="education_end_date_2" class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                  <span class="input-group-text">Education Summary</span>
+                                  <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="education_summary_2" id="education_summary_2"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="button" id="add_education" class="btn btn-secondary mt-3">Add Education</button>
                         </div>
 
 
@@ -195,6 +280,7 @@
                         </div>
                         <script type="text/javascript">
                             let experienceCount = 1;
+                            let educationCount = 1;
 
                             document.getElementById('add_experience').addEventListener('click', function() {
                                 experienceCount++;
@@ -209,6 +295,21 @@
                                 });
 
                                 document.getElementById('experience_fields').appendChild(newBlock);
+                            });
+
+                            document.getElementById('add_education').addEventListener('click', function() {
+                                educationCount++;
+                                let newBlock = document.querySelector('.education_block').cloneNode(true);
+
+                                newBlock.querySelectorAll('input, select, textarea').forEach(function(el) {
+                                    let newId = el.id.replace(/\d+$/, educationCount);
+                                    let newName = el.name.replace(/\d+$/, educationCount);
+                                    el.id = newId;
+                                    el.name = newName;
+                                    el.value = '';  // Clear the value
+                                });
+
+                                document.getElementById('education_fields').appendChild(newBlock);
                             });
                         </script>
                     </form>
