@@ -337,6 +337,62 @@
                         </div>
 
 
+
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>Project Information</h4>
+                        </div>
+                        <div id="project_fields">
+                            <div class="project_block mt-3">
+                                <hr/>
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='project_name_1' class="control-label text-muted">Project Name</label>
+                                        <input type="text" name="project_name_1" id="project_name_1" class="form-control" placeholder="Project Name..."/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='project_link_1' class="control-label text-muted">Project Link</label>
+                                        <input type="text" name="project_link_1" id="project_link_1" class="form-control" placeholder="Project Link..."/>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for='project_image_1' class="input-group-text">Project Image</label>
+                                    <input type="file" name="project_image_1" id="project_image_1" multiple="true" data-show-upload="true"
+                                           data-show-caption="true" data-show-preview="true" class="form-control"/>
+                                </div>
+                                <div class="input-group">
+                                  <span class="input-group-text">Project Summary</span>
+                                  <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="project_summary_1" id="project_summary_1"/>
+                                </div>
+                            </div>
+
+                            <div class="project_block mt-3">
+                                <hr/>
+                                <div class="row">
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='project_name_2' class="control-label text-muted">Project Name</label>
+                                        <input type="text" name="project_name_2" id="project_name_2" class="form-control" placeholder="Project Name..."/>
+                                    </div>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for='project_link_2' class="control-label text-muted">Project Link</label>
+                                        <input type="text" name="project_link_2" id="project_link_2" class="form-control" placeholder="Project Link..."/>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for='project_image_2' class="input-group-text">Project Image</label>
+                                    <input type="file" name="project_image_2" id="project_image_2" multiple="true" data-show-upload="true"
+                                           data-show-caption="true" data-show-preview="true" class="form-control"/>
+                                </div>
+                                <div class="input-group">
+                                  <span class="input-group-text">Project Summary</span>
+                                  <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" name="project_summary_2" id="project_summary_2"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="button" id="add_project" class="btn btn-secondary mt-3">Add Project</button>
+                        </div>
+
+
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-success mt-3">Create CV</button>

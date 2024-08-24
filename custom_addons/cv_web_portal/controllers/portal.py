@@ -37,9 +37,11 @@ class CvPortal(CustomerPortal):
                 experience_lines = []
                 education_lines = []
                 certificate_lines = []
+                project_lines = []
                 exp_index = 1
                 edu_index = 1
                 certi_index = 1
+                pro_index = 1
 
                 while f'company_name_{exp_index}' in kwargs:
                     print(f"Processing experience block {exp_index}")
@@ -76,6 +78,18 @@ class CvPortal(CustomerPortal):
                     certificate_lines.append((0, 0, certi_vals))
                     certi_index += 1
 
+                while f'project_name_{pro_index}' in kwargs:
+                    file = request.httprequest.files.get(f'project_image_{pro_index}')
+                    print(f"Processing project block {pro_index}")
+                    pro_vals = {
+                        'project_name': kwargs.get(f'project_name_{pro_index}'),
+                        'project_link': kwargs.get(f'project_link_{pro_index}'),
+                        'project_image': base64.b64encode(file.read()),
+                        'project_description': kwargs.get(f'project_summary_{pro_index}'),
+                    }
+                    project_lines.append((0, 0, pro_vals))
+                    pro_index += 1
+
                 file = request.httprequest.files.get('image')
                 cv_vals = {
                     'image': base64.b64encode(file.read()),
@@ -89,6 +103,7 @@ class CvPortal(CustomerPortal):
                     'experience_lines_ids': experience_lines,
                     'education_lines_ids': education_lines,
                     'certificate_lines_ids': certificate_lines,
+                    'project_lines_ids': project_lines,
                 }
                 print("Exp Lines: ", experience_lines)
                 new_cv_id = request.env['create.cv'].sudo().create(cv_vals)
