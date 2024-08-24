@@ -42,12 +42,15 @@
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>General Information</h4>
                         </div>
+
+                        <!-- Image Input -->
                         <div class="input-group mb-3">
                             <label for='image' class="input-group-text">Upload Image</label>
                             <input type="file" name="image" id="image" multiple="true" data-show-upload="true"
                                    data-show-caption="true" data-show-preview="true" class="form-control"/>
                         </div>
 
+                        <!-- Name Input -->
                         <div class="form-group mb-3">
                             <label for='name_id' class="control-label text-muted">Name</label>
                             <select  name="name_id" id="name_id" class="form-control link-style">
@@ -58,16 +61,19 @@
                             </select>
                         </div>
 
+                        <!-- Email Input -->
                         <div class="form-group mb-3">
                             <label for='email' class="control-label text-muted">Email</label>
                             <input type="email" name="email" t-att-value="current_partner.email" id="email" class="form-control" placeholder="Email..." required="required"/>
                         </div>
 
+                        <!-- Phone Input -->
                         <div class="form-group mb-3">
                             <label for='phone_number' class="control-label text-muted">Phone Number</label>
                             <input type="text" name="phone_number" t-att-value="current_partner.phone" id="phone_number" class="form-control" placeholder="Phone Number..." required="required"/>
                         </div>
 
+                        <!-- Job Input -->
                         <div class="form-group mb-3">
                             <label for='job_title' class="control-label text-muted">Job</label>
                             <select  name="job_title" id="job_title" class="form-control link-style">
@@ -77,6 +83,7 @@
                             </select>
                         </div>
 
+                        <!-- Country Input -->
                         <div class="form-group mb-3">
                             <label for='country_id' class="control-label text-muted">Country</label>
                             <select  name="country_id" id="country_id" class="form-control link-style">
@@ -87,6 +94,7 @@
                             </select>
                         </div>
 
+                        <!-- City Input -->
                         <div class="form-group mb-3">
                             <label for='city_id' class="control-label text-muted">City</label>
                             <select name="city_id" id="city_id" class="form-control link-style">
@@ -97,11 +105,13 @@
                             </select>
                         </div>
 
+                        <!-- Summary Input -->
                         <div class="input-group">
                           <span class="input-group-text">Summary</span>
                           <textarea style="resize: none;" cols="5" rows="5" class="form-control" aria-label="With textarea" t-att-value="summary" name="summary" id="summary"/>
                         </div>
 
+                        <!-- Socials Inputs -->
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>Socials Links</h4>
                         </div>
@@ -120,6 +130,7 @@
                             </div>
                         </div>
 
+                        <!-- Skills Input -->
                         <div class="form-group mb-3">
                             <label for='skills_ids' class="control-label text-muted">Skills</label>
                             <select name="skills_ids" id="skills_ids" class="js-example-basic-multiple col-xl-6 mb-1 new-get_data" multiple="multiple">
@@ -129,7 +140,7 @@
                             </select>
                         </div>
 
-
+                        <!-- Experience Information -->
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>Experience Information</h4>
                         </div>
@@ -203,7 +214,7 @@
                         </div>
 
 
-
+                        <!-- Education Information -->
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>Education Information</h4>
                         </div>
@@ -285,7 +296,7 @@
                         </div>
 
 
-
+                        <!-- Certificate Information -->
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>Certificate Information</h4>
                         </div>
@@ -355,7 +366,7 @@
                         </div>
 
 
-
+                        <!-- Project Information -->
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>Project Information</h4>
                         </div>
@@ -410,12 +421,14 @@
                             <button type="button" id="add_project" class="btn btn-secondary mt-3">Add new project</button>
                         </div>
 
-
+                        <!-- Submit Button -->
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-success mt-3">Create CV</button>
                             </div>
                         </div>
+
+                        <!-- Javascript Logics -->
                         <script type="text/javascript">
                             let experienceCount = 1;
                             let educationCount = 1;
