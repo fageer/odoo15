@@ -35,6 +35,11 @@
                         <div class="p-1 text-center my-3 text-muted">
                             <h4>Parent Information</h4>
                         </div>
+                        <div class="input-group mb-3">
+                            <label for='parent_image' class="input-group-text">Upload Image</label>
+                            <input type="file" name="parent_image" id="parent_image" multiple="true" data-show-upload="true"
+                                   data-show-caption="true" data-show-preview="true" class="form-control"/>
+                        </div>
                         <div class="row">
                             <div class="form-group mb-3 col-6">
                                 <label for='parent_name' class="control-label text-muted">Parent Name</label>
