@@ -19,10 +19,34 @@ class ResPartnerPortal(CustomerPortal):
             if not kwargs.get('name'):
                 error_list.append("Name field is mandatory ❌!")
             if not error_list:
+                parent_vals = {
+                    'name': kwargs.get('parent_name'),
+                    'country_id': int(kwargs.get('parent_country_id')),
+                    'state_id': int(kwargs.get('parent_state_id')),
+                    'city': kwargs.get('parent_city'),
+                    'street': kwargs.get('parent_street'),
+                    'street2': kwargs.get('parent_street'),
+                    'phone': kwargs.get('parent_phone'),
+                    'function': kwargs.get('parent_function'),
+                    'nationality': kwargs.get('parent_nationality'),
+                    'relationship': kwargs.get('parent_relationship'),
+                    'id_number': kwargs.get('parent_id_number'),
+                }
+                new_parent_id = request.env['res.partner'].sudo().create(parent_vals)
+                print("-===========================", new_parent_id)
+                respo_vals = [(0, 0, {
+                    'name': kwargs.get('responsible_name'),
+                    'relationship': kwargs.get('relationship'),
+                    'nationality': kwargs.get('responsible_nationality'),
+                    'id_number': kwargs.get('responsible_id_number'),
+                    'email': kwargs.get('responsible_email'),
+                    'phone': kwargs.get('responsible_phone'),
+                })]
                 file = request.httprequest.files.get('image')
                 partner_vals = {
                     'image_1920': base64.b64encode(file.read()),
                     'name': kwargs.get('name'),
+                    'parent_id': new_parent_id.id,
                     'country_id': int(kwargs.get('country_id')),
                     'state_id': int(kwargs.get('state_id')),
                     'city': kwargs.get('city'),
@@ -33,9 +57,9 @@ class ResPartnerPortal(CustomerPortal):
                     'date_of_birth': kwargs.get('date_of_birth'),
                     'birth_address': kwargs.get('birth_address'),
                     'id_number': kwargs.get('id_number'),
+                    'child_ids': respo_vals,
                 }
                 new_partner_id = request.env['res.partner'].sudo().create(partner_vals)
-                print("-================", new_partner_id)
                 vals['success_msg'] = "Submited Successfully ✔!"
             else:
                 vals['error_list'] = error_list

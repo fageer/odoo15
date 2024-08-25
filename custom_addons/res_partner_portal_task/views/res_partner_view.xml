@@ -12,6 +12,7 @@
                 <field name="nationality" />
                 <field name="date_of_birth" />
                 <field name="birth_address" />
+                <field name="relationship" />
                 <field name="id_number" />
             </xpath>
             <xpath expr="//field[@name='child_ids']/form//field[@name='title']" position="replace">

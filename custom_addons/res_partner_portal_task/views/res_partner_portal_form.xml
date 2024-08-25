@@ -30,72 +30,167 @@
                 <div class="p-3">
                     <form method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                        <!-- Parent Information -->
                         <div class="p-1 text-center my-3 text-muted">
-                            <h4>Partner Information</h4>
+                            <h4>Parent Information</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_name' class="control-label text-muted">Parent Name</label>
+                                <input type="text" name="parent_name" id="parent_name" class="form-control" placeholder="Parent Name..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_nationality' class="control-label text-muted">Parent Nationality</label>
+                                <input type="text" name="parent_nationality" id="parent_nationality" class="form-control" placeholder="Parent Nationality..."/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_relationship' class="control-label text-muted">Relationship</label>
+                                <input type="text" name="parent_relationship" id="parent_relationship" class="form-control" placeholder="Relationship..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_id_number' class="control-label text-muted">ID Number</label>
+                                <input type="text" name="parent_id_number" id="parent_id_number" class="form-control" placeholder="ID Number..."/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_country_id' class="control-label text-muted">Country</label>
+                                <select name="parent_country_id" id="parent_country_id" class="form-control link-style">
+                                    <t t-foreach="country_records" t-as="country">
+                                        <option t-esc="country.name" t-att-value="country.id"/>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_state_id' class="control-label text-muted">State</label>
+                                <select name="parent_state_id" id="parent_state_id" class="form-control link-style">
+                                    <t t-foreach="state_records" t-as="state">
+                                        <option t-esc="state.name" t-att-value="state.id"/>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_city' class="control-label text-muted">District Address</label>
+                                <input type="text" name="parent_city" id="parent_city" class="form-control" placeholder="District Address..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_street' class="control-label text-muted">Street Name</label>
+                                <input type="text" name="parent_street" id="parent_street" class="form-control" placeholder="Street..."/>
+                            </div>
                         </div>
 
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_phone' class="control-label text-muted">Phone</label>
+                                <input type="text" name="parent_phone" id="parent_phone" class="form-control" placeholder="Phone..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='parent_function' class="control-label text-muted">Job Position</label>
+                                <input type="text" name="parent_function" id="parent_function" class="form-control" placeholder="Job..."/>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Child Information -->
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>Child Information</h4>
+                        </div>
                         <div class="input-group mb-3">
                             <label for='image' class="input-group-text">Upload Image</label>
                             <input type="file" name="image" id="image" multiple="true" data-show-upload="true"
                                    data-show-caption="true" data-show-preview="true" class="form-control"/>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for='name' class="control-label text-muted">Full Name</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Name..."/>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='name' class="control-label text-muted">Full Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='nationality' class="control-label text-muted">Nationality</label>
+                                <input type="text" name="nationality" id="nationality" class="form-control" placeholder="Nationality..."/>
+                            </div>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for='nationality' class="control-label text-muted">Nationality</label>
-                            <input type="text" name="nationality" id="nationality" class="form-control" placeholder="Nationality..."/>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='date_of_birth' class="control-label text-muted">Date Of Birth</label>
+                                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control"/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='birth_address' class="control-label text-muted">Birth Address</label>
+                                <input type="text" name="birth_address" id="birth_address" class="form-control" placeholder="Birth Address..."/>
+                            </div>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for='date_of_birth' class="control-label text-muted">Date Of Birth</label>
-                            <input type="date" name="date_of_birth" id="date_of_birth" class="form-control"/>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for='birth_address' class="control-label text-muted">Birth Address</label>
-                            <input type="text" name="birth_address" id="birth_address" class="form-control" placeholder="Birth Address..."/>
-                        </div>
-
                         <div class="form-group mb-3">
                             <label for='id_number' class="control-label text-muted">ID Number</label>
                             <input type="text" name="id_number" id="id_number" class="form-control" placeholder="ID Number..."/>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for='country_id' class="control-label text-muted">Country</label>
-                            <select name="country_id" id="country_id" class="form-control link-style">
-                                <t t-foreach="country_records" t-as="country">
-                                    <option t-esc="country.name" t-att-value="country.id"/>
-                                </t>
-                            </select>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='country_id' class="control-label text-muted">Country</label>
+                                <select name="country_id" id="country_id" class="form-control link-style">
+                                    <t t-foreach="country_records" t-as="country">
+                                        <option t-esc="country.name" t-att-value="country.id"/>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='state_id' class="control-label text-muted">State</label>
+                                <select name="state_id" id="state_id" class="form-control link-style">
+                                    <t t-foreach="state_records" t-as="state">
+                                        <option t-esc="state.name" t-att-value="state.id"/>
+                                    </t>
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for='state_id' class="control-label text-muted">State</label>
-                            <select name="state_id" id="state_id" class="form-control link-style">
-                                <t t-foreach="state_records" t-as="state">
-                                    <option t-esc="state.name" t-att-value="state.id"/>
-                                </t>
-                            </select>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='city' class="control-label text-muted">District Address</label>
+                                <input type="text" name="city" id="city" class="form-control" placeholder="District Address..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='street' class="control-label text-muted">Street Name</label>
+                                <input type="text" name="street" id="street" class="form-control" placeholder="Street..."/>
+                            </div>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for='city' class="control-label text-muted">District Address</label>
-                            <input type="text" name="city" id="city" class="form-control" placeholder="District Address..."/>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for='street' class="control-label text-muted">Street Name</label>
-                            <input type="text" name="street" id="street" class="form-control" placeholder="Street..."/>
-                        </div>
-
                         <div class="form-group mb-3">
                             <label for='phone' class="control-label text-muted">Home Phone</label>
                             <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone..."/>
+                        </div>
+
+
+
+
+
+
+                        <!-- Responsible Information -->
+                        <div class="p-1 text-center my-3 text-muted">
+                            <h4>Contact Child Receive Responsible</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='responsible_name' class="control-label text-muted">Full Name</label>
+                                <input type="text" name="responsible_name" id="responsible_name" class="form-control" placeholder="Name..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='responsible_id_number' class="control-label text-muted">ID Number</label>
+                                <input type="text" name="responsible_id_number" id="responsible_id_number" class="form-control" placeholder="ID Number..."/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for='responsible_email' class="control-label text-muted">Email</label>
+                                <input type="email" name="responsible_email" id="responsible_email" class="form-control" placeholder="Email..."/>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for='responsible_phone' class="control-label text-muted">Phone</label>
+                                <input type="text" name="responsible_phone" id="responsible_phone" class="form-control" placeholder="Phone..."/>
+                            </div>
                         </div>
 
 
